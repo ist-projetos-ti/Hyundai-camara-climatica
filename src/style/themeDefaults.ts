@@ -2,8 +2,8 @@ import { keyframes } from 'styled-components';
 
 const themeDefaults = {
   colors: {
-    primary: '#d303fc',
-    secondary: '#8878ff',
+    primary: '#0B98A3',
+    secondary: '#0D9F64',
 
     black: '#000000',
     white: '#FFFFFF',
@@ -25,7 +25,7 @@ const themeDefaults = {
     sageGreenMinus1: '#53846A',
     sageGreenMinus2: '#1D4941',
 
-    background: '#F2F2F2',
+    background: '#ffffff',
     backgroundPrimary: '#2A9DF4',
     backgroundDisabled: '#F8F8F8',
     backgroundDisabledHighlight: '#0FFFFF',

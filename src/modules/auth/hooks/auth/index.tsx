@@ -19,7 +19,7 @@ interface AuthState {
 }
 
 interface SignInCredentials {
-  email: string;
+  hcm_code: string;
   password: string;
 }
 
@@ -90,11 +90,11 @@ const AuthProvider: React.FC<IAuthProviderProps> = ({ children }) => {
   );
 
   const signIn = useCallback(
-    async ({ email, password }: SignInCredentials) => {
+    async ({ hcm_code: hcmCode, password }: SignInCredentials) => {
       setLoading(true);
 
       const response = await api.post(AuthApiRoutes.SESSIONS, {
-        email,
+        hcmCode,
         password,
       });
 

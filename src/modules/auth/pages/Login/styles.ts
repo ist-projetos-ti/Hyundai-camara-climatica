@@ -5,6 +5,14 @@ export const Container = styled.div`
   display: flex;
   flex: 1;
   align-items: center;
+  width: 100%;
+`;
+
+export const StyledLink = styled.p`
+  width: 100%;
+  color: ${themeDefaults.colors.primary};
+  text-decoration: underline;
+  margin-left: 32px;
 `;
 
 export const LogoImg = styled.img`
@@ -18,7 +26,7 @@ export const LogoImg = styled.img`
 export const Content = styled.div`
   flex: 1;
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   align-items: center;
   justify-content: space-around;
   gap: 80px;
@@ -45,4 +53,10 @@ export const Form = styled.form`
   align-items: center;
   justify-content: flex-start;
   gap: 20px;
+`;
+
+export const Title = styled.h1`
+  font-weight: 800;
+  font-size: 60px;
+  color: ${themeDefaults.colors.primary};
 `;

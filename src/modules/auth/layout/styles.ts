@@ -9,3 +9,7 @@ export const Container = styled.div`
   animation: ${({ theme }) => theme.animations.appearFromBottom} 0.6s;
   max-width: ${themeDefaults.breakpoints.md};
 `;
+
+export const Subtitle = styled.h2`
+  color: ${themeDefaults.colors.white};
+`;

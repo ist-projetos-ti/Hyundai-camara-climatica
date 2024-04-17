@@ -1,22 +1,28 @@
 import React, { useCallback, useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
-import { FormControl, FormErrorMessage, FormLabel } from '@chakra-ui/react';
-import { FaKey, FaUser } from 'react-icons/fa';
+import { FormControl, FormErrorMessage } from '@chakra-ui/react';
+import { PiLockKeyOpenThin } from 'react-icons/pi';
+import { TfiUser } from 'react-icons/tfi';
 
 // eslint-disable-next-line import/no-unresolved
 import { useToast } from '@hooks/Toast';
 import { errorHandler } from '@errors/errorHandler';
-import Select from '@components/Form/Select';
 import Input from '@components/Form/Input';
 import { PublicPathsEnum } from '@routes/publicRoutes/publicPaths';
-import logoImg from '@assets/logo.svg';
 import { PrivatePathsEnum } from '@routes/privateRoutes/privatePaths';
 import { useAuth } from '@modules/auth/hooks/auth';
 
 import Button from '../../../../components/Button';
 
-import { Container, Content, Form, FormContainer, LogoImg } from './styles';
+import {
+  Container,
+  Content,
+  Form,
+  FormContainer,
+  Title,
+  StyledLink,
+} from './styles';
 import { LoginFormData, loginFormResolver } from './loginForm.zod';
 
 const Login: React.FC = () => {
@@ -25,15 +31,12 @@ const Login: React.FC = () => {
     handleSubmit,
     register,
     formState: { errors, isSubmitting },
-    control,
   } = useForm<LoginFormData>({
     resolver: loginFormResolver,
     mode: 'all',
   });
 
   const [isLoading, setIsLoading] = useState(false);
-
-  const languages = ['pt_BR', 'en_US'];
 
   const navigate = useNavigate();
   const { signIn } = useAuth();
@@ -74,56 +77,42 @@ const Login: React.FC = () => {
   return (
     <Container>
       <Content>
-        <LogoImg src={logoImg} alt="Logo" />
-
+        <Title>Welcome</Title>
         <FormContainer>
           <Form onSubmit={handleSubmit(onSubmit)}>
-            <FormControl isInvalid={!!errors.language}>
-              <FormLabel htmlFor="language">Idioma:</FormLabel>
-              <Select
-                control={control}
-                name="language"
-                Icon={FaKey}
-                options={languages}
-                placeholder="Selecione uma opção"
-              />
-              <FormErrorMessage>
-                {errors.language && errors.language.message}
-              </FormErrorMessage>
-            </FormControl>
-            <FormControl isInvalid={!!errors.email}>
-              <FormLabel htmlFor="email">E-mail:</FormLabel>
+            <FormControl isInvalid={!!errors.hcm_code}>
               <Input
                 register={register}
                 name="email"
-                state={getFieldState('email')}
-                placeholder="email@email.com"
-                errors={errors.email}
-                Icon={FaUser}
+                state={getFieldState('hcm_code')}
+                placeholder="HCM user"
+                errors={errors.hcm_code}
+                Icon={TfiUser}
               />
               <FormErrorMessage>
-                {errors.email && errors.email.message}
+                {errors.hcm_code && errors.hcm_code.message}
               </FormErrorMessage>
             </FormControl>
             <FormControl isInvalid={!!errors.password}>
-              <FormLabel htmlFor="password">Senha:</FormLabel>
               <Input
                 name="password"
                 type="password"
                 isPassword
-                placeholder="Insira a senha"
+                placeholder="Password"
                 register={register}
                 state={getFieldState('password')}
                 errors={errors.password}
-                Icon={FaKey}
+                Icon={PiLockKeyOpenThin}
               />
               <FormErrorMessage>
                 {errors.password && errors.password.message}
               </FormErrorMessage>
             </FormControl>
-            <Link to={PublicPathsEnum.FORGOT_PASSWORD}>
-              Esqueci minha senha
-            </Link>
+            <StyledLink>
+              <Link to={PublicPathsEnum.FORGOT_PASSWORD}>
+                Forgot your password?
+              </Link>
+            </StyledLink>
             <Button
               size="md"
               label="Login"
