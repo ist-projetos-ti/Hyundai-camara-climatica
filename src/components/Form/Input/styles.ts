@@ -26,7 +26,7 @@ export const Container = styled.div<ContainerInterface>`
   width: 100%;
   align-items: center;
   align-content: center;
-  border: ${({ theme }) => theme.colors.loginPlaceholderColor} solid 2px;
+  border: ${({ theme }) => theme.colors.primary} solid 1px;
   padding: 0.5rem 1rem;
   border-radius: 10px;
   transition: 0.2s ease all;
@@ -41,7 +41,7 @@ export const Container = styled.div<ContainerInterface>`
   ${({ theme, isFocused }) =>
     isFocused &&
     css`
-      border: ${theme.colors.secondary} solid 2px;
+      border: ${theme.colors.secondary} solid 1px;
     `}
 
   ${({ theme, isError }) =>
@@ -61,9 +61,9 @@ export const Container = styled.div<ContainerInterface>`
     input:-webkit-autofill,
     textarea:-webkit-autofill,
     select:-webkit-autofill {
-    -webkit-box-shadow: 0 0 0 30px ${({ theme }) => theme.colors.secondary}
-      inset !important;
-    -webkit-text-fill-color: black !important;
+    /* -webkit-box-shadow: 0 0 0 30px ${({ theme }) =>
+      theme.colors.primary} inset !important; */
+    /* -webkit-text-fill-color: black !important; */
   }
 
   input {
@@ -72,6 +72,12 @@ export const Container = styled.div<ContainerInterface>`
     width: 80%;
     background: transparent;
     border: 0;
+
+    &::placeholder {
+      color: ${({ theme }) => theme.colors.primary};
+      font-size: 17px;
+      font-weight: 400;
+    }
 
     color: ${({ theme }) => theme.colors.loginInputColor};
 

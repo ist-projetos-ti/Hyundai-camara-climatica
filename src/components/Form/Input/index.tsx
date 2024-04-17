@@ -73,7 +73,7 @@ const Input: React.FC<InputProps> = ({
       {Icon && (
         <Icon
           size={30}
-          color={theme.colors.secondary}
+          color={theme.colors.primary}
           style={{ padding: 5, marginRight: 5 }}
         />
       )}
@@ -94,9 +94,13 @@ const Input: React.FC<InputProps> = ({
       {isValid && <CheckIcon />}
 
       {!disabled && isPassword && (
-        <Tooltip label={isPasswordVisible ? 'Esconder senha' : 'Mostrar senha'}>
+        <Tooltip label={isPasswordVisible ? 'Show password' : 'Hide password'}>
           <button onClick={isPasswordVisibleF.toggle} type="button">
-            {isPasswordVisible ? <ClosedEyeIcon /> : <EyeIcon />}
+            {isPasswordVisible ? (
+              <ClosedEyeIcon color={theme.colors.primary} />
+            ) : (
+              <EyeIcon color={theme.colors.primary} />
+            )}
           </button>
         </Tooltip>
       )}
