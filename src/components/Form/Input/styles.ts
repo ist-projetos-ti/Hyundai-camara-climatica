@@ -1,6 +1,7 @@
 import { FiAlertCircle } from 'react-icons/fi';
 import styled, { css } from 'styled-components';
-import { AiFillEyeInvisible, AiFillEye } from 'react-icons/ai';
+import { PiEyeThin, PiEyeSlashThin } from 'react-icons/pi';
+
 import { BsCheck } from 'react-icons/bs';
 
 interface ContainerInterface {
@@ -113,10 +114,10 @@ export const CheckIcon = styled(BsCheck).attrs(({ theme }) => ({
   margin: 0 5px;
 `;
 
-export const EyeIcon = styled(AiFillEye).attrs(() => ({
+export const EyeIcon = styled(PiEyeThin).attrs(() => ({
   size: 22,
 }))``;
 
-export const ClosedEyeIcon = styled(AiFillEyeInvisible).attrs(() => ({
+export const ClosedEyeIcon = styled(PiEyeSlashThin).attrs(() => ({
   size: 22,
 }))``;

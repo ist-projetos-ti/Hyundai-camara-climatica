@@ -1,5 +1,4 @@
 import React from 'react';
-import { LiaKeySolid } from 'react-icons/lia';
 
 import {
   Box,
@@ -12,10 +11,13 @@ import {
   ModalOverlay,
   Text,
 } from '@chakra-ui/react';
-import { TfiEmail } from 'react-icons/tfi';
-import { BsTelephone } from 'react-icons/bs';
 
 import themeDefaults from '@style/themeDefaults';
+import KeyIcon from '@assets/keyIcon.svg?react';
+
+import MailIcon from '@assets/email.svg?react';
+import TelephoneIcon from '@assets/telephone.svg?react';
+
 import Button from '../../../../components/Button';
 
 interface IStyledModalProps {
@@ -48,8 +50,8 @@ const StyledModal: React.FC<IStyledModalProps> = ({ isOpen, onClose }) => (
         fontWeight="black"
         fontSize={18}
       >
-        <Box justifyContent="center" display="flex">
-          <LiaKeySolid color={themeDefaults.colors.primary} size={40} />
+        <Box justifyContent="center" display="flex" pb={4}>
+          <KeyIcon />
         </Box>
         Nova senha
       </ModalHeader>
@@ -75,12 +77,12 @@ const StyledModal: React.FC<IStyledModalProps> = ({ isOpen, onClose }) => (
       >
         <Box w="100%" maxW={308} p="0px 4px" height="3.8em">
           <Button onClick={onClose} label="e-mail" height="100%">
-            <TfiEmail />
+            <MailIcon />
           </Button>
         </Box>
         <Box w="100%" maxW={308} p="0px 4px" height="3.8em">
           <Button onClick={onClose} label="telefone" height="100%">
-            <BsTelephone />
+            <TelephoneIcon />
           </Button>
         </Box>
       </ModalFooter>

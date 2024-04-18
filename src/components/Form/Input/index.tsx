@@ -10,6 +10,7 @@ import { FieldError, UseFormRegister } from 'react-hook-form';
 import { useTheme } from 'styled-components';
 import { IconType } from 'react-icons';
 import { Tooltip, useBoolean } from '@chakra-ui/react';
+// import IotOffIcon from '@assets/IotOffIcon.svg?react';
 
 import {
   CheckIcon,
@@ -28,7 +29,7 @@ type FieldState = {
 
 interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   name: string;
-  Icon?: IconType;
+  Icon?: IconType | React.FunctionComponent<React.SVGProps<SVGSVGElement>>;
   register: UseFormRegister<any>;
   errors?: FieldError;
   isPassword?: boolean;

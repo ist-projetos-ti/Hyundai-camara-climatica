@@ -3,8 +3,6 @@ import { useNavigate } from 'react-router-dom';
 
 import { useForm } from 'react-hook-form';
 import { FormControl, FormErrorMessage, useDisclosure } from '@chakra-ui/react';
-import { PiLockKeyOpenThin } from 'react-icons/pi';
-import { TfiUser } from 'react-icons/tfi';
 
 // eslint-disable-next-line import/no-unresolved
 import { useToast } from '@hooks/Toast';
@@ -12,6 +10,8 @@ import { errorHandler } from '@errors/errorHandler';
 import Input from '@components/Form/Input';
 import { PrivatePathsEnum } from '@routes/privateRoutes/privatePaths';
 import { useAuth } from '@modules/auth/hooks/auth';
+import userIcon from '@assets/userIcon.svg?react';
+import padlock from '@assets/padlock.svg?react';
 
 import StyledModal from '@modules/auth/components/modal';
 import Button from '../../../../components/Button';
@@ -90,7 +90,7 @@ const Login: React.FC = () => {
                 state={getFieldState('hcm_code')}
                 placeholder="HCM user"
                 errors={errors.hcm_code}
-                Icon={TfiUser}
+                Icon={userIcon}
               />
               <FormErrorMessage>
                 {errors.hcm_code && errors.hcm_code.message}
@@ -105,7 +105,7 @@ const Login: React.FC = () => {
                 register={register}
                 state={getFieldState('password')}
                 errors={errors.password}
-                Icon={PiLockKeyOpenThin}
+                Icon={padlock}
               />
               <FormErrorMessage>
                 {errors.password && errors.password.message}

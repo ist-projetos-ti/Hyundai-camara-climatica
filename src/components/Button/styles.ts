@@ -18,6 +18,8 @@ export const Label = styled.p`
   line-height: 1;
   color: ${({ theme }) => theme.colors.white};
   margin-left: 12px;
+  display: flex;
+  align-items: center;
 `;
 
 export const LabelContainer = styled.span<ILabelContainerProps>`
@@ -25,9 +27,9 @@ export const LabelContainer = styled.span<ILabelContainerProps>`
   svg {
     size: 28;
     margin-left: 12px;
+    margin: 0;
   }
   display: flex;
-
   justify-content: center;
 `;
 
