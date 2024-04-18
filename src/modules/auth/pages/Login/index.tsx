@@ -1,7 +1,8 @@
 import React, { useCallback, useState, useEffect } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
+
 import { useForm } from 'react-hook-form';
-import { FormControl, FormErrorMessage } from '@chakra-ui/react';
+import { FormControl, FormErrorMessage, useDisclosure } from '@chakra-ui/react';
 import { PiLockKeyOpenThin } from 'react-icons/pi';
 import { TfiUser } from 'react-icons/tfi';
 
@@ -9,10 +10,10 @@ import { TfiUser } from 'react-icons/tfi';
 import { useToast } from '@hooks/Toast';
 import { errorHandler } from '@errors/errorHandler';
 import Input from '@components/Form/Input';
-import { PublicPathsEnum } from '@routes/publicRoutes/publicPaths';
 import { PrivatePathsEnum } from '@routes/privateRoutes/privatePaths';
 import { useAuth } from '@modules/auth/hooks/auth';
 
+import StyledModal from '@modules/auth/components/modal';
 import Button from '../../../../components/Button';
 
 import {
@@ -41,6 +42,8 @@ const Login: React.FC = () => {
   const navigate = useNavigate();
   const { signIn } = useAuth();
   const { addToast } = useToast();
+
+  const { isOpen, onOpen, onClose } = useDisclosure();
 
   const onSubmit = useCallback(
     async (data: LoginFormData) => {
@@ -109,9 +112,10 @@ const Login: React.FC = () => {
               </FormErrorMessage>
             </FormControl>
             <StyledLink>
-              <Link to={PublicPathsEnum.FORGOT_PASSWORD}>
+              <button onClick={onOpen} type="button">
                 Forgot your password?
-              </Link>
+              </button>
+              <StyledModal isOpen={isOpen} onClose={onClose} />
             </StyledLink>
             <Button
               size="md"

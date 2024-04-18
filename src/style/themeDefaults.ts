@@ -4,6 +4,7 @@ const themeDefaults = {
   colors: {
     primary: '#0B98A3',
     secondary: '#0D9F64',
+    shadedOverlay: '#094A4FB3',
 
     black: '#000000',
     white: '#FFFFFF',

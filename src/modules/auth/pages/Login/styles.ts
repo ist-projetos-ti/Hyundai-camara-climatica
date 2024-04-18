@@ -5,7 +5,7 @@ export const Container = styled.div`
   display: flex;
   flex: 1;
   align-items: center;
-  width: 100%;
+  max-width: 60%;
 `;
 
 export const StyledLink = styled.p`
@@ -13,6 +13,10 @@ export const StyledLink = styled.p`
   color: ${themeDefaults.colors.primary};
   text-decoration: underline;
   margin-left: 32px;
+
+  button {
+    text-decoration: underline;
+  }
 `;
 
 export const LogoImg = styled.img`
@@ -30,6 +34,7 @@ export const Content = styled.div`
   align-items: center;
   justify-content: space-around;
   gap: 80px;
+  max-width: 100%;
 
   @media (max-width: ${themeDefaults.breakpoints.md}) {
     gap: 40px;
@@ -57,6 +62,6 @@ export const Form = styled.form`
 
 export const Title = styled.h1`
   font-weight: 800;
-  font-size: 60px;
+  font-size: 3.7em;
   color: ${themeDefaults.colors.primary};
 `;
