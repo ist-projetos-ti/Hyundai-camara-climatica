@@ -6,7 +6,7 @@ import { PrivatePathsEnum } from '@routes/privateRoutes/privatePaths';
 
 import AuthenticationLayout from '../layout';
 import Login from '../pages/Login';
-import ForgotPassword from '../pages/ForgotPassword';
+import NewPassword from '../pages/SetNewPassword';
 
 const AuthenticationRoutes = (
   <Route element={<AuthenticationLayout />}>
@@ -22,7 +22,7 @@ const AuthenticationRoutes = (
       path={PublicPathsEnum.FORGOT_PASSWORD}
       element={
         <EnsureLoggedOutRoute redirectTo={PrivatePathsEnum.HOME}>
-          <ForgotPassword />
+          <NewPassword />
         </EnsureLoggedOutRoute>
       }
     />
