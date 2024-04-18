@@ -6,19 +6,36 @@ interface IContainerProps {
   disabled?: boolean;
   $loading?: boolean;
   size?: 'sm' | 'md' | 'lg';
+  height?: string;
+}
+
+interface ILabelContainerProps {
+  isCentered?: boolean;
 }
 
 export const Label = styled.p`
   font-weight: 700;
   line-height: 1;
   color: ${({ theme }) => theme.colors.white};
+  margin-left: 12px;
+`;
+
+export const LabelContainer = styled.span<ILabelContainerProps>`
+  color: ${({ theme }) => theme.colors.white};
+  svg {
+    size: 28;
+    margin-left: 12px;
+  }
+  display: flex;
+
+  justify-content: center;
 `;
 
 export const Container = styled.button<IContainerProps>`
   height: ${({ size }) => (size === 'sm' ? 30 : size === 'md' ? 40 : 50)}px;
   min-width: 120px;
   width: 100%;
-  height: 67px;
+  height: ${({ height }) => height || '3.5em'};
   padding: 0px 12px;
   border-radius: 10px;
   font-weight: black;

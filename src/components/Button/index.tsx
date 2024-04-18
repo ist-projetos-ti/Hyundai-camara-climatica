@@ -1,8 +1,8 @@
-import React, { ButtonHTMLAttributes } from 'react';
+import React, { ButtonHTMLAttributes, ReactNode } from 'react';
 import { Spinner } from '@chakra-ui/react';
 
 import themeDefaults from '@style/themeDefaults';
-import { Container, Label } from './styles';
+import { Container, Label, LabelContainer } from './styles';
 import LinkWrapper from './LinkWrapper';
 
 interface IButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
@@ -14,6 +14,8 @@ interface IButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   asLink?: boolean;
   to?: string;
   size?: 'sm' | 'md' | 'lg';
+  children?: ReactNode;
+  height?: string;
 }
 
 const Button: React.FC<IButtonProps> = ({
@@ -25,6 +27,9 @@ const Button: React.FC<IButtonProps> = ({
   asLink = false,
   size = 'md',
   to,
+  children,
+  height,
+
   ...rest
 }) => (
   <LinkWrapper asLink={asLink} to={to || ''}>
@@ -36,11 +41,15 @@ const Button: React.FC<IButtonProps> = ({
       disabled={disabled}
       $loading={loading}
       size={size}
+      height={height}
     >
       {loading ? (
         <Spinner size="xs" color={themeDefaults.colors.primary} />
       ) : (
-        <Label>{label}</Label>
+        <LabelContainer>
+          {children}
+          <Label>{label}</Label>
+        </LabelContainer>
       )}
     </Container>
   </LinkWrapper>
