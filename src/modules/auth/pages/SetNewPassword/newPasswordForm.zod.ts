@@ -1,21 +1,21 @@
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
 
-const newPasswordSchema = z
+export const newPasswordSchema = z
   .object({
-    hcm_code: z.string(),
+    hcm_code: z.string().nonempty('Required field.'),
     password: z
       .string()
-      .nonempty('A senha é obrigatária')
-      .min(6, 'A senha deve ter 6 ou mais caracteres'),
+      .nonempty('Required field.')
+      .min(6, 'Password must contain at least 6 characters.'),
     confirm_password: z
       .string()
-      .nonempty('A senha é obrigatária')
-      .min(6, 'A senha deve ter 6 ou mais caracteres'),
+      .nonempty('Required field.')
+      .min(6, 'Password must contain at least 6 characters.'),
   })
-  .refine((data) => data.password === data.confirm_password, {
-    message: "Passwords don't match",
-    path: ['confirm'],
+  .refine((values) => values.password === values.confirm_password, {
+    message: 'Passwords must match.',
+    path: ['confirm_password'],
   });
 
 export type NewPasswordFormData = z.infer<typeof newPasswordSchema>;

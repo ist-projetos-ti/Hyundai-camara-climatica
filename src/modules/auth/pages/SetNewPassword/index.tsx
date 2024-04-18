@@ -1,4 +1,4 @@
-import React, { useCallback, useState, useEffect } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import { useForm } from 'react-hook-form';
@@ -43,6 +43,7 @@ const SetNewPassword: React.FC = () => {
     async (data: NewPasswordFormData) => {
       try {
         setIsLoading(true);
+        // console.log('Data: ', data);
         // Set delay to smooth loading
 
         await new Promise((r) => {
@@ -63,11 +64,11 @@ const SetNewPassword: React.FC = () => {
         });
       }
     },
-    [addToast, navigate]
+    [addToast, navigate, signIn]
   );
 
   useEffect(() => {
-    document.title = 'Login';
+    document.title = 'newPassword';
   }, []);
 
   return (
@@ -79,7 +80,7 @@ const SetNewPassword: React.FC = () => {
             <FormControl isInvalid={!!errors.hcm_code}>
               <Input
                 register={register}
-                name="email"
+                name="hcm_code"
                 state={getFieldState('hcm_code')}
                 placeholder="HCM user"
                 errors={errors.hcm_code}
@@ -112,7 +113,7 @@ const SetNewPassword: React.FC = () => {
                 <FormControl isInvalid={!!errors.confirm_password}>
                   <Input
                     name="confirm_password"
-                    type="confirm_password"
+                    type="password"
                     isPassword
                     placeholder="Confirmar senha"
                     register={register}
@@ -121,7 +122,7 @@ const SetNewPassword: React.FC = () => {
                     Icon={padlock}
                   />
                   <FormErrorMessage>
-                    {errors.password && errors.password.message}
+                    {errors.confirm_password && errors.confirm_password.message}
                   </FormErrorMessage>
                 </FormControl>
               </Box>

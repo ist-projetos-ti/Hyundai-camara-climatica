@@ -1,4 +1,4 @@
-import { FiAlertCircle } from 'react-icons/fi';
+// import { FiAlertCircle } from 'react-icons/fi';
 import styled, { css } from 'styled-components';
 import { PiEyeThin, PiEyeSlashThin } from 'react-icons/pi';
 
@@ -12,6 +12,7 @@ interface ContainerInterface {
 
 export const InputComponent = styled.input`
   background: transparent !important;
+  border: 1px solid blue;
 `;
 
 export const Separator = styled.div`
@@ -101,11 +102,11 @@ export const Container = styled.div<ContainerInterface>`
   }
 `;
 
-export const ErrorIcon = styled(FiAlertCircle).attrs(({ theme }) => ({
-  color: `${theme.colors.danger}`,
-  fill: `${theme.colors.backgroundLight}`,
-  size: 22,
-}))``;
+// export const ErrorIcon = styled(FiAlertCircle).attrs(({ theme }) => ({
+//   color: `${theme.colors.danger}`,
+//   fill: `${theme.colors.backgroundLight}`,
+//   size: 22,
+// }))``;
 
 export const CheckIcon = styled(BsCheck).attrs(({ theme }) => ({
   color: `${theme.colors.according}`,

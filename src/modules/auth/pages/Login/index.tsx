@@ -48,6 +48,7 @@ const Login: React.FC = () => {
   const onSubmit = useCallback(
     async (data: LoginFormData) => {
       try {
+        console.log('Data: ', data);
         setIsLoading(true);
 
         // Set delay to smooth loading
@@ -86,7 +87,7 @@ const Login: React.FC = () => {
             <FormControl isInvalid={!!errors.hcm_code}>
               <Input
                 register={register}
-                name="email"
+                name="hcm_code"
                 state={getFieldState('hcm_code')}
                 placeholder="HCM user"
                 errors={errors.hcm_code}
