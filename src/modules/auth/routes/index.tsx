@@ -4,9 +4,10 @@ import { PublicPathsEnum } from '@routes/publicRoutes/publicPaths';
 import EnsureLoggedOutRoute from '@routes/publicRoutes/EnsureLoggedOutRoute';
 import { PrivatePathsEnum } from '@routes/privateRoutes/privatePaths';
 
+import EnsureLoggedInRoute from '@routes/privateRoutes/EnsureLoggedInRoute';
 import AuthenticationLayout from '../layout';
 import Login from '../pages/Login';
-import ForgotPassword from '../pages/ForgotPassword';
+import NewPassword from '../pages/SetNewPassword';
 
 const AuthenticationRoutes = (
   <Route element={<AuthenticationLayout />}>
@@ -19,11 +20,11 @@ const AuthenticationRoutes = (
       }
     />
     <Route
-      path={PublicPathsEnum.FORGOT_PASSWORD}
+      path={PrivatePathsEnum.NEW_PASSWORD}
       element={
-        <EnsureLoggedOutRoute redirectTo={PrivatePathsEnum.HOME}>
-          <ForgotPassword />
-        </EnsureLoggedOutRoute>
+        <EnsureLoggedInRoute redirectTo={PrivatePathsEnum.NEW_PASSWORD}>
+          <NewPassword />
+        </EnsureLoggedInRoute>
       }
     />
   </Route>

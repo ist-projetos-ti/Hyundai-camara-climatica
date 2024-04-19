@@ -4,4 +4,5 @@
 
 export enum AuthApiRoutes {
   SESSIONS = '/sessions',
+  USERS = '/users',
 }

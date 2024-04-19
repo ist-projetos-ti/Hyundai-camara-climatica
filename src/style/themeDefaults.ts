@@ -4,7 +4,7 @@ const themeDefaults = {
   colors: {
     primary: '#0A8C8C',
     secondary: '#8878ff',
-
+    shadedOverlay: '#094A4FB3',
     black: '#000000',
     white: '#FFFFFF',
     warmGray: '#DED7D6',
@@ -25,7 +25,7 @@ const themeDefaults = {
     sageGreenMinus1: '#53846A',
     sageGreenMinus2: '#1D4941',
 
-    background: '#F2F2F2',
+    background: '#ffffff',
     backgroundPrimary: '#2A9DF4',
     backgroundDisabled: '#F8F8F8',
     backgroundDisabledHighlight: '#0FFFFF',

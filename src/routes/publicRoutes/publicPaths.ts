@@ -1,4 +1,4 @@
 export enum PublicPathsEnum {
   LOGIN = '/login',
-  FORGOT_PASSWORD = '/forgot_password',
+  FORGOT_PASSWORD = '/new_password',
 }

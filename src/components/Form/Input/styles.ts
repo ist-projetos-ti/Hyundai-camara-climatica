@@ -1,6 +1,7 @@
-import { FiAlertCircle } from 'react-icons/fi';
+// import { FiAlertCircle } from 'react-icons/fi';
 import styled, { css } from 'styled-components';
-import { AiFillEyeInvisible, AiFillEye } from 'react-icons/ai';
+import { PiEyeThin, PiEyeSlashThin } from 'react-icons/pi';
+
 import { BsCheck } from 'react-icons/bs';
 
 interface ContainerInterface {
@@ -11,6 +12,7 @@ interface ContainerInterface {
 
 export const InputComponent = styled.input`
   background: transparent !important;
+  border: 1px solid blue;
 `;
 
 export const Separator = styled.div`
@@ -26,7 +28,7 @@ export const Container = styled.div<ContainerInterface>`
   width: 100%;
   align-items: center;
   align-content: center;
-  border: ${({ theme }) => theme.colors.loginPlaceholderColor} solid 2px;
+  border: ${({ theme }) => theme.colors.primary} solid 1px;
   padding: 0.5rem 1rem;
   border-radius: 10px;
   transition: 0.2s ease all;
@@ -41,7 +43,7 @@ export const Container = styled.div<ContainerInterface>`
   ${({ theme, isFocused }) =>
     isFocused &&
     css`
-      border: ${theme.colors.secondary} solid 2px;
+      border: ${theme.colors.secondary} solid 1px;
     `}
 
   ${({ theme, isError }) =>
@@ -61,9 +63,9 @@ export const Container = styled.div<ContainerInterface>`
     input:-webkit-autofill,
     textarea:-webkit-autofill,
     select:-webkit-autofill {
-    -webkit-box-shadow: 0 0 0 30px ${({ theme }) => theme.colors.secondary}
-      inset !important;
-    -webkit-text-fill-color: black !important;
+    /* -webkit-box-shadow: 0 0 0 30px ${({ theme }) =>
+      theme.colors.primary} inset !important; */
+    /* -webkit-text-fill-color: black !important; */
   }
 
   input {
@@ -72,6 +74,12 @@ export const Container = styled.div<ContainerInterface>`
     width: 80%;
     background: transparent;
     border: 0;
+
+    &::placeholder {
+      color: ${({ theme }) => theme.colors.primary};
+      font-size: 17px;
+      font-weight: 400;
+    }
 
     color: ${({ theme }) => theme.colors.loginInputColor};
 
@@ -94,11 +102,11 @@ export const Container = styled.div<ContainerInterface>`
   }
 `;
 
-export const ErrorIcon = styled(FiAlertCircle).attrs(({ theme }) => ({
-  color: `${theme.colors.danger}`,
-  fill: `${theme.colors.backgroundLight}`,
-  size: 22,
-}))``;
+// export const ErrorIcon = styled(FiAlertCircle).attrs(({ theme }) => ({
+//   color: `${theme.colors.danger}`,
+//   fill: `${theme.colors.backgroundLight}`,
+//   size: 22,
+// }))``;
 
 export const CheckIcon = styled(BsCheck).attrs(({ theme }) => ({
   color: `${theme.colors.according}`,
@@ -107,10 +115,10 @@ export const CheckIcon = styled(BsCheck).attrs(({ theme }) => ({
   margin: 0 5px;
 `;
 
-export const EyeIcon = styled(AiFillEye).attrs(() => ({
+export const EyeIcon = styled(PiEyeThin).attrs(() => ({
   size: 22,
 }))``;
 
-export const ClosedEyeIcon = styled(AiFillEyeInvisible).attrs(() => ({
+export const ClosedEyeIcon = styled(PiEyeSlashThin).attrs(() => ({
   size: 22,
 }))``;

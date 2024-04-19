@@ -2,7 +2,10 @@ import { defineConfig } from 'vite';
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { ValidateEnv } from '@julr/vite-plugin-validate-env';
 import react from '@vitejs/plugin-react-swc';
+// eslint-disable-next-line import/no-extraneous-dependencies
+import svgr from 'vite-plugin-svgr';
 import tsConfigPaths from 'vite-tsconfig-paths';
+
 import * as path from 'path';
 import { z } from 'zod';
 
@@ -16,6 +19,9 @@ export default defineConfig({
       schema: {
         VITE_API_URL: z.string().url(),
       },
+    }),
+    svgr({
+      include: '**/*.svg?react',
     }),
   ],
   resolve: {

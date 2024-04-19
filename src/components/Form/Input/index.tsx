@@ -10,6 +10,7 @@ import { FieldError, UseFormRegister } from 'react-hook-form';
 import { useTheme } from 'styled-components';
 import { IconType } from 'react-icons';
 import { Tooltip, useBoolean } from '@chakra-ui/react';
+// import IotOffIcon from '@assets/IotOffIcon.svg?react';
 
 import {
   CheckIcon,
@@ -28,7 +29,7 @@ type FieldState = {
 
 interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   name: string;
-  Icon?: IconType;
+  Icon?: IconType | React.FunctionComponent<React.SVGProps<SVGSVGElement>>;
   register: UseFormRegister<any>;
   errors?: FieldError;
   isPassword?: boolean;
@@ -73,7 +74,7 @@ const Input: React.FC<InputProps> = ({
       {Icon && (
         <Icon
           size={30}
-          color={theme.colors.secondary}
+          color={theme.colors.primary}
           style={{ padding: 5, marginRight: 5 }}
         />
       )}
@@ -94,9 +95,13 @@ const Input: React.FC<InputProps> = ({
       {isValid && <CheckIcon />}
 
       {!disabled && isPassword && (
-        <Tooltip label={isPasswordVisible ? 'Esconder senha' : 'Mostrar senha'}>
+        <Tooltip label={isPasswordVisible ? 'Show password' : 'Hide password'}>
           <button onClick={isPasswordVisibleF.toggle} type="button">
-            {isPasswordVisible ? <ClosedEyeIcon /> : <EyeIcon />}
+            {isPasswordVisible ? (
+              <ClosedEyeIcon color={theme.colors.primary} />
+            ) : (
+              <EyeIcon color={theme.colors.primary} />
+            )}
           </button>
         </Tooltip>
       )}

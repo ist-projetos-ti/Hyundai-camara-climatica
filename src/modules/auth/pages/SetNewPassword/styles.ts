@@ -5,7 +5,7 @@ export const Container = styled.div`
   display: flex;
   flex: 1;
   align-items: center;
-  max-width: 534px;
+  max-width: 60%;
 `;
 
 export const StyledLink = styled.p`

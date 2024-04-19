@@ -6,26 +6,47 @@ interface IContainerProps {
   disabled?: boolean;
   $loading?: boolean;
   size?: 'sm' | 'md' | 'lg';
+  height?: string;
+}
+
+interface ILabelContainerProps {
+  isCentered?: boolean;
 }
 
 export const Label = styled.p`
   font-weight: 700;
   line-height: 1;
   color: ${({ theme }) => theme.colors.white};
+  margin-left: 12px;
+  display: flex;
+  align-items: center;
+`;
+
+export const LabelContainer = styled.span<ILabelContainerProps>`
+  color: ${({ theme }) => theme.colors.white};
+  svg {
+    size: 28;
+    margin-left: 12px;
+    margin: 0;
+  }
+  display: flex;
+  justify-content: center;
 `;
 
 export const Container = styled.button<IContainerProps>`
   height: ${({ size }) => (size === 'sm' ? 30 : size === 'md' ? 40 : 50)}px;
   min-width: 120px;
-  max-width: 230px;
+  width: 100%;
+  height: ${({ height }) => height || '3.5em'};
   padding: 0px 12px;
   border-radius: 10px;
-  font-weight: 500;
-  font-size: 1.2em;
+  font-weight: black;
+  font-size: 18px;
   border: 2px solid ${({ theme }) => theme.colors.primary};
   background-color: ${({ theme }) => theme.colors.primary};
   user-select: none;
   transition: 0.2s ease all;
+  text-transform: uppercase;
 
   &:hover {
     filter: ${({ theme }) => theme.filters.hover};
