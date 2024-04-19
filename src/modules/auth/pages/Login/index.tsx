@@ -13,6 +13,7 @@ import { useAuth } from '@modules/auth/hooks/auth';
 import userIcon from '@assets/userIcon.svg?react';
 import padlock from '@assets/padlock.svg?react';
 
+
 import StyledModal from '@modules/auth/components/modal';
 import Button from '../../../../components/Button';
 
@@ -83,7 +84,7 @@ const Login: React.FC = () => {
   }, []);
 
   return (
-    <Container>
+    <Container>  
       <Content>
         <Title>Welcome</Title>
         <FormContainer>

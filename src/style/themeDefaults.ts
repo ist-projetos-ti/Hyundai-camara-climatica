@@ -2,10 +2,9 @@ import { keyframes } from 'styled-components';
 
 const themeDefaults = {
   colors: {
-    primary: '#0B98A3',
-    secondary: '#0D9F64',
+    primary: '#0A8C8C',
+    secondary: '#8878ff',
     shadedOverlay: '#094A4FB3',
-
     black: '#000000',
     white: '#FFFFFF',
     warmGray: '#DED7D6',
