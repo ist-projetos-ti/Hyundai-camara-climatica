@@ -3,19 +3,19 @@ import { z } from 'zod';
 
 export const newPasswordSchema = z
   .object({
-    hcm_code: z.string().nonempty('Required field.'),
+    hcm_code: z.string().optional(),
     password: z
       .string()
       .nonempty('Required field.')
       .min(6, 'Password must contain at least 6 characters.'),
-    confirm_password: z
+    password_confirmation: z
       .string()
       .nonempty('Required field.')
       .min(6, 'Password must contain at least 6 characters.'),
   })
-  .refine((values) => values.password === values.confirm_password, {
+  .refine((values) => values.password === values.password_confirmation, {
     message: 'Passwords must match.',
-    path: ['confirm_password'],
+    path: ['password_confirmation'],
   });
 
 export type NewPasswordFormData = z.infer<typeof newPasswordSchema>;

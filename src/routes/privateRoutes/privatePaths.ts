@@ -1,5 +1,5 @@
 export enum PrivatePathsEnum {
   HOME = '/',
-  ME = '/me',
+  NEW_PASSWORD = '/new_password',
   DASHBOARD = '/dashboard',
 }

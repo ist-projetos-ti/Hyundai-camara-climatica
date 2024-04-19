@@ -35,7 +35,7 @@ const SetNewPassword: React.FC = () => {
   const [isLoading, setIsLoading] = useState(false);
 
   const navigate = useNavigate();
-  const { signIn } = useAuth();
+  const { updateUser, user } = useAuth();
   const { addToast } = useToast();
 
   const onSubmit = useCallback(
@@ -43,14 +43,18 @@ const SetNewPassword: React.FC = () => {
     async (data: NewPasswordFormData) => {
       try {
         setIsLoading(true);
-        // console.log('Data: ', data);
         // Set delay to smooth loading
 
         await new Promise((r) => {
           setTimeout(r, 1000);
         });
 
-        await signIn(data);
+        await updateUser({
+          id: user.id,
+          hcm_code: data.hcm_code,
+          password: data.password,
+          password_confirmation: data.password_confirmation,
+        });
 
         navigate(PrivatePathsEnum.HOME);
         setIsLoading(false);
@@ -64,7 +68,7 @@ const SetNewPassword: React.FC = () => {
         });
       }
     },
-    [addToast, navigate, signIn]
+    [addToast, navigate, updateUser, user.id]
   );
 
   useEffect(() => {
@@ -77,18 +81,22 @@ const SetNewPassword: React.FC = () => {
         <Title>Welcome</Title>
         <FormContainer>
           <Form onSubmit={handleSubmit(onSubmit)}>
-            <FormControl isInvalid={!!errors.hcm_code}>
+            <FormControl>
               <Input
                 register={register}
                 name="hcm_code"
-                state={getFieldState('hcm_code')}
+                state={{
+                  invalid: false,
+                  isDirty: false,
+                  isTouched: false,
+                  error: undefined,
+                }}
                 placeholder="HCM user"
-                errors={errors.hcm_code}
                 Icon={userIcon}
+                disabled
+                value={user.hcm_code}
+                defaultValue={user.hcm_code}
               />
-              <FormErrorMessage>
-                {errors.hcm_code && errors.hcm_code.message}
-              </FormErrorMessage>
             </FormControl>
 
             <Box w="100%" p="8px 0">
@@ -110,19 +118,20 @@ const SetNewPassword: React.FC = () => {
                 </FormControl>
               </Box>
               <Box w="100%" p="8px 0">
-                <FormControl isInvalid={!!errors.confirm_password}>
+                <FormControl isInvalid={!!errors.password_confirmation}>
                   <Input
-                    name="confirm_password"
+                    name="password_confirmation"
                     type="password"
                     isPassword
                     placeholder="Confirmar senha"
                     register={register}
-                    state={getFieldState('confirm_password')}
-                    errors={errors.confirm_password}
+                    state={getFieldState('password_confirmation')}
+                    errors={errors.password_confirmation}
                     Icon={padlock}
                   />
                   <FormErrorMessage>
-                    {errors.confirm_password && errors.confirm_password.message}
+                    {errors.password_confirmation &&
+                      errors.password_confirmation.message}
                   </FormErrorMessage>
                 </FormControl>
               </Box>

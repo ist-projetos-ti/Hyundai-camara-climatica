@@ -48,7 +48,6 @@ const Login: React.FC = () => {
   const onSubmit = useCallback(
     async (data: LoginFormData) => {
       try {
-        console.log('Data: ', data);
         setIsLoading(true);
 
         // Set delay to smooth loading
@@ -57,9 +56,14 @@ const Login: React.FC = () => {
           setTimeout(r, 1000);
         });
 
-        await signIn(data);
+        const user = await signIn(data);
 
-        navigate(PrivatePathsEnum.HOME);
+        if (user.reset_password) {
+          navigate(PrivatePathsEnum.NEW_PASSWORD);
+        } else {
+          navigate(PrivatePathsEnum.HOME);
+        }
+
         setIsLoading(false);
       } catch (error) {
         setIsLoading(false);

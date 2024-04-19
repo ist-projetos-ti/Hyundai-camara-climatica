@@ -8,7 +8,7 @@ import React, {
 } from 'react';
 import { AxiosError } from 'axios';
 
-import { IUser } from '@modules/users/interfaces/index';
+import { IUpdateUser, IUser } from '@modules/users/interfaces/index';
 import { AuthApiRoutes } from '@modules/auth/api/paths.routes';
 import { api } from '@services/api';
 // eslint-disable-next-line import/no-unresolved
@@ -26,8 +26,8 @@ interface SignInCredentials {
 interface AuthContextData {
   user: IUser;
   isLoading: boolean;
-  updateUser(user: IUser): Promise<void>;
-  signIn(credentials: SignInCredentials): Promise<void>;
+  updateUser(user: IUpdateUser): Promise<void>;
+  signIn(credentials: SignInCredentials): Promise<IUser>;
   signOut(message?: string): void;
 }
 
@@ -94,12 +94,13 @@ const AuthProvider: React.FC<IAuthProviderProps> = ({ children }) => {
       setLoading(true);
 
       const response = await api.post(AuthApiRoutes.SESSIONS, {
-        hcmCode,
+        hcm_code: hcmCode,
         password,
       });
 
       const { token, user } = response.data;
 
+      // if(reset_password)
       localStorage.setItem(storageVariables.token, token);
       localStorage.setItem(storageVariables.user, JSON.stringify(user));
 
@@ -107,13 +108,18 @@ const AuthProvider: React.FC<IAuthProviderProps> = ({ children }) => {
 
       setData({ user });
       setLoading(false);
+      return user;
     },
     [configureAxios]
   );
 
-  const updateUser = useCallback(async (user: IUser) => {
-    localStorage.setItem(storageVariables.user, JSON.stringify(user));
-    setData({ user });
+  const updateUser = useCallback(async (user: IUpdateUser) => {
+    const { id, ...rest } = user;
+    const response = await api.put<IUser>(`${AuthApiRoutes.USERS}/${id}`, {
+      ...rest,
+    });
+    localStorage.setItem(storageVariables.user, JSON.stringify(response));
+    // setData(response);
   }, []);
 
   useEffect(() => {
