@@ -5,6 +5,7 @@ const themeDefaults = {
     primary: '#0B98A3',
     secondary: '#0D9F64',
     shadedOverlay: '#094A4FB3',
+    shadeMobile: '#0C7C85D9',
 
     black: '#000000',
     white: '#FFFFFF',

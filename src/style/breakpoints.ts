@@ -1,0 +1,5 @@
+export const BREAKPOINTS = {
+  TABLET: 1366,
+  MOBILE: 767,
+  FACTORY: 5000,
+};

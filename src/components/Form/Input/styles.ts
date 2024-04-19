@@ -8,6 +8,7 @@ interface ContainerInterface {
   isError: boolean;
   disabled?: boolean;
   isFocused?: boolean;
+  color?: string;
 }
 
 export const InputComponent = styled.input`
@@ -28,7 +29,7 @@ export const Container = styled.div<ContainerInterface>`
   width: 100%;
   align-items: center;
   align-content: center;
-  border: ${({ theme }) => theme.colors.primary} solid 1px;
+  border: ${({ theme, color }) => color || theme.colors.primary} solid 1px;
   padding: 0.5rem 1rem;
   border-radius: 10px;
   transition: 0.2s ease all;
@@ -76,12 +77,12 @@ export const Container = styled.div<ContainerInterface>`
     border: 0;
 
     &::placeholder {
-      color: ${({ theme }) => theme.colors.primary};
+      color: ${({ theme, color }) => color || theme.colors.primary};
       font-size: 17px;
       font-weight: 400;
     }
 
-    color: ${({ theme }) => theme.colors.loginInputColor};
+    color: ${({ theme, color }) => color || theme.colors.black};
 
     ${({ theme, disabled }) =>
       disabled &&
@@ -101,12 +102,6 @@ export const Container = styled.div<ContainerInterface>`
     }
   }
 `;
-
-// export const ErrorIcon = styled(FiAlertCircle).attrs(({ theme }) => ({
-//   color: `${theme.colors.danger}`,
-//   fill: `${theme.colors.backgroundLight}`,
-//   size: 22,
-// }))``;
 
 export const CheckIcon = styled(BsCheck).attrs(({ theme }) => ({
   color: `${theme.colors.according}`,

@@ -16,6 +16,9 @@ interface IButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   size?: 'sm' | 'md' | 'lg';
   children?: ReactNode;
   height?: string;
+  color?: string;
+  backgroundColor?: string;
+  borderRadius?: number;
 }
 
 const Button: React.FC<IButtonProps> = ({
@@ -29,7 +32,9 @@ const Button: React.FC<IButtonProps> = ({
   to,
   children,
   height,
-
+  color,
+  backgroundColor,
+  borderRadius,
   ...rest
 }) => (
   <LinkWrapper asLink={asLink} to={to || ''}>
@@ -42,13 +47,15 @@ const Button: React.FC<IButtonProps> = ({
       $loading={loading}
       size={size}
       height={height}
+      color={backgroundColor}
+      borderRadius={borderRadius}
     >
       {loading ? (
         <Spinner size="xs" color={themeDefaults.colors.primary} />
       ) : (
         <LabelContainer>
           {children}
-          <Label>{label}</Label>
+          <Label color={color}>{label}</Label>
         </LabelContainer>
       )}
     </Container>

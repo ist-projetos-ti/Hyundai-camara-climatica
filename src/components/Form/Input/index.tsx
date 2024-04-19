@@ -10,7 +10,6 @@ import { FieldError, UseFormRegister } from 'react-hook-form';
 import { useTheme } from 'styled-components';
 import { IconType } from 'react-icons';
 import { Tooltip, useBoolean } from '@chakra-ui/react';
-// import IotOffIcon from '@assets/IotOffIcon.svg?react';
 
 import {
   CheckIcon,
@@ -34,6 +33,7 @@ interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   errors?: FieldError;
   isPassword?: boolean;
   state: FieldState;
+  color?: string;
 }
 
 // Receives a name identifier and the registration function
@@ -46,6 +46,7 @@ const Input: React.FC<InputProps> = ({
   isPassword,
   type,
   state,
+  color,
   ...rest
 }) => {
   const theme = useTheme();
@@ -70,11 +71,12 @@ const Input: React.FC<InputProps> = ({
       isError={!!errors}
       disabled={disabled}
       onClick={() => !disabled && setIsFocused(true)}
+      color={color}
     >
       {Icon && (
         <Icon
           size={30}
-          color={theme.colors.primary}
+          color={color || theme.colors.primary}
           style={{ padding: 5, marginRight: 5 }}
         />
       )}
@@ -98,9 +100,9 @@ const Input: React.FC<InputProps> = ({
         <Tooltip label={isPasswordVisible ? 'Show password' : 'Hide password'}>
           <button onClick={isPasswordVisibleF.toggle} type="button">
             {isPasswordVisible ? (
-              <ClosedEyeIcon color={theme.colors.primary} />
+              <ClosedEyeIcon color={color || theme.colors.primary} />
             ) : (
-              <EyeIcon color={theme.colors.primary} />
+              <EyeIcon color={color || theme.colors.primary} />
             )}
           </button>
         </Tooltip>
