@@ -14,6 +14,7 @@ import logoImg from '@assets/logo.svg';
 import { PrivatePathsEnum } from '@routes/privateRoutes/privatePaths';
 import { useAuth } from '@modules/auth/hooks/auth';
 
+import DrawerNavigation from '@components/DrawerNavigation';
 import Button from '../../../../components/Button';
 
 import { Container, Content, Form, FormContainer, LogoImg } from './styles';
@@ -73,6 +74,7 @@ const Login: React.FC = () => {
 
   return (
     <Container>
+      <DrawerNavigation />
       <Content>
         <LogoImg src={logoImg} alt="Logo" />
 
