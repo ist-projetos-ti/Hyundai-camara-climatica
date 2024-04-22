@@ -1,22 +1,18 @@
 /* eslint-disable jsx-a11y/alt-text */
 import React from 'react';
-import ImageLogo from '@assets/logo.svg';
-import { MdOutlineExitToApp } from 'react-icons/md';
-import { Link } from 'react-router-dom';
-import { Avatar, IconButton, useDisclosure } from '@chakra-ui/react';
-
-import { PrivatePathsEnum } from '@routes/privateRoutes/privatePaths';
+import { useDisclosure } from '@chakra-ui/react';
+import { IoMdNotificationsOutline } from 'react-icons/io';
+import { BiSearchAlt } from 'react-icons/bi';
 import { useAuth } from '@modules/auth/hooks/auth';
-import {
-  Container,
-  LogoContent,
-  LogoTitleContent,
-  InformationsContent,
-} from './styles';
+import { ButtonStyle, Container, Content, UserInformation } from './styles';
 import LogOutConfirmation from './LogOutConfirmation';
 
-const Header: React.FC = () => {
-  const { isOpen, onOpen, onClose } = useDisclosure();
+interface IHeaderProps {
+  title: string;
+}
+
+const Header: React.FC<IHeaderProps> = ({ title }) => {
+  const { isOpen, onClose } = useDisclosure();
   const { user, signOut } = useAuth();
 
   return (
@@ -27,26 +23,21 @@ const Header: React.FC = () => {
         onClose={onClose}
       />
       <Container>
-        <LogoContent to={PrivatePathsEnum.HOME}>
-          <img src={ImageLogo} />
-          <LogoTitleContent>
-            <h1>Header</h1>
-          </LogoTitleContent>
-        </LogoContent>
-        <InformationsContent>
-          <Link to={PrivatePathsEnum.ME}>
-            <Avatar src={user.avatar_url} name={user.name} />
-            <h4>{user.name}</h4>
-          </Link>
-          <IconButton
-            icon={<MdOutlineExitToApp />}
-            variant="outline"
-            colorScheme="red"
-            aria-label="Sair"
-            fontSize="20px"
-            onClick={onOpen}
-          />
-        </InformationsContent>
+        <h1>{title}</h1>
+        <Content>
+          <ButtonStyle>
+            <button>
+              <IoMdNotificationsOutline size={30} />
+            </button>
+            <button>
+              <BiSearchAlt size={30} />
+            </button>
+          </ButtonStyle>
+          <UserInformation>
+            <h2>{user.email}</h2>
+            <p>ADM User</p>
+          </UserInformation>
+        </Content>
       </Container>
     </>
   );
