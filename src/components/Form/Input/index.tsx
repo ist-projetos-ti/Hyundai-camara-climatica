@@ -13,6 +13,7 @@ import { Tooltip, useBoolean } from '@chakra-ui/react';
 
 import {
   CheckIcon,
+  CheckIconContainer,
   ClosedEyeIcon,
   Container,
   EyeIcon,
@@ -34,6 +35,7 @@ interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   isPassword?: boolean;
   state: FieldState;
   color?: string;
+  darkMode?: boolean;
 }
 
 // Receives a name identifier and the registration function
@@ -47,6 +49,7 @@ const Input: React.FC<InputProps> = ({
   type,
   state,
   color,
+  darkMode = false,
   ...rest
 }) => {
   const theme = useTheme();
@@ -72,6 +75,7 @@ const Input: React.FC<InputProps> = ({
       disabled={disabled}
       onClick={() => !disabled && setIsFocused(true)}
       color={color}
+      darkMode={darkMode}
     >
       {Icon && (
         <Icon
@@ -94,7 +98,11 @@ const Input: React.FC<InputProps> = ({
         type={isPasswordVisible && type === 'password' ? 'text' : type}
       />
 
-      {isValid && <CheckIcon />}
+      {isValid && (
+        <CheckIconContainer darkMode={darkMode}>
+          <CheckIcon />
+        </CheckIconContainer>
+      )}
 
       {!disabled && isPassword && (
         <Tooltip label={isPasswordVisible ? 'Show password' : 'Hide password'}>

@@ -9,6 +9,7 @@ interface IContainerProps {
   height?: string;
   color?: string;
   borderRadius?: number;
+  secondary?: boolean;
 }
 
 interface ILabelContainerProps {
@@ -37,6 +38,10 @@ export const LabelContainer = styled.span<ILabelContainerProps>`
   }
   display: flex;
   justify-content: center;
+
+  svg {
+    height: 20px;
+  }
 `;
 
 export const Container = styled.button<IContainerProps>`
@@ -102,4 +107,25 @@ export const Container = styled.button<IContainerProps>`
     font-size: ${({ size }) =>
       size === 'sm' ? 16 : size === 'md' ? 18 : 20}px;
   }
+
+  ${({ secondary }) =>
+    secondary &&
+    css`
+      border: 2px solid ${({ theme }) => theme.colors.primary};
+      background-color: ${({ theme }) => theme.colors.white};
+      p {
+        color: ${({ theme }) => theme.colors.primary};
+      }
+
+      svg {
+        color: ${({ theme }) => theme.colors.primary};
+        width: 20px;
+        height: 20px;
+        margin: 0px;
+      }
+
+      p {
+        margin-left: 4px;
+      }
+    `}
 `;

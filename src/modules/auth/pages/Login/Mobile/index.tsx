@@ -2,7 +2,7 @@ import React, { useCallback, useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import { useForm } from 'react-hook-form';
-import { FormControl, FormErrorMessage, useDisclosure } from '@chakra-ui/react';
+import { FormControl, useDisclosure } from '@chakra-ui/react';
 
 // eslint-disable-next-line import/no-unresolved
 import { useToast } from '@hooks/Toast';
@@ -24,6 +24,7 @@ import {
   FormContainer,
   Title,
   StyledLink,
+  StyledFormErrorMessage,
 } from './styles';
 import { LoginFormData, loginFormResolver } from '../loginForm.zod';
 
@@ -98,10 +99,11 @@ const MobileLoginPage: React.FC = () => {
                 errors={errors.hcm_code}
                 Icon={userIcon}
                 color={themeDefaults.colors.white}
+                darkMode
               />
-              <FormErrorMessage>
+              <StyledFormErrorMessage>
                 {errors.hcm_code && errors.hcm_code.message}
-              </FormErrorMessage>
+              </StyledFormErrorMessage>
             </FormControl>
             <FormControl isInvalid={!!errors.password}>
               <Input
@@ -114,16 +116,22 @@ const MobileLoginPage: React.FC = () => {
                 errors={errors.password}
                 Icon={padlock}
                 color={themeDefaults.colors.white}
+                darkMode
               />
-              <FormErrorMessage>
+              <StyledFormErrorMessage>
                 {errors.password && errors.password.message}
-              </FormErrorMessage>
+              </StyledFormErrorMessage>
             </FormControl>
             <StyledLink>
               <button onClick={onOpen} type="button">
                 Forgot your password?
               </button>
-              <StyledModal isOpen={isOpen} onClose={onClose} />
+              <StyledModal
+                isOpen={isOpen}
+                onClose={onClose}
+                secondary
+                isMobile
+              />
             </StyledLink>
             <Button
               size="sm"

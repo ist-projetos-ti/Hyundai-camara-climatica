@@ -1,9 +1,5 @@
-import themeDefaults from '@style/themeDefaults';
 import styled, { css } from 'styled-components';
-
-interface ISubtitleProps {
-  isDesktop?: boolean;
-}
+import themeDefaults from '../../../style/themeDefaults';
 
 export const Container = styled.div`
   display: flex;
@@ -14,16 +10,10 @@ export const Container = styled.div`
   max-width: ${themeDefaults.breakpoints.md};
 `;
 
-export const Subtitle = styled.h2<ISubtitleProps>`
+export const Subtitle = styled.h2<{ isDesktop?: boolean }>`
   color: ${themeDefaults.colors.white};
   width: 100%;
   height: 100%;
-
-  ${({ isDesktop }) =>
-    isDesktop &&
-    css`
-      position: absolute;
-    `};
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
@@ -32,6 +22,13 @@ export const Subtitle = styled.h2<ISubtitleProps>`
   font-style: italic;
   font-size: 20px;
   font-weight: 600;
+  position: absolute;
+
+  ${({ isDesktop }) =>
+    isDesktop === false &&
+    css`
+      position: static;
+    `}
 `;
 
 export const LogoContainer = styled.div`
@@ -56,9 +53,8 @@ export const MobileLogoContainer = styled.div`
 `;
 
 export const Content = styled.div`
-  /* display: flex; */
-  /* display: flex; */
   flex-direction: column;
+  width: 100%;
   height: 100%;
   margin-top: 200px;
 `;

@@ -4,6 +4,7 @@ const themeDefaults = {
   colors: {
     primary: '#0B98A3',
     secondary: '#0D9F64',
+    lightSecondary: '#AFD198',
     shadedOverlay: '#094A4FB3',
     shadeMobile: '#0C7C85D9',
 
@@ -37,6 +38,7 @@ const themeDefaults = {
     according: '#53846A',
     alert: '#FFA000',
     danger: '#E92020',
+    lightDanger: '#FF204E',
     inactive: '#D0D0D0D0',
 
     loginInputColor: '#393939',

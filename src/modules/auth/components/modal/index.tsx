@@ -23,9 +23,16 @@ import Button from '../../../../components/Button';
 interface IStyledModalProps {
   isOpen: boolean;
   onClose: () => void;
+  secondary?: boolean;
+  isMobile?: boolean;
 }
 
-const StyledModal: React.FC<IStyledModalProps> = ({ isOpen, onClose }) => (
+const StyledModal: React.FC<IStyledModalProps> = ({
+  isOpen,
+  onClose,
+  secondary,
+  isMobile,
+}) => (
   <Modal isOpen={isOpen} onClose={onClose} isCentered>
     <ModalOverlay
       background={themeDefaults.colors.shadedOverlay}
@@ -36,10 +43,11 @@ const StyledModal: React.FC<IStyledModalProps> = ({ isOpen, onClose }) => (
     />
     <ModalContent
       borderRadius={20}
-      maxWidth="48%"
+      width={isMobile ? '80%' : '48%'}
+      maxWidth={isMobile ? '320px' : '48%'}
       height="43%"
-      padding="8px"
-      alignItems="center"
+      padding={isMobile ? '0px 16px 0px' : '0px 8px'}
+      alignItems="spaceBetween"
       display="flex"
       justifyContent="center"
     >
@@ -49,6 +57,9 @@ const StyledModal: React.FC<IStyledModalProps> = ({ isOpen, onClose }) => (
         textTransform="uppercase"
         fontWeight="black"
         fontSize={18}
+        paddingTop="0px"
+        marginTop="-30px"
+        // border="1px solid red"
       >
         <Box justifyContent="center" display="flex" pb={4}>
           <KeyIcon />
@@ -59,12 +70,17 @@ const StyledModal: React.FC<IStyledModalProps> = ({ isOpen, onClose }) => (
       <ModalBody
         display="flex"
         flexDirection="column"
-        alignItems="flex-start"
+        alignItems="center"
         color={themeDefaults.colors.primary}
         maxHeight={46}
         p={0}
       >
-        <Text fontSize={18} fontWeight="black" align="center">
+        <Text
+          fontSize={18}
+          fontWeight={isMobile ? 'medium' : 'black'}
+          align="center"
+          marginBottom={isMobile ? '0px' : '20px'}
+        >
           Entre em contato com seu adm para gerar uma nova senha
         </Text>
       </ModalBody>
@@ -74,14 +90,39 @@ const StyledModal: React.FC<IStyledModalProps> = ({ isOpen, onClose }) => (
         width="100%"
         justifyContent="space-around"
         height="3.8em"
+        flexDirection={isMobile ? 'column' : 'row'}
+        marginBottom={isMobile ? '40px' : '0px'}
       >
-        <Box w="100%" maxW={308} p="0px 4px" height="3.8em">
-          <Button onClick={onClose} label="e-mail" height="100%">
+        <Box
+          w="100%"
+          maxW={308}
+          p={isMobile ? '4px' : '0px 4px'}
+          height="3.8em"
+          marginBottom={isMobile ? '12px' : '0px'}
+        >
+          <Button
+            onClick={onClose}
+            label="e-mail"
+            secondary={secondary}
+            borderRadius={6}
+            height={isMobile ? '39px' : '100%'}
+          >
             <MailIcon />
           </Button>
         </Box>
-        <Box w="100%" maxW={308} p="0px 4px" height="3.8em">
-          <Button onClick={onClose} label="telefone" height="100%">
+        <Box
+          w="100%"
+          maxW={308}
+          p={isMobile ? '4px' : '0px 4px'}
+          height="3.8em"
+        >
+          <Button
+            onClick={onClose}
+            label="telefone"
+            secondary={secondary}
+            borderRadius={6}
+            height={isMobile ? '39px' : '100%'}
+          >
             <TelephoneIcon />
           </Button>
         </Box>

@@ -45,7 +45,7 @@ const AuthenticationLayout: React.FC = () => {
   const MobileLayout = (
     <Stack
       minH="100vh"
-      // direction={{ base: 'column', md: 'row' }}
+      direction={{ base: 'column', md: 'row' }}
       backgroundImage={authPageImage}
       backgroundSize="cover"
     >

@@ -5,15 +5,18 @@ export const Container = styled.div`
   display: flex;
   flex: 1;
   align-items: center;
-  max-width: 534px;
-  padding: 37px;
+  max-width: 60%;
 `;
 
-export const Title = styled.h1`
-  font-weight: 800;
-  font-size: 3.7em;
-  color: ${themeDefaults.colors.white};
-  margin-bottom: 16px;
+export const StyledLink = styled.p`
+  width: 100%;
+  color: ${themeDefaults.colors.primary};
+  text-decoration: underline;
+  margin-left: 32px;
+
+  button {
+    text-decoration: underline;
+  }
 `;
 
 export const LogoImg = styled.img`
@@ -57,20 +60,8 @@ export const Form = styled.form`
   gap: 20px;
 `;
 
-export const StyledLink = styled.p`
-  width: 100%;
-  color: ${themeDefaults.colors.white};
-  text-decoration: underline;
-  margin-left: 32px;
-  margin-bottom: 24px;
-  button {
-    text-decoration: underline;
-    font-size: 16px;
-  }
-`;
-
-export const StyledFormErrorMessage = styled.p`
-  color: #ff204e;
-  font-size: 14px;
-  padding: 4px;
+export const Title = styled.h1`
+  font-weight: 800;
+  font-size: 3.7em;
+  color: ${themeDefaults.colors.primary};
 `;
