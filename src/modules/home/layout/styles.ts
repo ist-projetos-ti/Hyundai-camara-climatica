@@ -1,11 +1,23 @@
 import styled from 'styled-components';
 
 export const Container = styled.div`
-  margin: 0 auto;
-  max-width: ${({ theme }) => theme.breakpoints.md};
-  padding: 1rem;
-  display: flex;
-  flex-direction: column;
-  flex: 1;
+  width: 100vw;
+  height: 100vh;
   animation: ${({ theme }) => theme.animations.appearFromBottom} 0.6s;
+
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+`;
+
+export const Content = styled.div`
+  width: 95%;
+  height: 100%;
+`;
+
+export const Grid = styled.div`
+  width: 95%;
+  height: 100%;
+
+  margin: auto;
 `;
