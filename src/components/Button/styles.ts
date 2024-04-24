@@ -7,16 +7,23 @@ interface IContainerProps {
   $loading?: boolean;
   size?: 'sm' | 'md' | 'lg';
   height?: string;
+  color?: string;
+  borderRadius?: number;
+  secondary?: boolean;
 }
 
 interface ILabelContainerProps {
   isCentered?: boolean;
 }
 
-export const Label = styled.p`
+interface ILabelProps {
+  color?: string;
+}
+
+export const Label = styled.p<ILabelProps>`
   font-weight: 700;
   line-height: 1;
-  color: ${({ theme }) => theme.colors.white};
+  color: ${({ theme, color }) => color || theme.colors.white};
   margin-left: 12px;
   display: flex;
   align-items: center;
@@ -31,6 +38,10 @@ export const LabelContainer = styled.span<ILabelContainerProps>`
   }
   display: flex;
   justify-content: center;
+
+  svg {
+    height: 20px;
+  }
 `;
 
 export const Container = styled.button<IContainerProps>`
@@ -39,11 +50,11 @@ export const Container = styled.button<IContainerProps>`
   width: 100%;
   height: ${({ height }) => height || '3.5em'};
   padding: 0px 12px;
-  border-radius: 10px;
+  border-radius: ${({ borderRadius }) => `${borderRadius || '10'}px`};
   font-weight: black;
   font-size: 18px;
-  border: 2px solid ${({ theme }) => theme.colors.primary};
-  background-color: ${({ theme }) => theme.colors.primary};
+  border: 2px solid ${({ theme, color }) => color || theme.colors.primary};
+  background-color: ${({ theme, color }) => color || theme.colors.primary};
   user-select: none;
   transition: 0.2s ease all;
   text-transform: uppercase;
@@ -96,4 +107,25 @@ export const Container = styled.button<IContainerProps>`
     font-size: ${({ size }) =>
       size === 'sm' ? 16 : size === 'md' ? 18 : 20}px;
   }
+
+  ${({ secondary }) =>
+    secondary &&
+    css`
+      border: 2px solid ${({ theme }) => theme.colors.primary};
+      background-color: ${({ theme }) => theme.colors.white};
+      p {
+        color: ${({ theme }) => theme.colors.primary};
+      }
+
+      svg {
+        color: ${({ theme }) => theme.colors.primary};
+        width: 20px;
+        height: 20px;
+        margin: 0px;
+      }
+
+      p {
+        margin-left: 4px;
+      }
+    `}
 `;
