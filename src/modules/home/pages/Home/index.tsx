@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import {
   Button,
@@ -14,14 +14,42 @@ import {
 import { MdAddCircleOutline } from 'react-icons/md';
 import UserTable from '@modules/home/components/UserTable';
 import themeDefaults from '@style/themeDefaults';
+import { useUser } from '@modules/users/hooks/Users';
+import { IUser } from '@modules/users/interfaces';
+import { SubmitHandler, useForm } from 'react-hook-form';
 import { Container, Form, TableContainer } from './styles';
 
+interface IFormInput {
+  hcm_code: string;
+  name: string;
+  type: 'administrator' | 'user';
+}
+
 const Home: React.FC = () => {
+  const { isOpen, onOpen, onClose } = useDisclosure();
+  const { register, handleSubmit } = useForm<IFormInput>();
+
+  const [usersData, setUsersData] = useState<IUser[]>([]);
+
+  const { GetUsers, CreateUser } = useUser();
+  const { data } = GetUsers();
+
+  useEffect(() => {
+    if (data) {
+      setUsersData(data);
+    }
+  }, [data]);
+
+  const onSubmit: SubmitHandler<IFormInput> = async (userData) => {
+    console.log('DATA', userData);
+
+    await CreateUser(userData);
+    onClose();
+  };
+
   useEffect(() => {
     document.title = 'Home';
   }, []);
-
-  const { isOpen, onOpen, onClose } = useDisclosure();
 
   return (
     <>
@@ -34,40 +62,40 @@ const Home: React.FC = () => {
       >
         <ModalOverlay />
         <ModalContent>
-          <ModalHeader color={themeDefaults.colors.primary}>
+          <ModalHeader color={themeDefaults.colors.addButton}>
             New User Registration
           </ModalHeader>
           <ModalCloseButton />
           <ModalBody>
-            <Form>
-              <h3>Username</h3>
-              <input type="text" />
+            <Form onSubmit={handleSubmit(onSubmit)}>
+              <h3>HCM Code</h3>
+              <input {...register('hcm_code')} type="text" />
               <h3>Name</h3>
-              <input type="text" />
-              <h3>Username</h3>
+              <input {...register('name')} type="text" />
+              <h3>Type</h3>
               <Select
                 borderRadius={15}
                 backgroundColor="#efefef"
                 height={54}
                 placeholder="Select option"
+                {...register('type')}
               >
-                <option value="option1">Option 1</option>
-                <option value="option2">Option 2</option>
-                <option value="option3">Option 3</option>
+                <option value="ADMIN">ADMIN</option>
+                <option value="DEFAULT">DEFAULT</option>
               </Select>
               <h3>Password</h3>
               <h2>1234MUDAR </h2>
+              <Button
+                marginTop={5}
+                colorScheme="teal"
+                variant="outline"
+                w={160}
+                marginBottom={5}
+                type="submit"
+              >
+                Salvar
+              </Button>
             </Form>
-            <Button
-              onClick={onClose}
-              marginTop={10}
-              colorScheme="teal"
-              variant="outline"
-              w={160}
-              marginBottom={5}
-            >
-              Salvar
-            </Button>
           </ModalBody>
         </ModalContent>
       </Modal>
@@ -88,7 +116,7 @@ const Home: React.FC = () => {
           New user
         </Button>
         <TableContainer>
-          <UserTable />
+          <UserTable data={usersData} />
         </TableContainer>
       </Container>
     </>

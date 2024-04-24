@@ -39,6 +39,7 @@ const themeDefaults = {
 
     loginInputColor: '#393939',
     loginPlaceholderColor: '#9D9D9D',
+    addButton: '#0D9F64',
   },
   shadows: {
     outer: '2px 2px 2px 0px #00000026',
