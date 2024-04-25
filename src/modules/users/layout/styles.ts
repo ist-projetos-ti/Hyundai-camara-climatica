@@ -21,3 +21,7 @@ export const Grid = styled.div`
 
   margin: auto;
 `;
+
+export const ContainerMobile = styled.div`
+  flex: 1;
+`;

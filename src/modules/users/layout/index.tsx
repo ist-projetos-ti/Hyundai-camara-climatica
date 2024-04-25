@@ -1,21 +1,34 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import { Outlet } from 'react-router-dom';
 import Header from '@components/Header';
 import DrawerNavigation from '@components/DrawerNavigation';
-import { Container, Content, Grid } from './styles';
+import { BREAKPOINTS } from '@style/breakpoints';
+import { Container, ContainerMobile, Content, Grid } from './styles';
 
-const UserLayout: React.FC = () => (
-  <Container>
-    <div>
-      <DrawerNavigation />
-    </div>
-    <Content>
-      <Grid>
-        <Header title="User Registration List" />
-        <Outlet />
-      </Grid>
-    </Content>
-  </Container>
-);
+const UserLayout: React.FC = () => {
+  const isDesktop = useMemo(() => window.innerWidth > BREAKPOINTS.MOBILE, []);
+
+  const DesktopLayout = (
+    <Container>
+      <div>
+        <DrawerNavigation />
+      </div>
+      <Content>
+        <Grid>
+          <Header title="User Registration List" />
+          <Outlet />
+        </Grid>
+      </Content>
+    </Container>
+  );
+
+  const MobileLayout = (
+    <ContainerMobile>
+      <Outlet />
+    </ContainerMobile>
+  );
+
+  return isDesktop ? DesktopLayout : MobileLayout;
+};
 
 export default UserLayout;

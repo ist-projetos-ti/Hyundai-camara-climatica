@@ -2,7 +2,7 @@ import { Route } from 'react-router-dom';
 
 import { PrivatePathsEnum } from '@routes/privateRoutes/privatePaths';
 import UsersLayout from '../layout';
-import Users from '../pages/Users';
+import Users from '../pages/Users/Desktop';
 
 const UsersRoutes = (
   <Route element={<UsersLayout />}>
