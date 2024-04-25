@@ -5,6 +5,7 @@ import { LiaUserTieSolid } from 'react-icons/lia';
 import { IoPlayCircleOutline, IoLayersOutline } from 'react-icons/io5';
 import { RiSoundModuleLine } from 'react-icons/ri';
 import { TbDoorExit, TbCell } from 'react-icons/tb';
+import { Link as ReactRouterLink } from 'react-router-dom';
 import {
   BottomContainerOptions,
   Container,
@@ -32,7 +33,11 @@ const DrawerNavigation: React.FC = () => (
         <RiSoundModuleLine size={30} />
         <p>Status: climate chamber</p>
       </LinkStyled>
-      <LinkStyled _hover={{ textDecoration: 'none' }}>
+      <LinkStyled
+        as={ReactRouterLink}
+        to="/USERS"
+        _hover={{ textDecoration: 'none' }}
+      >
         <LiaUserTieSolid size={30} />
         <p>Users</p>
       </LinkStyled>

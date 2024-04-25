@@ -110,7 +110,6 @@ const UserProvider: React.FC<IUserProviderProps> = ({ children }) => {
     },
     {
       onSuccess: () => {
-        queryClient.invalidateQueries([QueryKeys.USERS]);
         addToast({
           title: 'Usuário atualizado!',
           description: 'O usuário foi atualizado com sucesso',

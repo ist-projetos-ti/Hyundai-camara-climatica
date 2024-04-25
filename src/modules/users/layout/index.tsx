@@ -1,16 +1,21 @@
 import React from 'react';
 import { Outlet } from 'react-router-dom';
-
 import Header from '@components/Header';
-import { Container } from './styles';
+import DrawerNavigation from '@components/DrawerNavigation';
+import { Container, Content, Grid } from './styles';
 
-const UsersLayout: React.FC = () => (
-  <>
-    <Header />
-    <Container>
-      <Outlet />
-    </Container>
-  </>
+const UserLayout: React.FC = () => (
+  <Container>
+    <div>
+      <DrawerNavigation />
+    </div>
+    <Content>
+      <Grid>
+        <Header title="User Registration List" />
+        <Outlet />
+      </Grid>
+    </Content>
+  </Container>
 );
 
-export default UsersLayout;
+export default UserLayout;
