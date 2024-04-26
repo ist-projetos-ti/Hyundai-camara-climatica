@@ -12,11 +12,11 @@ import {
   useDisclosure,
 } from '@chakra-ui/react';
 import { MdAddCircleOutline } from 'react-icons/md';
-import UserTable from '@modules/home/components/UserTable';
 import themeDefaults from '@style/themeDefaults';
 import { useUser } from '@modules/users/hooks/Users';
 import { IUser } from '@modules/users/interfaces';
 import { SubmitHandler, useForm } from 'react-hook-form';
+import UserTable from '@modules/users/components/UserTable';
 import { Container, Form, TableContainer } from './styles';
 
 interface IFormInput {
