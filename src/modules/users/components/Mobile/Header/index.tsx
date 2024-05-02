@@ -11,12 +11,20 @@ import {
   TopHeaderContent,
 } from './styles';
 
-const HeaderMobile: React.FC = () => {
+interface IHeaderMobileProps {
+  activateNavigation(activate: boolean): void;
+}
+
+const HeaderMobile: React.FC<IHeaderMobileProps> = ({ activateNavigation }) => {
   return (
     <Container>
       <Grid>
         <TopHeaderContent>
-          <NavigationButton>
+          <NavigationButton
+            onClick={() => {
+              activateNavigation(true);
+            }}
+          >
             <RxHamburgerMenu size={28} />
           </NavigationButton>
           <div>

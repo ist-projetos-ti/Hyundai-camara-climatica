@@ -1,32 +1,40 @@
 /* eslint-disable arrow-body-style */
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import HeaderMobile from '@modules/users/components/Mobile/Header';
-import { Button } from '@chakra-ui/react';
-import themeDefaults from '@style/themeDefaults';
-import { MdAddCircleOutline } from 'react-icons/md';
 import UserTableMobile from '@modules/users/components/Mobile/UserTable';
+import { useUser } from '@modules/users/hooks/Users';
+import { IUser } from '@modules/users/interfaces';
+import CreateUserModal from '@modules/users/components/CreateUserModal';
+import DrawerNavigation from '@components/DrawerNavigation';
 import { Container, Grid } from '../styles';
 
 const MobileUsersPage: React.FC = () => {
+  const [usersData, setUsersData] = useState<IUser[]>([]);
+  const [open, setOpen] = useState<boolean>(false);
+
+  const { GetUsers } = useUser();
+  const { data } = GetUsers();
+
+  useEffect(() => {
+    if (data) {
+      setUsersData(data);
+    }
+  }, [data]);
+
   return (
     <Container>
-      <HeaderMobile />
+      <DrawerNavigation
+        closeNavigation={(value) => setOpen(value)}
+        openNavigation={open}
+      />
+      <HeaderMobile
+        activateNavigation={(value) => {
+          setOpen(value);
+        }}
+      />
       <Grid>
-        <Button
-          leftIcon={<MdAddCircleOutline size={23} />}
-          colorScheme="whiteAlpha"
-          fontSize={18}
-          height="3rem"
-          width="100%"
-          backgroundColor={themeDefaults.colors.primary}
-          variant="solid"
-          _hover={{
-            transform: 'scale(1.1)',
-          }}
-        >
-          New user
-        </Button>
-        <UserTableMobile />
+        <CreateUserModal />
+        <UserTableMobile data={usersData} />
       </Grid>
     </Container>
   );

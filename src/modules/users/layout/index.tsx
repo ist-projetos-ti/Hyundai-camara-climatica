@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-empty-function */
 import React, { useMemo } from 'react';
 import { Outlet } from 'react-router-dom';
 import Header from '@components/Header';
@@ -11,7 +12,7 @@ const UserLayout: React.FC = () => {
   const DesktopLayout = (
     <Container>
       <div>
-        <DrawerNavigation />
+        <DrawerNavigation closeNavigation={() => {}} />
       </div>
       <Content>
         <Grid>
