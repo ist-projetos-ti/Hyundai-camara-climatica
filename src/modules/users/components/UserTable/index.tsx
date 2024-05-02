@@ -1,6 +1,5 @@
 /* eslint-disable arrow-body-style */
 /* eslint-disable react/no-unstable-nested-components */
-/* eslint-disable jsx-a11y/control-has-associated-label */
 import React from 'react';
 import {
   useEditableControls,
@@ -72,10 +71,9 @@ const UserTable: React.FC<IUserTableProps> = ({ data }) => {
         <HeaderItem width={5} />
       </TableHeader>
       <TableBody>
-        {data.map((user, index) => {
+        {data.map((user) => {
           return (
-            // eslint-disable-next-line react/no-array-index-key
-            <TableRow key={index}>
+            <TableRow key={user.id}>
               <TableItem width={30}>
                 <Editable
                   display="flex"
