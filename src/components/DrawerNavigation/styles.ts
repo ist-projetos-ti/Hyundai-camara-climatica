@@ -1,22 +1,18 @@
 import { Link } from '@chakra-ui/react';
 import styled from 'styled-components';
 
-export const Container = styled.div`
+export const Container = styled.div<{ display?: string }>`
   height: 100vh;
   width: 100px;
-  background-color: ${({ theme }) => theme.colors.primary};
+
   z-index: 999;
   position: absolute;
-  border-top-right-radius: 20px;
-  border-bottom-right-radius: 20px;
 
-  transition: 200ms;
+  @media (max-width: 768px) {
+    display: ${({ display }) => display || 'none '};
+    flex-direction: column;
+    justify-content: space-between;
 
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-
-  &:hover {
     width: 300px;
 
     div {
@@ -26,9 +22,36 @@ export const Container = styled.div`
     p {
       width: 150px;
       font-size: 16px;
-      display: block;
       margin-left: 10px;
       color: white;
+    }
+  }
+
+  background-color: ${({ theme }) => theme.colors.primary};
+  border-top-right-radius: 20px;
+  border-bottom-right-radius: 20px;
+
+  transition: 200ms;
+
+  @media (min-width: 768px) {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    &:hover {
+      width: 300px;
+
+      div {
+        width: 300px;
+      }
+
+      p {
+        width: 150px;
+        font-size: 16px;
+        display: block;
+        margin-left: 10px;
+        color: white;
+      }
     }
   }
 `;
@@ -57,19 +80,21 @@ export const LinkStyled = styled(Link)`
   flex-direction: row;
   align-items: center;
 
-  p {
-    width: 0px;
-    display: none;
-    font-size: 0px;
-  }
-
-  &:hover {
+  @media (min-width: 768px) {
     p {
-      color: #01555b;
+      width: 0px;
+      display: none;
+      font-size: 0px;
     }
 
-    svg {
-      color: #01555b;
+    &:hover {
+      p {
+        color: #01555b;
+      }
+
+      svg {
+        color: #01555b;
+      }
     }
   }
 `;
