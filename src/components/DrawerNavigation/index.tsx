@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-no-useless-fragment */
 /* eslint-disable arrow-body-style */
 /* eslint-disable import/no-unresolved */
 import React, { useEffect, useState } from 'react';
@@ -11,10 +12,12 @@ import {
 import { RiSoundModuleLine } from 'react-icons/ri';
 import { TbDoorExit, TbCell } from 'react-icons/tb';
 import { Link as ReactRouterLink } from 'react-router-dom';
+import { useAuth } from '@modules/auth/hooks/auth';
 import {
   BottomContainerOptions,
   Container,
   LinkStyled,
+  NavigationHeaderContent,
   TopContainerOptions,
 } from './styles';
 
@@ -27,6 +30,8 @@ const DrawerNavigation: React.FC<IDrawerNavigationProps> = ({
   openNavigation,
   closeNavigation,
 }) => {
+  const { user, signOut } = useAuth();
+
   const [open, setOpen] = useState<string>('');
 
   useEffect(() => {
@@ -50,7 +55,10 @@ const DrawerNavigation: React.FC<IDrawerNavigationProps> = ({
           // eslint-disable-next-line react/jsx-no-useless-fragment
           <></>
         )}
-        <SiHyundai size={50} />
+        <NavigationHeaderContent>
+          <SiHyundai size={50} />
+          <h1>HYUNDAI</h1>
+        </NavigationHeaderContent>
         <LinkStyled _hover={{ textDecoration: 'none' }}>
           <TbCell size={30} />
           <p>Overview</p>
@@ -76,11 +84,19 @@ const DrawerNavigation: React.FC<IDrawerNavigationProps> = ({
           <p>Users</p>
         </LinkStyled>
       </TopContainerOptions>
-      <BottomContainerOptions>
-        <LinkStyled _hover={{ textDecoration: 'none' }}>
+      <BottomContainerOptions mobile={openNavigation || false}>
+        <LinkStyled _hover={{ textDecoration: 'none' }} onClick={signOut}>
           <TbDoorExit size={30} />
           <p>Logout</p>
         </LinkStyled>
+        {openNavigation ? (
+          <div>
+            <p>{user.name}</p>
+            <p>{user.hcm_code}</p>
+          </div>
+        ) : (
+          <></>
+        )}
       </BottomContainerOptions>
     </Container>
   );

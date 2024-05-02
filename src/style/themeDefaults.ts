@@ -3,7 +3,7 @@ import { keyframes } from 'styled-components';
 const themeDefaults = {
   colors: {
     primary: '#0A8C8C',
-    secondary: '#8878ff',
+    secondary: '#5EF5B8',
     shadedOverlay: '#094A4FB3',
     black: '#000000',
     white: '#FFFFFF',
@@ -52,6 +52,7 @@ const themeDefaults = {
     disabledChart: 'grayscale(1)',
   },
   fontFamily: "'Roboto', sans-serif",
+  ChakraPetch: "'Chakra Petch', sans-serif",
   breakpoints: {
     sm: '30em', // 480px
     md: '48em', // 768px

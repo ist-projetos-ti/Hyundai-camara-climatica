@@ -34,8 +34,8 @@ const Header: React.FC<IHeaderProps> = ({ title }) => {
             </button>
           </ButtonStyle>
           <UserInformation>
-            <h2>{user.email}</h2>
-            <p>ADM User</p>
+            <h2>{user.name}</h2>
+            <p>{user.hcm_code}</p>
           </UserInformation>
         </Content>
       </Container>

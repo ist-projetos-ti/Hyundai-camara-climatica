@@ -25,6 +25,15 @@ export const Container = styled.div<{ display?: string }>`
       margin-left: 10px;
       color: white;
     }
+
+    h1 {
+      width: 150px;
+      font-size: 25px;
+      display: block;
+      margin-left: 10px;
+      color: white;
+      font-family: ${({ theme }) => theme.ChakraPetch};
+    }
   }
 
   background-color: ${({ theme }) => theme.colors.primary};
@@ -52,13 +61,22 @@ export const Container = styled.div<{ display?: string }>`
         margin-left: 10px;
         color: white;
       }
+
+      h1 {
+        width: 150px;
+        font-size: 25px;
+        display: block;
+        margin-left: 10px;
+        color: white;
+        font-family: ${({ theme }) => theme.ChakraPetch};
+      }
     }
   }
 `;
 
 export const TopContainerOptions = styled.div`
   width: auto;
-  height: 30vh;
+  height: 40vh;
   margin-top: 30px;
 
   svg {
@@ -69,6 +87,30 @@ export const TopContainerOptions = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+`;
+
+export const NavigationHeaderContent = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+
+  @media (min-width: 768px) {
+    h1 {
+      width: 0px;
+      display: none;
+      font-size: 0px;
+    }
+
+    &:hover {
+      p {
+        color: ${({ theme }) => theme.colors.secondary};
+      }
+
+      svg {
+        color: ${({ theme }) => theme.colors.secondary};
+      }
+    }
+  }
 `;
 
 export const LinkStyled = styled(Link)`
@@ -99,10 +141,22 @@ export const LinkStyled = styled(Link)`
   }
 `;
 
-export const BottomContainerOptions = styled.div`
+export const BottomContainerOptions = styled.div<{ mobile: boolean }>`
+  display: flex;
+  flex-direction: column;
+
   width: auto;
-  height: 10vh;
+  height: ${({ mobile }) => (mobile ? 12 : 10)}vh;
   margin-top: 30px;
+
+  margin-bottom: ${({ mobile }) => (mobile ? 25 : 0)}px;
+
+  div {
+    margin-left: 25px;
+    p {
+      font-size: 16px;
+    }
+  }
 
   svg {
     margin-left: 25px;
@@ -111,5 +165,6 @@ export const BottomContainerOptions = styled.div`
 
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: ${({ mobile }) =>
+    mobile ? 'space-around' : 'space-between'};
 `;
