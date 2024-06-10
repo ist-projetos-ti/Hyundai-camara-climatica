@@ -4,6 +4,7 @@ import { Link as ChakraLink } from '@chakra-ui/react';
 
 import { PrivatePathsEnum } from '@routes/privateRoutes/privatePaths';
 import TotalHourMachineLabel from '@modules/testHistory/components/TotalHourMachineLabel';
+import Filter from '@components/Filter';
 import { Container, Content } from './styles';
 
 const Home: React.FC = () => {
@@ -18,6 +19,7 @@ const Home: React.FC = () => {
 
         <TotalHourMachineLabel />
 
+        <Filter />
         <ChakraLink
           color="teal.500"
           as={ReactRouterLink}
