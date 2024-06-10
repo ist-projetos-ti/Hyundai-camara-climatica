@@ -1,8 +1,9 @@
 import React, { useEffect } from 'react';
 import { Link as ReactRouterLink } from 'react-router-dom';
-import { Link as ChakraLink, Heading } from '@chakra-ui/react';
+import { Link as ChakraLink } from '@chakra-ui/react';
 
 import { PrivatePathsEnum } from '@routes/privateRoutes/privatePaths';
+import TotalHourMachineLabel from '@modules/testHistory/components/TotalHourMachineLabel';
 import { Container, Content } from './styles';
 
 const Home: React.FC = () => {
@@ -13,7 +14,9 @@ const Home: React.FC = () => {
   return (
     <Container>
       <Content>
-        <Heading>HomePage</Heading>
+        {/* <Heading>HomePage</Heading> */}
+
+        <TotalHourMachineLabel />
 
         <ChakraLink
           color="teal.500"
