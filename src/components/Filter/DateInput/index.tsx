@@ -1,23 +1,44 @@
 /* eslint-disable import/no-unresolved */
-import React, { useState } from 'react';
+import React, { useCallback, useState } from 'react';
 import CalendarIcon from '@assets/calendar.svg?react';
-import { PatternFormat } from 'react-number-format';
+import { useForm } from 'react-hook-form';
 
+import { FormControl } from '@chakra-ui/react';
+import Input from '@components/Form/Input';
 import {
   Container,
   DateSelector,
   SubmitButton,
-  InputLabel,
-  InputGroup,
-  DateDivider,
+  // InputLabel,
+  // InputGroup,
+  // DateDivider,
   DateInputBox,
+  Form,
 } from './styles';
+import { DateFilterData, dateFilterResolver } from './dateFilter.zod';
 
 const DateInput: React.FC = () => {
   const [selectedItem, setSelectedItem] = useState(true);
-  const [monthValue, setMonthValue] = useState('');
-  const [yearValue] = useState('');
-  const [dayValue, setDayValue] = useState('');
+  // const [monthValue, setMonthValue] = useState<number>();
+
+  // const [dayValue, setDayValue] = useState<number>();
+
+  const [, setInitialDate] = useState('');
+
+  const {
+    getFieldState,
+    handleSubmit,
+    register,
+
+    formState: { errors },
+  } = useForm<DateFilterData>({
+    resolver: dateFilterResolver,
+    mode: 'all',
+  });
+
+  const onSubmit = useCallback(async (data: DateFilterData) => {
+    setInitialDate(`${data.year}/${data.month}/${data.day}`);
+  }, []);
 
   return (
     <Container>
@@ -28,66 +49,47 @@ const DateInput: React.FC = () => {
         <CalendarIcon />
         <p>Start</p>
         <DateInputBox selected={false}>
-          <InputGroup variety="year">
-            <InputLabel>Year</InputLabel>
-            <PatternFormat
-              format="####"
-              mask="_"
-              valueIsNumericString
-              displayType="input"
-              value={yearValue}
-              isAllowed={(values) => {
-                const { value } = values;
-                const number = Number(value);
-                return number >= 0 && number <= new Date().getFullYear();
-              }}
-            />
-          </InputGroup>
-          <DateDivider> / </DateDivider>
-          <InputGroup>
-            <InputLabel>Month</InputLabel>
-            <PatternFormat
-              format="##"
-              mask="_"
-              valueIsNumericString
-              displayType="input"
-              value={monthValue}
-              onBlur={(values) => {
-                const { target } = values;
-                const number = target.value.match(/.{1,1}/g);
-                if (number && number[1] === '_') setMonthValue(`0${number[0]}`);
-                if (target.value && target.value === '00') setMonthValue(`01`);
-              }}
-              isAllowed={(values) => {
-                const { value } = values;
-                const number = Number(value);
-                return number >= 0 && number <= 12;
-              }}
-            />
-          </InputGroup>
-          <DateDivider> / </DateDivider>
-          <InputGroup>
-            <InputLabel>Day</InputLabel>
-            <PatternFormat
-              format="##"
-              mask="_"
-              displayType="input"
-              valueIsNumericString
-              value={dayValue}
-              onBlur={(values) => {
-                const { target } = values;
-                const number = target.value.match(/.{1,1}/g);
-                if (number && number[1] === '_') setDayValue(`0${number[0]}`);
-                if (target.value && target.value === '00') setDayValue(`01`);
-              }}
-              isAllowed={(values) => {
-                const { value } = values;
-                const number = Number(value);
-                return number >= 0 && number <= 31;
-              }}
-            />
-          </InputGroup>
-          <SubmitButton>Ok →</SubmitButton>
+          <Form onSubmit={handleSubmit(onSubmit)}>
+            <FormControl isInvalid={!!errors.year}>
+              <Input
+                register={register}
+                name="year"
+                type="number"
+                state={getFieldState('year')}
+                errors={errors.year}
+              />
+              {/* <FormErrorMessage>
+                {errors.year && errors.year.message}
+              </FormErrorMessage> */}
+            </FormControl>
+            /
+            <FormControl isInvalid={!!errors.month}>
+              <Input
+                name="month"
+                type="number"
+                register={register}
+                state={getFieldState('month')}
+                errors={errors.month}
+              />
+              {/* <FormErrorMessage>
+                {errors.month && errors.month.message}
+              </FormErrorMessage> */}
+            </FormControl>
+            /
+            <FormControl isInvalid={!!errors.day}>
+              <Input
+                name="day"
+                type="number"
+                register={register}
+                state={getFieldState('day')}
+                errors={errors.month}
+              />
+              {/* <FormErrorMessage>
+                {errors.month && errors.month.message}
+              </FormErrorMessage> */}
+            </FormControl>
+            <SubmitButton type="submit">Ok →</SubmitButton>
+          </Form>
         </DateInputBox>
       </DateSelector>
 

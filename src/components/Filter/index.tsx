@@ -6,7 +6,7 @@ import DateInput from './DateInput';
 
 const Filter: React.FC = () => (
   <Container>
-    <LabelTitle> Filter </LabelTitle>
+    <LabelTitle>{/* Filter */}</LabelTitle>
     <DateInputContainer>
       <DateInput />
     </DateInputContainer>

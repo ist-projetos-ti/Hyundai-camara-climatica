@@ -10,6 +10,7 @@ interface IDateInputContainerProps {
 
 interface InputProps {
   variety?: 'year' | 'default';
+  isInvalid?: boolean;
 }
 
 export const Container = styled.div`
@@ -46,6 +47,9 @@ export const DateSelector = styled.span<IDateSelectorProps>`
       color: white;
     `};
 
+  svg {
+    margin-right: 8px;
+  }
   /* &:hover {
     cursor: pointer;
   } */
@@ -106,6 +110,14 @@ export const InputGroup = styled.div<InputProps>`
 
   input {
     border: 1px solid #dedede;
+    ${({ isInvalid }) =>
+      isInvalid
+        ? css`
+            border-color: red;
+          `
+        : css`
+            border-color: #dedede;
+          `}
     border-radius: 10px;
 
     text-align: center;
@@ -123,7 +135,16 @@ export const InputGroup = styled.div<InputProps>`
 `;
 
 export const DateDivider = styled.span`
-  height: 42%;
   display: flex;
   align-items: end;
+  height: 45%;
+`;
+
+export const Form = styled.form`
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  padding: 5px;
+  width: 100%;
+  height: 100%;
 `;
