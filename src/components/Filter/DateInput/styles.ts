@@ -8,6 +8,10 @@ interface IDateInputContainerProps {
   selected?: boolean;
 }
 
+interface InputProps {
+  variety?: 'year' | 'default';
+}
+
 export const Container = styled.div`
   display: flex;
   align-items: center;
@@ -30,9 +34,6 @@ export const DateSelector = styled.span<IDateSelectorProps>`
   justify-content: center;
 
   position: relative;
-  p {
-    margin-left: 6px;
-  }
 
   :nth-child(2n-1) {
     margin-right: 0;
@@ -73,37 +74,56 @@ export const DateInputBox = styled.div<IDateInputContainerProps>`
   padding: 5px;
 `;
 
-export const Input = styled.input`
-  width: 50%;
-  border: 1px solid #dedede;
-  border-radius: 10px;
-
-  text-align: center;
-  height: 43px;
-`;
-
 export const SubmitButton = styled.button`
   background-color: #0d9f64;
   color: white;
   padding: 10px;
   border-radius: 9px;
-  width: 168px;
+  width: 68px;
   height: 34px;
   display: flex;
   align-items: center;
   justify-content: center;
   font-size: 14px;
+  margin-top: 3%;
 `;
 
 export const InputLabel = styled.p`
-  text-align: center;
   color: #c1c1c1;
   font-size: 14px;
+  text-align: center;
+  width: 100%;
+  margin: 0;
 `;
-export const InputGroup = styled.div`
+
+export const InputGroup = styled.div<InputProps>`
   width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  width: 86px;
+
+  input {
+    border: 1px solid #dedede;
+    border-radius: 10px;
+
+    text-align: center;
+    height: 43px;
+    font-size: 14px;
+    padding: 8px;
+    width: 72px;
+
+    ${({ variety }) =>
+      variety === 'year' &&
+      css`
+        width: 86px;
+      `}
+  }
+`;
+
+export const DateDivider = styled.span`
+  height: 42%;
+  display: flex;
+  align-items: end;
 `;
