@@ -1,16 +1,35 @@
-import React from 'react';
+/* eslint-disable @typescript-eslint/no-empty-function */
+import React, { useMemo } from 'react';
 import { Outlet } from 'react-router-dom';
-
 import Header from '@components/Header';
-import { Container } from './styles';
+import DrawerNavigation from '@components/DrawerNavigation';
+import { BREAKPOINTS } from '@style/breakpoints';
+import { Container, ContainerMobile, Content, Grid } from './styles';
 
-const UsersLayout: React.FC = () => (
-  <>
-    <Header />
+const UserLayout: React.FC = () => {
+  const isDesktop = useMemo(() => window.innerWidth > BREAKPOINTS.MOBILE, []);
+
+  const DesktopLayout = (
     <Container>
-      <Outlet />
+      <div>
+        <DrawerNavigation closeNavigation={() => {}} />
+      </div>
+      <Content>
+        <Grid>
+          <Header title="User Registration List" />
+          <Outlet />
+        </Grid>
+      </Content>
     </Container>
-  </>
-);
+  );
 
-export default UsersLayout;
+  const MobileLayout = (
+    <ContainerMobile>
+      <Outlet />
+    </ContainerMobile>
+  );
+
+  return isDesktop ? DesktopLayout : MobileLayout;
+};
+
+export default UserLayout;

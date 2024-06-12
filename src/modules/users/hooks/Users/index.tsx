@@ -1,3 +1,4 @@
+/* eslint-disable camelcase */
 import React, { createContext, useContext } from 'react';
 import {
   useMutation,
@@ -19,6 +20,9 @@ interface IUpdateCurrentUserData {
   old_password?: string;
   password?: string;
   password_confirmation?: string;
+  name?: string;
+  hcm_code?: string;
+  type?: string;
 }
 
 interface IUpdateUserData extends IUpdateCurrentUserData {
@@ -27,7 +31,7 @@ interface IUpdateUserData extends IUpdateCurrentUserData {
 
 interface ICreateUserData {
   name: string;
-  email: string;
+  hcm_code: string;
   type: 'administrator' | 'user';
 }
 
@@ -107,7 +111,6 @@ const UserProvider: React.FC<IUserProviderProps> = ({ children }) => {
     },
     {
       onSuccess: () => {
-        queryClient.invalidateQueries([QueryKeys.USERS]);
         addToast({
           title: 'Usuário atualizado!',
           description: 'O usuário foi atualizado com sucesso',
@@ -152,11 +155,11 @@ const UserProvider: React.FC<IUserProviderProps> = ({ children }) => {
   ).mutateAsync;
 
   const CreateUser = useMutation(
-    async ({ name, type, email }: ICreateUserData) => {
+    async ({ name, type, hcm_code }: ICreateUserData) => {
       const { data } = await api.post(`${UsersApiRoutes.USERS}`, {
         name,
         type,
-        email,
+        hcm_code,
       });
 
       return data;
@@ -167,7 +170,7 @@ const UserProvider: React.FC<IUserProviderProps> = ({ children }) => {
         addToast({
           title: 'Usuário Criado!',
           description: 'O usuário foi criado!',
-          type: 'error',
+          type: 'success',
         });
       },
       onError: (error) => {

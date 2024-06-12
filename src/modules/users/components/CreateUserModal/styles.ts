@@ -1,19 +1,5 @@
 import styled from 'styled-components';
 
-export const Container = styled.div`
-  width: 100%;
-  height: 85%;
-  display: flex;
-  flex-direction: column;
-  margin-top: 50px;
-`;
-
-export const TableContainer = styled.div`
-  width: 100%;
-  height: 100%;
-  margin-top: 50px;
-`;
-
 export const Form = styled.form`
   h3 {
     color: ${({ theme }) => theme.colors.primary};
@@ -21,6 +7,10 @@ export const Form = styled.form`
 
     margin-left: 2rem;
     margin-top: 25px;
+
+    @media (max-width: 768px) {
+      margin-left: 0;
+    }
   }
 
   input {
@@ -38,5 +28,9 @@ export const Form = styled.form`
     display: flex;
     align-items: center;
     margin-left: 2rem;
+
+    @media (max-width: 768px) {
+      margin-left: 0;
+    }
   }
 `;
