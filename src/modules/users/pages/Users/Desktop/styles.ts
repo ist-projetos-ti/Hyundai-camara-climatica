@@ -10,6 +10,6 @@ export const Container = styled.div`
 
 export const TableContainer = styled.div`
   width: 100%;
-  height: 100%;
+  height: 85%;
   margin-top: 50px;
 `;

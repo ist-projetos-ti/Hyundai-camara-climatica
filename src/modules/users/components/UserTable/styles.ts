@@ -11,6 +11,8 @@ export const TableHeader = styled.div`
   border-radius: 10px;
 
   display: flex;
+
+  margin-bottom: 30px;
 `;
 
 export const HeaderItem = styled.h1<{ width: number }>`
