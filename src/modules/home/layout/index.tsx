@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-empty-function */
 import React from 'react';
 import { Outlet } from 'react-router-dom';
 import Header from '@components/Header';
@@ -7,7 +8,7 @@ import { Container, Content, Grid } from './styles';
 const HomeLayout: React.FC = () => (
   <Container>
     <div>
-      <DrawerNavigation />
+      <DrawerNavigation closeNavigation={() => {}} />
     </div>
     <Content>
       <Grid>

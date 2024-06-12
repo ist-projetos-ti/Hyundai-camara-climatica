@@ -20,6 +20,7 @@ import { IoTrashOutline } from 'react-icons/io5';
 import themeDefaults from '@style/themeDefaults';
 import { IUser } from '@modules/users/interfaces';
 import { useUser } from '@modules/users/hooks/Users';
+import { usePassword } from '@modules/users/hooks/Password';
 import {
   Container,
   TableHeader,
@@ -35,6 +36,7 @@ interface IUserTableProps {
 
 const UserTable: React.FC<IUserTableProps> = ({ data }) => {
   const { DeleteUser, UpdateUser } = useUser();
+  const { ResetPassword } = usePassword();
 
   function EditableControls() {
     const {
@@ -115,7 +117,17 @@ const UserTable: React.FC<IUserTableProps> = ({ data }) => {
                 </Editable>
               </TableItem>
               <TableItem width={25}>
-                <Select width={130} placeholder={user.type}>
+                <Select
+                  width={130}
+                  placeholder={user.type}
+                  onChange={async (value) => {
+                    await UpdateUser({
+                      id: user.id,
+                      type: value.target.value,
+                    });
+                    window.location.reload();
+                  }}
+                >
                   {user.type === 'ADMIN' ? (
                     <option value="DEFAULT">DEFAULT</option>
                   ) : (
@@ -124,7 +136,11 @@ const UserTable: React.FC<IUserTableProps> = ({ data }) => {
                 </Select>
               </TableItem>
               <TableItem width={15}>
-                <button>
+                <button
+                  onClick={async () => {
+                    await ResetPassword(user.id);
+                  }}
+                >
                   <TfiReload size={30} color={themeDefaults.colors.primary} />
                 </button>
               </TableItem>

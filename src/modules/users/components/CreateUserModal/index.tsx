@@ -65,7 +65,7 @@ const CreateUserModal: React.FC = () => {
                 <option value="DEFAULT">DEFAULT</option>
               </Select>
               <h3>Password</h3>
-              <h2>1234MUDAR </h2>
+              <h2>123456</h2>
               <Button
                 marginTop={5}
                 colorScheme="teal"

@@ -22,6 +22,7 @@ interface IUpdateCurrentUserData {
   password_confirmation?: string;
   name?: string;
   hcm_code?: string;
+  type?: string;
 }
 
 interface IUpdateUserData extends IUpdateCurrentUserData {

@@ -22,6 +22,7 @@ import { useUser } from '@modules/users/hooks/Users';
 import { CheckIcon } from '@components/Form/Input/styles';
 import { FaRegEdit } from 'react-icons/fa';
 import { IoMdClose } from 'react-icons/io';
+import { usePassword } from '@modules/users/hooks/Password';
 import {
   ButtonContent,
   ButtonStyled,
@@ -39,6 +40,7 @@ interface IUserTableProps {
 
 const UserTableMobile: React.FC<IUserTableProps> = ({ data }) => {
   const { DeleteUser, UpdateUser } = useUser();
+  const { ResetPassword } = usePassword();
 
   const [openRows, setOpenRows] = useState(Array(data.length).fill(false));
 
@@ -162,6 +164,9 @@ const UserTableMobile: React.FC<IUserTableProps> = ({ data }) => {
                     colorScheme="teal"
                     variant="outline"
                     leftIcon={<TfiReload />}
+                    onClick={async () => {
+                      await ResetPassword(user.id);
+                    }}
                   >
                     Reset password
                   </Button>
