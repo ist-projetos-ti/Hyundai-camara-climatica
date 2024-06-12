@@ -101,36 +101,16 @@ export const InputLabel = styled.p`
 `;
 
 export const InputGroup = styled.div<InputProps>`
-  width: 100%;
+  width: fit-content;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  width: 86px;
 
-  input {
-    border: 1px solid #dedede;
-    ${({ isInvalid }) =>
-      isInvalid
-        ? css`
-            border-color: red;
-          `
-        : css`
-            border-color: #dedede;
-          `}
-    border-radius: 10px;
-
-    text-align: center;
-    height: 43px;
-    font-size: 14px;
-    padding: 8px;
-    width: 72px;
-
-    ${({ variety }) =>
-      variety === 'year' &&
-      css`
-        width: 86px;
-      `}
+  div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
 `;
 
@@ -138,6 +118,9 @@ export const DateDivider = styled.span`
   display: flex;
   align-items: end;
   height: 45%;
+  color: #757575;
+  font-weight: 500;
+  font-size: 14px;
 `;
 
 export const Form = styled.form`

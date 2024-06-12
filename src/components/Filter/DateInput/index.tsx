@@ -4,29 +4,26 @@ import CalendarIcon from '@assets/calendar.svg?react';
 import { useForm } from 'react-hook-form';
 
 import { FormControl } from '@chakra-ui/react';
-import Input from '@components/Form/Input';
+// import Input from '@components/Form/Input';
+
 import {
   Container,
   DateSelector,
   SubmitButton,
-  // InputLabel,
-  // InputGroup,
-  // DateDivider,
   DateInputBox,
+  DateDivider,
+  InputGroup,
   Form,
+  InputLabel,
 } from './styles';
 import { DateFilterData, dateFilterResolver } from './dateFilter.zod';
+import Input from './Input';
 
 const DateInput: React.FC = () => {
   const [selectedItem, setSelectedItem] = useState(true);
-  // const [monthValue, setMonthValue] = useState<number>();
-
-  // const [dayValue, setDayValue] = useState<number>();
-
   const [, setInitialDate] = useState('');
 
   const {
-    getFieldState,
     handleSubmit,
     register,
 
@@ -50,44 +47,43 @@ const DateInput: React.FC = () => {
         <p>Start</p>
         <DateInputBox selected={false}>
           <Form onSubmit={handleSubmit(onSubmit)}>
-            <FormControl isInvalid={!!errors.year}>
-              <Input
-                register={register}
-                name="year"
-                type="number"
-                state={getFieldState('year')}
-                errors={errors.year}
-              />
-              {/* <FormErrorMessage>
-                {errors.year && errors.year.message}
-              </FormErrorMessage> */}
-            </FormControl>
-            /
-            <FormControl isInvalid={!!errors.month}>
-              <Input
-                name="month"
-                type="number"
-                register={register}
-                state={getFieldState('month')}
-                errors={errors.month}
-              />
-              {/* <FormErrorMessage>
-                {errors.month && errors.month.message}
-              </FormErrorMessage> */}
-            </FormControl>
-            /
-            <FormControl isInvalid={!!errors.day}>
-              <Input
-                name="day"
-                type="number"
-                register={register}
-                state={getFieldState('day')}
-                errors={errors.month}
-              />
-              {/* <FormErrorMessage>
-                {errors.month && errors.month.message}
-              </FormErrorMessage> */}
-            </FormControl>
+            <InputGroup>
+              <InputLabel>Year</InputLabel>
+              <FormControl isInvalid={!!errors.year}>
+                <Input
+                  register={register}
+                  name="year"
+                  type="number"
+                  errors={errors.year}
+                  variety
+                />
+              </FormControl>
+            </InputGroup>
+            <DateDivider>/</DateDivider>
+            <InputGroup>
+              <InputLabel>Month</InputLabel>
+              <FormControl isInvalid={!!errors.month}>
+                <Input
+                  name="month"
+                  type="number"
+                  register={register}
+                  errors={errors.month}
+                />
+              </FormControl>
+            </InputGroup>
+            <DateDivider>/</DateDivider>
+
+            <InputGroup>
+              <InputLabel>Day</InputLabel>
+              <FormControl isInvalid={!!errors.day}>
+                <Input
+                  name="day"
+                  type="number"
+                  register={register}
+                  errors={errors.day}
+                />
+              </FormControl>
+            </InputGroup>
             <SubmitButton type="submit">Ok →</SubmitButton>
           </Form>
         </DateInputBox>
