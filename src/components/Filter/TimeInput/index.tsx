@@ -22,95 +22,92 @@ import { TimeFilterData, timeFilterResolver } from './timeFilter.zod';
 import Input from './Input';
 
 const TimeInput: React.FC = () => {
-  const [selectedItem, setSelectedItem] = useState(true);
-  const [initialDate, setInitialDate] = useState<string | null>(null);
-  const [finalDate, setFinalDate] = useState<string | null>(null);
+  const [isStartTimeSelected, setIsStartTimeSelected] = useState(true);
+  const [initialTime, setInitialTime] = useState<string | null>(null);
+  const [finalTime, setFinalTime] = useState<string | null>(null);
 
-  const [showInitialDateBox, setShowInitialDateBox] = useState(false);
-  const [showFinalDateBox, setShowFinalDateBox] = useState(false);
+  const [showInitialTimeBox, setShowInitialTimeBox] = useState(false);
+  const [showFinalTimeBox, setShowFinalTimeBox] = useState(false);
 
   const {
-    handleSubmit: handleInitialDateSubmit,
-    register: initialDateRegister,
+    handleSubmit: handleInitialTimeSubmit,
+    register: initialTimeRegister,
     clearErrors: initialTimeClearErrors,
-    formState: { errors: initialDateErrors },
+    formState: { errors: initialTimeErrors },
   } = useForm<TimeFilterData>({
     resolver: timeFilterResolver,
     mode: 'all',
   });
 
   const {
-    handleSubmit: handleFinalDateSubmit,
-    register: finalDateRegister,
+    handleSubmit: handleFinalTimeSubmit,
+    register: finalTimeRegister,
     clearErrors: finalTimeClearErrors,
-    formState: { errors: finalDateErrors },
+    formState: { errors: finalTimeErrors },
   } = useForm<TimeFilterData>({
     resolver: timeFilterResolver,
     mode: 'all',
   });
 
-  const onInitialDateSubmit = useCallback(
+  const onInitialTimeSubmit = useCallback(
     async (data: TimeFilterData) => {
-      setInitialDate(
+      setInitialTime(
         `${data.hour_h1}${data.hour_h2}:${data.minute_m1}${data.minute_m2}:${data.second_s1}${data.second_s2}`
       );
-      if (JSON.stringify(initialDateErrors) === '{}')
-        setShowInitialDateBox(false);
+      if (JSON.stringify(initialTimeErrors) === '{}')
+        setShowInitialTimeBox(false);
     },
-    [initialDateErrors]
+    [initialTimeErrors]
   );
 
-  const onFinalDateSubmit = useCallback(
+  const onFinalTimeSubmit = useCallback(
     async (data: TimeFilterData) => {
-      setFinalDate(
+      setFinalTime(
         `${data.hour_h1}${data.hour_h2}:${data.minute_m1}${data.minute_m2}:${data.second_s1}${data.second_s2}`
       );
 
-      if (JSON.stringify(finalDateErrors) === '{}') setShowFinalDateBox(false);
+      if (JSON.stringify(finalTimeErrors) === '{}') setShowFinalTimeBox(false);
     },
-    [finalDateErrors]
+    [finalTimeErrors]
   );
 
   return (
     <Container>
-      <DateSelector
-        selected={selectedItem}
-        onClick={() => setSelectedItem(true)}
-        filledDate={!!initialDate}
-      >
+      <DateSelector selected={isStartTimeSelected} filledDate={!!initialTime}>
         <Button
           onClick={() => {
-            setShowInitialDateBox(!showInitialDateBox);
-            setShowFinalDateBox(false);
+            setShowInitialTimeBox(!showInitialTimeBox);
+            setShowFinalTimeBox(false);
             initialTimeClearErrors();
             finalTimeClearErrors();
+            setIsStartTimeSelected(true);
           }}
         >
           <PiClockCountdown size={19} />
-          {initialDate ? <DateLabel> {initialDate}</DateLabel> : <p>Start</p>}
+          {initialTime ? <DateLabel> {initialTime}</DateLabel> : <p>Start</p>}
         </Button>
-        <DateInputBox selected={showInitialDateBox}>
-          <Form onSubmit={handleInitialDateSubmit(onInitialDateSubmit)}>
+        <DateInputBox selected={showInitialTimeBox}>
+          <Form onSubmit={handleInitialTimeSubmit(onInitialTimeSubmit)}>
             <InputGroup>
               <InputLabel>Hour</InputLabel>
               <InputBundle>
-                <FormControl isInvalid={!!initialDateErrors.hour_h1}>
+                <FormControl isInvalid={!!initialTimeErrors.hour_h1}>
                   <Input
-                    register={initialDateRegister}
+                    register={initialTimeRegister}
                     name="hour_h1"
                     type="text"
                     maxLength={1}
-                    errors={initialDateErrors.hour_h1}
+                    errors={initialTimeErrors.hour_h1}
                   />
                 </FormControl>
 
-                <FormControl isInvalid={!!initialDateErrors.hour_h2}>
+                <FormControl isInvalid={!!initialTimeErrors.hour_h2}>
                   <Input
-                    register={initialDateRegister}
+                    register={initialTimeRegister}
                     name="hour_h2"
                     type="text"
                     maxLength={1}
-                    errors={initialDateErrors.hour_h2}
+                    errors={initialTimeErrors.hour_h2}
                   />
                 </FormControl>
               </InputBundle>
@@ -119,22 +116,22 @@ const TimeInput: React.FC = () => {
             <InputGroup>
               <InputLabel>Minute</InputLabel>
               <InputBundle>
-                <FormControl isInvalid={!!initialDateErrors.minute_m1}>
+                <FormControl isInvalid={!!initialTimeErrors.minute_m1}>
                   <Input
                     name="minute_m1"
                     type="text"
                     maxLength={1}
-                    register={initialDateRegister}
-                    errors={initialDateErrors.minute_m1}
+                    register={initialTimeRegister}
+                    errors={initialTimeErrors.minute_m1}
                   />
                 </FormControl>
-                <FormControl isInvalid={!!initialDateErrors.minute_m2}>
+                <FormControl isInvalid={!!initialTimeErrors.minute_m2}>
                   <Input
                     name="minute_m2"
                     type="text"
                     maxLength={1}
-                    register={initialDateRegister}
-                    errors={initialDateErrors.minute_m2}
+                    register={initialTimeRegister}
+                    errors={initialTimeErrors.minute_m2}
                   />
                 </FormControl>
               </InputBundle>
@@ -144,23 +141,23 @@ const TimeInput: React.FC = () => {
             <InputGroup>
               <InputLabel>Second</InputLabel>
               <InputBundle>
-                <FormControl isInvalid={!!initialDateErrors.second_s1}>
+                <FormControl isInvalid={!!initialTimeErrors.second_s1}>
                   <Input
                     name="second_s1"
                     type="text"
                     maxLength={1}
-                    register={initialDateRegister}
-                    errors={initialDateErrors.second_s1}
+                    register={initialTimeRegister}
+                    errors={initialTimeErrors.second_s1}
                   />
                 </FormControl>
 
-                <FormControl isInvalid={!!initialDateErrors.second_s2}>
+                <FormControl isInvalid={!!initialTimeErrors.second_s2}>
                   <Input
                     name="second_s2"
                     type="text"
                     maxLength={1}
-                    register={initialDateRegister}
-                    errors={initialDateErrors.second_s2}
+                    register={initialTimeRegister}
+                    errors={initialTimeErrors.second_s2}
                   />
                 </FormControl>
               </InputBundle>
@@ -170,46 +167,43 @@ const TimeInput: React.FC = () => {
         </DateInputBox>
       </DateSelector>
 
-      {initialDate && finalDate && <DateDivider>{'>'}</DateDivider>}
+      {initialTime && finalTime && <DateDivider>{'>'}</DateDivider>}
 
-      <DateSelector
-        selected={!selectedItem}
-        onClick={() => setSelectedItem(false)}
-        filledDate={!!finalDate}
-      >
+      <DateSelector selected={!isStartTimeSelected} filledDate={!!finalTime}>
         <Button
           onClick={() => {
-            setShowFinalDateBox(!showFinalDateBox);
+            setShowFinalTimeBox(!showFinalTimeBox);
             initialTimeClearErrors();
-            setShowInitialDateBox(false);
+            setShowInitialTimeBox(false);
             finalTimeClearErrors();
+            setIsStartTimeSelected(false);
           }}
         >
           <PiClockCountdown size={19} />
-          {finalDate ? <DateLabel> {finalDate}</DateLabel> : <p>End</p>}
+          {finalTime ? <DateLabel> {finalTime}</DateLabel> : <p>End</p>}
         </Button>
 
-        <DateInputBox selected={showFinalDateBox}>
-          <Form onSubmit={handleFinalDateSubmit(onFinalDateSubmit)}>
+        <DateInputBox selected={showFinalTimeBox}>
+          <Form onSubmit={handleFinalTimeSubmit(onFinalTimeSubmit)}>
             <InputGroup>
               <InputLabel>Hour</InputLabel>
               <InputBundle>
-                <FormControl isInvalid={!!finalDateErrors.hour_h1}>
+                <FormControl isInvalid={!!finalTimeErrors.hour_h1}>
                   <Input
-                    register={finalDateRegister}
+                    register={finalTimeRegister}
                     name="hour_h1"
                     type="text"
                     maxLength={1}
-                    errors={finalDateErrors.hour_h1}
+                    errors={finalTimeErrors.hour_h1}
                   />
                 </FormControl>
-                <FormControl isInvalid={!!finalDateErrors.hour_h1}>
+                <FormControl isInvalid={!!finalTimeErrors.hour_h1}>
                   <Input
-                    register={finalDateRegister}
+                    register={finalTimeRegister}
                     name="hour_h2"
                     type="text"
                     maxLength={1}
-                    errors={finalDateErrors.hour_h2}
+                    errors={finalTimeErrors.hour_h2}
                   />
                 </FormControl>
               </InputBundle>
@@ -219,22 +213,22 @@ const TimeInput: React.FC = () => {
             <InputGroup>
               <InputLabel>Minute</InputLabel>
               <InputBundle>
-                <FormControl isInvalid={!!finalDateErrors.minute_m1}>
+                <FormControl isInvalid={!!finalTimeErrors.minute_m1}>
                   <Input
                     name="minute_m1"
                     type="text"
                     maxLength={1}
-                    register={finalDateRegister}
-                    errors={finalDateErrors.minute_m1}
+                    register={finalTimeRegister}
+                    errors={finalTimeErrors.minute_m1}
                   />
                 </FormControl>
-                <FormControl isInvalid={!!finalDateErrors.minute_m1}>
+                <FormControl isInvalid={!!finalTimeErrors.minute_m1}>
                   <Input
                     name="minute_m2"
                     type="text"
                     maxLength={1}
-                    register={finalDateRegister}
-                    errors={finalDateErrors.minute_m1}
+                    register={finalTimeRegister}
+                    errors={finalTimeErrors.minute_m1}
                   />
                 </FormControl>
               </InputBundle>
@@ -244,22 +238,22 @@ const TimeInput: React.FC = () => {
             <InputGroup>
               <InputLabel>Second</InputLabel>
               <InputBundle>
-                <FormControl isInvalid={!!finalDateErrors.second_s1}>
+                <FormControl isInvalid={!!finalTimeErrors.second_s1}>
                   <Input
                     name="second_s1"
                     type="text"
                     maxLength={1}
-                    register={finalDateRegister}
-                    errors={finalDateErrors.second_s1}
+                    register={finalTimeRegister}
+                    errors={finalTimeErrors.second_s1}
                   />
                 </FormControl>
-                <FormControl isInvalid={!!finalDateErrors.second_s2}>
+                <FormControl isInvalid={!!finalTimeErrors.second_s2}>
                   <Input
                     name="second_s2"
                     type="text"
                     maxLength={1}
-                    register={finalDateRegister}
-                    errors={finalDateErrors.second_s2}
+                    register={finalTimeRegister}
+                    errors={finalTimeErrors.second_s2}
                   />
                 </FormControl>
               </InputBundle>

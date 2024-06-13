@@ -4,7 +4,6 @@ import CalendarIcon from '@assets/calendar.svg?react';
 import { useForm } from 'react-hook-form';
 import { isAfter, isBefore } from 'date-fns';
 import { FormControl } from '@chakra-ui/react';
-// import Input from '@components/Form/Input';
 
 import {
   Container,
@@ -23,7 +22,7 @@ import { DateFilterData, dateFilterResolver } from './dateFilter.zod';
 import Input from './Input';
 
 const DateInput: React.FC = () => {
-  const [selectedItem, setSelectedItem] = useState(true);
+  const [isStartDateSelected, setIsStartDateSelected] = useState(true);
   const [initialDate, setInitialDate] = useState<string | null>(null);
   const [finalDate, setFinalDate] = useState<string | null>(null);
 
@@ -103,17 +102,14 @@ const DateInput: React.FC = () => {
 
   return (
     <Container>
-      <DateSelector
-        selected={selectedItem}
-        onClick={() => setSelectedItem(true)}
-        filledDate={!!initialDate}
-      >
+      <DateSelector selected={isStartDateSelected} filledDate={!!initialDate}>
         <Button
           onClick={() => {
             setShowInitialDateBox(!showInitialDateBox);
             setShowFinalDateBox(false);
             initialDateClearErrors();
             finalDateClearErrors();
+            setIsStartDateSelected(true);
           }}
         >
           <CalendarIcon />
@@ -168,17 +164,14 @@ const DateInput: React.FC = () => {
 
       {initialDate && finalDate && <DateDivider>{'>'}</DateDivider>}
 
-      <DateSelector
-        selected={!selectedItem}
-        onClick={() => setSelectedItem(false)}
-        filledDate={!!finalDate}
-      >
+      <DateSelector selected={!isStartDateSelected} filledDate={!!finalDate}>
         <Button
           onClick={() => {
             setShowFinalDateBox(!showFinalDateBox);
             setShowInitialDateBox(false);
             initialDateClearErrors();
             finalDateClearErrors();
+            setIsStartDateSelected(false);
           }}
         >
           <CalendarIcon />
