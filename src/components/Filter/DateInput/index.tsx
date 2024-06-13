@@ -2,7 +2,7 @@
 import React, { useCallback, useState } from 'react';
 import CalendarIcon from '@assets/calendar.svg?react';
 import { useForm } from 'react-hook-form';
-import { isBefore } from 'date-fns';
+import { isAfter, isBefore } from 'date-fns';
 import { FormControl } from '@chakra-ui/react';
 // import Input from '@components/Form/Input';
 
@@ -17,17 +17,19 @@ import {
   InputLabel,
   DateLabel,
   Button,
+  ErrorMessage,
 } from './styles';
 import { DateFilterData, dateFilterResolver } from './dateFilter.zod';
 import Input from './Input';
 
 const DateInput: React.FC = () => {
   const [selectedItem, setSelectedItem] = useState(true);
-  const [initialDate, setInitialDate] = useState('');
-  const [finalDate, setFinalDate] = useState('');
+  const [initialDate, setInitialDate] = useState<string | null>(null);
+  const [finalDate, setFinalDate] = useState<string | null>(null);
 
   const [showInitialDateBox, setShowInitialDateBox] = useState(false);
   const [showFinalDateBox, setShowFinalDateBox] = useState(false);
+  const [showError, setShowError] = useState<string | null>(null);
 
   const {
     handleSubmit: handleInitialDateSubmit,
@@ -41,7 +43,6 @@ const DateInput: React.FC = () => {
   const {
     handleSubmit: handleFinalDateSubmit,
     register: finalDateRegister,
-    setError,
     formState: { errors: finalDateErrors },
   } = useForm<DateFilterData>({
     resolver: dateFilterResolver,
@@ -50,38 +51,41 @@ const DateInput: React.FC = () => {
 
   const onInitialDateSubmit = useCallback(
     async (data: DateFilterData) => {
-      // .padStart()
-      setInitialDate(
-        `${data.year} / ${data.month.toString().padStart(2, '0')} / ${data.day
-          .toString()
-          .padStart(2, '0')}`
-      );
-      if (JSON.stringify(initialDateErrors) === '{}')
-        setShowInitialDateBox(false);
+      if (
+        finalDate &&
+        isAfter(
+          new Date(`${data.month}/${data.day}/${data.year}`),
+          new Date(finalDate)
+        )
+      ) {
+        setShowError('A data final deve ser maior que a data inicial.');
+      } else {
+        setShowError(null);
+        setInitialDate(
+          `${data.year} / ${data.month.toString().padStart(2, '0')} / ${data.day
+            .toString()
+            .padStart(2, '0')}`
+        );
+        if (JSON.stringify(initialDateErrors) === '{}')
+          setShowInitialDateBox(false);
+      }
     },
-    [initialDateErrors]
+    [finalDate, initialDateErrors]
   );
 
   const onFinalDateSubmit = useCallback(
     async (data: DateFilterData) => {
-      console.log(
-        isBefore(
-          new Date(`${data.month}/${data.day}/${data.year}`),
-          new Date(initialDate)
-        )
-      );
-
       if (
+        initialDate &&
         isBefore(
           new Date(`${data.month}/${data.day}/${data.year}`),
           new Date(initialDate)
         )
       ) {
-        setError('day', {
-          type: 'manual',
-          message: 'A data final deve ser maior que a data inicial',
-        });
+        setShowError('A data final deve ser maior que a data inicial.');
       } else {
+        setShowError(null);
+
         setFinalDate(
           `${data.year} / ${data.month.toString().padStart(2, '0')} / ${data.day
             .toString()
@@ -92,7 +96,7 @@ const DateInput: React.FC = () => {
           setShowFinalDateBox(false);
       }
     },
-    [finalDateErrors, initialDate, setError]
+    [finalDateErrors, initialDate]
   );
 
   return (
@@ -213,6 +217,7 @@ const DateInput: React.FC = () => {
             </InputGroup>
             <SubmitButton type="submit">Ok →</SubmitButton>
           </Form>
+          {!!showError && <ErrorMessage>{showError}</ErrorMessage>}
         </DateInputBox>
       </DateSelector>
     </Container>

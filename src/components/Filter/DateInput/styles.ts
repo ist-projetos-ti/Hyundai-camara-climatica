@@ -150,3 +150,11 @@ export const DateLabel = styled.p`
   font-weight: 500;
   width: 100%;
 `;
+
+export const ErrorMessage = styled.p`
+  color: red;
+  font-size: 10px;
+  position: absolute;
+  bottom: 1%;
+  right: 4%;
+`;
