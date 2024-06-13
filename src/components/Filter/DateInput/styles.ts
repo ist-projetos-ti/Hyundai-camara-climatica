@@ -2,6 +2,7 @@ import styled, { css } from 'styled-components';
 
 interface IDateSelectorProps {
   selected?: boolean;
+  filledDate?: boolean;
 }
 
 interface IDateInputContainerProps {
@@ -18,13 +19,13 @@ export const Container = styled.div`
   align-items: center;
   justify-content: center;
   background-color: #efefef;
-  width: 190px;
+  width: fit-content;
   border-radius: 9px;
 `;
 
 export const DateSelector = styled.span<IDateSelectorProps>`
   background-color: transparent;
-  width: 100%;
+  width: fit-content;
   display: flex;
   border-radius: 9px;
   margin: 5px;
@@ -40,8 +41,9 @@ export const DateSelector = styled.span<IDateSelectorProps>`
     margin-right: 0;
   }
 
-  ${({ selected }) =>
+  ${({ selected, filledDate }) =>
     selected &&
+    !filledDate &&
     css`
       background-color: #0d9f64;
       color: white;
@@ -50,9 +52,6 @@ export const DateSelector = styled.span<IDateSelectorProps>`
   svg {
     margin-right: 8px;
   }
-  /* &:hover {
-    cursor: pointer;
-  } */
 `;
 
 export const DateInputBox = styled.div<IDateInputContainerProps>`
@@ -63,6 +62,7 @@ export const DateInputBox = styled.div<IDateInputContainerProps>`
   left: 0;
   border-radius: 18px;
 
+  display: flex;
   box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.15);
   ${({ selected }) =>
     !selected &&
@@ -71,7 +71,6 @@ export const DateInputBox = styled.div<IDateInputContainerProps>`
     `};
 
   color: black;
-  display: flex;
   align-items: center;
   justify-content: space-around;
   color: #757575;
@@ -130,4 +129,24 @@ export const Form = styled.form`
   padding: 5px;
   width: 100%;
   height: 100%;
+`;
+
+export const Button = styled.button`
+  background-color: transparent;
+  width: 100%;
+  display: flex;
+  border-radius: 9px;
+  margin: 5px;
+  padding: 5px;
+  height: 31px;
+  transition: 200ms;
+  align-items: center;
+  justify-content: center;
+`;
+
+export const DateLabel = styled.p`
+  color: #0d9f64;
+  font-size: 14px;
+  font-weight: 500;
+  width: 100%;
 `;
