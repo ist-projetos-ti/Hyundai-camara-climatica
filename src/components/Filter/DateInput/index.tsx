@@ -34,6 +34,7 @@ const DateInput: React.FC = () => {
   const {
     handleSubmit: handleInitialDateSubmit,
     register: initialDateRegister,
+    clearErrors: initialDateClearErrors,
     formState: { errors: initialDateErrors },
   } = useForm<DateFilterData>({
     resolver: dateFilterResolver,
@@ -43,6 +44,7 @@ const DateInput: React.FC = () => {
   const {
     handleSubmit: handleFinalDateSubmit,
     register: finalDateRegister,
+    clearErrors: finalDateClearErrors,
     formState: { errors: finalDateErrors },
   } = useForm<DateFilterData>({
     resolver: dateFilterResolver,
@@ -110,6 +112,8 @@ const DateInput: React.FC = () => {
           onClick={() => {
             setShowInitialDateBox(!showInitialDateBox);
             setShowFinalDateBox(false);
+            initialDateClearErrors();
+            finalDateClearErrors();
           }}
         >
           <CalendarIcon />
@@ -173,6 +177,8 @@ const DateInput: React.FC = () => {
           onClick={() => {
             setShowFinalDateBox(!showFinalDateBox);
             setShowInitialDateBox(false);
+            initialDateClearErrors();
+            finalDateClearErrors();
           }}
         >
           <CalendarIcon />

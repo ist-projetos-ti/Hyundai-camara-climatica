@@ -32,6 +32,7 @@ const TimeInput: React.FC = () => {
   const {
     handleSubmit: handleInitialDateSubmit,
     register: initialDateRegister,
+    clearErrors: initialTimeClearErrors,
     formState: { errors: initialDateErrors },
   } = useForm<TimeFilterData>({
     resolver: timeFilterResolver,
@@ -41,6 +42,7 @@ const TimeInput: React.FC = () => {
   const {
     handleSubmit: handleFinalDateSubmit,
     register: finalDateRegister,
+    clearErrors: finalTimeClearErrors,
     formState: { errors: finalDateErrors },
   } = useForm<TimeFilterData>({
     resolver: timeFilterResolver,
@@ -80,6 +82,8 @@ const TimeInput: React.FC = () => {
           onClick={() => {
             setShowInitialDateBox(!showInitialDateBox);
             setShowFinalDateBox(false);
+            initialTimeClearErrors();
+            finalTimeClearErrors();
           }}
         >
           <PiClockCountdown size={19} />
@@ -176,7 +180,9 @@ const TimeInput: React.FC = () => {
         <Button
           onClick={() => {
             setShowFinalDateBox(!showFinalDateBox);
+            initialTimeClearErrors();
             setShowInitialDateBox(false);
+            finalTimeClearErrors();
           }}
         >
           <PiClockCountdown size={19} />
