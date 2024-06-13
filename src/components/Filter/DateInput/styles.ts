@@ -26,6 +26,7 @@ export const Container = styled.div`
 export const DateSelector = styled.span<IDateSelectorProps>`
   background-color: transparent;
   width: fit-content;
+  min-width: 86px;
   display: flex;
   border-radius: 9px;
   margin: 5px;
