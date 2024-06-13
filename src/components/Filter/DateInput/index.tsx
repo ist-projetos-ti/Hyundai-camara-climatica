@@ -123,7 +123,8 @@ const DateInput: React.FC = () => {
                 <Input
                   register={initialDateRegister}
                   name="year"
-                  type="number"
+                  type="text"
+                  maxLength={4}
                   errors={initialDateErrors.year}
                   variety
                 />
@@ -132,12 +133,13 @@ const DateInput: React.FC = () => {
             <DateDivider>/</DateDivider>
             <InputGroup>
               <InputLabel>Month</InputLabel>
-              <FormControl isInvalid={!!finalDateErrors.month}>
+              <FormControl isInvalid={!!initialDateErrors.month}>
                 <Input
                   name="month"
-                  type="number"
+                  type="text"
+                  maxLength={2}
                   register={initialDateRegister}
-                  errors={finalDateErrors.month}
+                  errors={initialDateErrors.month}
                 />
               </FormControl>
             </InputGroup>
@@ -145,10 +147,11 @@ const DateInput: React.FC = () => {
 
             <InputGroup>
               <InputLabel>Day</InputLabel>
-              <FormControl isInvalid={!!finalDateErrors.day}>
+              <FormControl isInvalid={!!initialDateErrors.day}>
                 <Input
                   name="day"
-                  type="number"
+                  type="text"
+                  maxLength={2}
                   register={initialDateRegister}
                   errors={finalDateErrors.day}
                 />
@@ -184,7 +187,8 @@ const DateInput: React.FC = () => {
                 <Input
                   register={finalDateRegister}
                   name="year"
-                  type="number"
+                  type="text"
+                  maxLength={4}
                   errors={finalDateErrors.year}
                   variety
                 />
@@ -196,7 +200,8 @@ const DateInput: React.FC = () => {
               <FormControl isInvalid={!!finalDateErrors.month}>
                 <Input
                   name="month"
-                  type="number"
+                  type="text"
+                  maxLength={2}
                   register={finalDateRegister}
                   errors={finalDateErrors.month}
                 />
@@ -209,7 +214,8 @@ const DateInput: React.FC = () => {
               <FormControl isInvalid={!!finalDateErrors.day}>
                 <Input
                   name="day"
-                  type="number"
+                  type="text"
+                  maxLength={2}
                   register={finalDateRegister}
                   errors={finalDateErrors.day}
                 />
