@@ -6,7 +6,7 @@ interface ContainerInterface {
   isFocused?: boolean;
   color?: string;
   darkMode?: boolean;
-  variety?: boolean;
+  inputWidth?: 'date' | 'year' | 'numeric';
 }
 
 export const InputComponent = styled.input`
@@ -24,7 +24,22 @@ export const Container = styled.div<ContainerInterface>`
   height: 43px;
   font-size: 14px;
   padding: 8px;
-  max-width: 72px;
+
+  ${({ inputWidth }) =>
+    inputWidth === 'date' &&
+    css`
+      width: 72px;
+      max-width: 72px;
+    `}
+
+  ${({ inputWidth }) =>
+    inputWidth === 'year' &&
+    css`
+      width: 87px;
+      max-width: 87px;
+    `}
+
+    
 
   transition: 0.2s ease all;
   cursor: text;

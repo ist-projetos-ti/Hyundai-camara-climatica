@@ -8,7 +8,7 @@ interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   name: string;
   register: UseFormRegister<any>;
   errors?: FieldError;
-  variety?: boolean;
+  inputWidth?: 'date' | 'year' | 'numeric';
 }
 
 const Input: React.FC<InputProps> = ({
@@ -16,7 +16,7 @@ const Input: React.FC<InputProps> = ({
   register,
   errors,
   type,
-  variety,
+  inputWidth,
   ...rest
 }) => {
   const [isFocused, setIsFocused] = useState(false);
@@ -32,7 +32,7 @@ const Input: React.FC<InputProps> = ({
     <Container
       isError={!!errors}
       onClick={() => setIsFocused(true)}
-      variety={variety}
+      inputWidth={inputWidth}
     >
       <InputComponent
         {...rest}

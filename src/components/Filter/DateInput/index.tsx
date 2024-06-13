@@ -19,7 +19,7 @@ import {
   ErrorMessage,
 } from './styles';
 import { DateFilterData, dateFilterResolver } from './dateFilter.zod';
-import Input from './Input';
+import Input from '../Input';
 
 const DateInput: React.FC = () => {
   const [isStartDateSelected, setIsStartDateSelected] = useState(true);
@@ -126,7 +126,7 @@ const DateInput: React.FC = () => {
                   type="text"
                   maxLength={4}
                   errors={initialDateErrors.year}
-                  variety
+                  inputWidth="year"
                 />
               </FormControl>
             </InputGroup>
@@ -140,6 +140,7 @@ const DateInput: React.FC = () => {
                   maxLength={2}
                   register={initialDateRegister}
                   errors={initialDateErrors.month}
+                  inputWidth="date"
                 />
               </FormControl>
             </InputGroup>
@@ -154,6 +155,7 @@ const DateInput: React.FC = () => {
                   maxLength={2}
                   register={initialDateRegister}
                   errors={finalDateErrors.day}
+                  inputWidth="date"
                 />
               </FormControl>
             </InputGroup>
@@ -189,7 +191,7 @@ const DateInput: React.FC = () => {
                   type="text"
                   maxLength={4}
                   errors={finalDateErrors.year}
-                  variety
+                  inputWidth="year"
                 />
               </FormControl>
             </InputGroup>
@@ -203,6 +205,7 @@ const DateInput: React.FC = () => {
                   maxLength={2}
                   register={finalDateRegister}
                   errors={finalDateErrors.month}
+                  inputWidth="date"
                 />
               </FormControl>
             </InputGroup>
@@ -217,6 +220,7 @@ const DateInput: React.FC = () => {
                   maxLength={2}
                   register={finalDateRegister}
                   errors={finalDateErrors.day}
+                  inputWidth="date"
                 />
               </FormControl>
             </InputGroup>

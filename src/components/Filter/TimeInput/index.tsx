@@ -1,8 +1,6 @@
-/* eslint-disable import/no-unresolved */
 import React, { useCallback, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { FormControl } from '@chakra-ui/react';
-// import Input from '@components/Form/Input';
 import { PiClockCountdown } from 'react-icons/pi';
 
 import {
@@ -19,7 +17,7 @@ import {
   InputBundle,
 } from './styles';
 import { TimeFilterData, timeFilterResolver } from './timeFilter.zod';
-import Input from './Input';
+import Input from '../Input';
 
 const TimeInput: React.FC = () => {
   const [isStartTimeSelected, setIsStartTimeSelected] = useState(true);

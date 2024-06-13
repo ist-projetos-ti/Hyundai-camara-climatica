@@ -62,7 +62,7 @@ export const DateInputBox = styled.div<IDateInputContainerProps>`
   top: 40px;
   left: 0;
   border-radius: 18px;
-
+  background-color: white;
   display: flex;
   box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.15);
   ${({ selected }) =>
