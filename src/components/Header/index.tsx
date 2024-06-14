@@ -4,6 +4,8 @@ import { useDisclosure } from '@chakra-ui/react';
 import { IoMdNotificationsOutline } from 'react-icons/io';
 import { BiSearchAlt } from 'react-icons/bi';
 import { useAuth } from '@modules/auth/hooks/auth';
+import { useNavigate } from 'react-router-dom';
+import { PrivatePathsEnum } from '@routes/privateRoutes/privatePaths';
 import { ButtonStyle, Container, Content, UserInformation } from './styles';
 import LogOutConfirmation from './LogOutConfirmation';
 
@@ -14,6 +16,7 @@ interface IHeaderProps {
 const Header: React.FC<IHeaderProps> = ({ title }) => {
   const { isOpen, onClose } = useDisclosure();
   const { user, signOut } = useAuth();
+  const navigate = useNavigate();
 
   return (
     <>
@@ -26,7 +29,11 @@ const Header: React.FC<IHeaderProps> = ({ title }) => {
         <h1>{title}</h1>
         <Content>
           <ButtonStyle>
-            <button>
+            <button
+              onClick={() => {
+                navigate(PrivatePathsEnum.HISTORICAL_ALERTS);
+              }}
+            >
               <IoMdNotificationsOutline size={30} />
             </button>
             <button>
