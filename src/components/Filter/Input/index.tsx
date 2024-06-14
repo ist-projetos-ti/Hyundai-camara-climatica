@@ -9,6 +9,7 @@ interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   register: UseFormRegister<any>;
   errors?: FieldError;
   inputWidth?: 'date' | 'year' | 'numeric';
+  maxLength: number;
 }
 
 const Input: React.FC<InputProps> = ({
@@ -16,12 +17,14 @@ const Input: React.FC<InputProps> = ({
   register,
   errors,
   type,
+  maxLength,
   inputWidth,
   ...rest
 }) => {
   const [isFocused, setIsFocused] = useState(false);
   const inputRef = useRef<HTMLInputElement | null>(null);
 
+  const [value, setValue] = useState('');
   const { ref, ...registerRest } = register(name);
 
   useEffect(() => {
@@ -41,9 +44,16 @@ const Input: React.FC<InputProps> = ({
           ref(curr);
           inputRef.current = curr;
         }}
+        value={value}
+        onChange={(e) => {
+          const newValue = e.target.value;
+          if (/^\d*$/.test(newValue)) {
+            setValue(newValue);
+          }
+        }}
         onBlur={() => setIsFocused(false)}
         type={type}
-        maxLength={1}
+        maxLength={maxLength}
       />
     </Container>
   );
