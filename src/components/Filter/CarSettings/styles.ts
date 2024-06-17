@@ -17,17 +17,17 @@ interface InputProps {
 export const Container = styled.div`
   display: flex;
   align-items: center;
+  min-width: fit-content;
   justify-content: center;
-  background-color: ${({ theme }) => theme.colors.warmGrayBackground};
-  width: fit-content;
+  background-color: #efefef;
   border-radius: 9px;
+
   position: relative;
 `;
 
-export const DateSelector = styled.span<IDateSelectorProps>`
+export const Selector = styled.span<IDateSelectorProps>`
   background-color: transparent;
-  width: fit-content;
-  min-width: 86px;
+  min-width: fit-content;
   display: flex;
   border-radius: 9px;
   margin: 5px;
@@ -40,34 +40,29 @@ export const DateSelector = styled.span<IDateSelectorProps>`
   :nth-child(2n-1) {
     margin-right: 0;
   }
+  svg {
+    color: ${({ theme }) => theme.colors.warmGrayMinus1};
+    margin-right: 8px;
+  }
 
   ${({ selected, filledDate }) =>
     selected &&
     !filledDate &&
     css`
-      background-color: ${({ theme }) => theme.colors.secondary};
+      background-color: #0d9f64;
       color: ${({ theme }) => theme.colors.white};
-    `};
 
-  ${({ selected }) =>
-    !selected &&
-    css`
       svg {
-        color: ${({ theme }) => theme.colors.warmGrayMinus1};
+        color: ${({ theme }) => theme.colors.white};
       }
     `};
-
-  svg {
-    margin-right: 8px;
-  }
 `;
 
 export const DateInputBox = styled.div<IDateInputContainerProps>`
-  width: 440px;
-  height: 105px;
+  width: 333px;
+  height: 72px;
   position: absolute;
   top: 50px;
-
   left: 0;
   border-radius: 18px;
   background-color: ${({ theme }) => theme.colors.white};
@@ -82,12 +77,12 @@ export const DateInputBox = styled.div<IDateInputContainerProps>`
   color: black;
   align-items: center;
   justify-content: space-around;
-  color: ${({ theme }) => theme.colors.warmGrayMinus1};
+  color: #757575;
   padding: 5px;
 `;
 
 export const SubmitButton = styled.button`
-  background-color: ${({ theme }) => theme.colors.secondary};
+  background-color: #0d9f64;
   color: ${({ theme }) => theme.colors.white};
   padding: 10px;
   border-radius: 9px;
@@ -101,7 +96,7 @@ export const SubmitButton = styled.button`
 `;
 
 export const InputLabel = styled.p`
-  color: ${({ theme }) => theme.colors.warmGrayMinus2};
+  color: #c1c1c1;
   font-size: 14px;
   text-align: center;
   width: 100%;
@@ -114,13 +109,19 @@ export const InputGroup = styled.div<InputProps>`
   flex-direction: column;
   align-items: center;
   justify-content: center;
+
+  div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
 `;
 
 export const DateDivider = styled.span`
   display: flex;
   align-items: end;
   height: 45%;
-  color: ${({ theme }) => theme.colors.warmGrayMinus1};
+  color: #757575;
   font-weight: 500;
   font-size: 14px;
 `;
@@ -136,7 +137,7 @@ export const Form = styled.form`
 
 export const Button = styled.button`
   background-color: transparent;
-  width: 100%;
+  width: fit-content;
   display: flex;
   border-radius: 9px;
   margin: 5px;
@@ -145,13 +146,9 @@ export const Button = styled.button`
   transition: 200ms;
   align-items: center;
   justify-content: center;
-`;
-
-export const DateLabel = styled.p`
-  color: ${({ theme }) => theme.colors.secondary};
-  font-size: 14px;
-  font-weight: 500;
-  width: 100%;
+  width: fit-content;
+  flex-wrap: nowrap;
+  size: 14px;
 `;
 
 export const ErrorMessage = styled.p`
@@ -160,10 +157,4 @@ export const ErrorMessage = styled.p`
   position: absolute;
   bottom: 1%;
   right: 4%;
-`;
-
-export const InputBundle = styled.div`
-  width: 86px;
-  display: flex;
-  justify-content: center;
 `;

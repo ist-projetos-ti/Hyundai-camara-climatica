@@ -23,6 +23,7 @@ export const Container = styled.div`
   border-radius: 9px;
 
   position: relative;
+  min-width: fit-content;
 `;
 
 export const DateSelector = styled.span<IDateSelectorProps>`
@@ -64,7 +65,7 @@ export const DateInputBox = styled.div<IDateInputContainerProps>`
   width: 440px;
   height: 105px;
   position: absolute;
-  top: 40px;
+  top: 50px;
   left: 0;
   border-radius: 18px;
   background-color: ${({ theme }) => theme.colors.white};

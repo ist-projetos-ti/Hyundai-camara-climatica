@@ -14,9 +14,8 @@ const Home: React.FC = () => {
 
   return (
     <Container>
+      {/* <Heading>HomePage</Heading> */}
       <Content>
-        {/* <Heading>HomePage</Heading> */}
-
         <TotalHourMachineLabel />
 
         <Filter />

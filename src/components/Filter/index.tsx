@@ -2,10 +2,11 @@
 import React from 'react';
 
 import { useForm } from 'react-hook-form';
-import { Container, LabelTitle, DateTimeInputContainer } from './styles';
+import { Container, LabelTitle, DateTimeInputContainer, Input } from './styles';
 import { FilterData, filterResolver } from './dateFilter.zod';
-// import DateInput from './DateInput';
-// import TimeInput from './TimeInput';
+import DateInput from './DateInput';
+import TimeInput from './TimeInput';
+import CarSettings from './CarSettings';
 
 const Filter: React.FC = () => {
   useForm<FilterData>({
@@ -18,10 +19,12 @@ const Filter: React.FC = () => {
     <Container>
       <LabelTitle>{/* Filter */}</LabelTitle>
       <DateTimeInputContainer>
-        {/* <DateInput />
-      <TimeInput /> */}
+        <DateInput />
+        <TimeInput />
 
-        <input name="testName" placeholder="Test Name" />
+        <Input name="testName" placeholder="Test Name" />
+
+        <CarSettings />
       </DateTimeInputContainer>
     </Container>
   );

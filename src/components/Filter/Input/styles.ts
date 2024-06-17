@@ -39,8 +39,6 @@ export const Container = styled.div<ContainerInterface>`
       max-width: 87px;
     `}
 
-    
-
   transition: 0.2s ease all;
   cursor: text;
 
