@@ -7,4 +7,8 @@ export const Container = styled.div`
 `;
 
 export const LabelTitle = styled.span``;
-export const DateInputContainer = styled.span``;
+export const DateTimeInputContainer = styled.div`
+  display: flex;
+  justify-content: space-between;
+  width: fit-content;
+`;
