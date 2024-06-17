@@ -11,9 +11,9 @@ const themeDefaults = {
     black: '#000000',
     white: '#FFFFFF',
     warmGray: '#DED7D6',
-    warmGrayBackground: '#F2EFEF',
-    warmGrayMinus1: '#A7A1A1',
-    warmGrayMinus2: '#968282',
+    warmGrayBackground: '#efefef',
+    warmGrayMinus1: '#757575',
+    warmGrayMinus2: '#C1C1C1',
     warmGrayMinus3: '#4D3938',
 
     softBlue: '#BDCDDA',
