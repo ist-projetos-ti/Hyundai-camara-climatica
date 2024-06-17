@@ -8,12 +8,17 @@ export const Container = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  overflow: hidden;
 `;
 
 export const Content = styled.div`
   width: 95%;
   height: 100%;
+
+  @media (max-width: 1400px) {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+  }
 `;
 
 export const Grid = styled.div`
@@ -21,6 +26,18 @@ export const Grid = styled.div`
   height: 100%;
 
   margin: auto;
+
+  @media (max-width: 1400px) {
+    margin: 0;
+    padding: 0px 20px;
+    width: 91%;
+  }
+
+  @media (max-width: 950px) {
+    margin: 0;
+    padding: 0px 20px;
+    width: 89%;
+  }
 `;
 
 export const ContainerMobile = styled.div`

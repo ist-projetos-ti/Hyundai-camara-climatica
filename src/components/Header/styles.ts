@@ -1,72 +1,60 @@
-import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 export const Container = styled.div`
   width: 100%;
+  height: 92px;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  padding: 2rem;
-  background-color: ${({ theme }) => theme.colors.white};
-
-  box-shadow: ${({ theme }) => theme.shadows.outer};
-`;
-
-export const LogoContent = styled(Link)`
-  cursor: pointer;
-  height: 100%;
-  display: flex;
-  align-items: center;
-
-  &:hover {
-    opacity: 0.8;
-  }
-`;
-
-export const LogoTitleContent = styled.div`
-  margin-left: 0.8rem;
+  align-items: flex-end;
 
   h1 {
-    font-size: 2.25rem;
-    font-weight: 600;
-
-    @media (max-width: 1200px) {
-      font-size: 2rem;
-    }
-
-    @media (max-width: 900px) {
-      font-size: 1.5rem;
-    }
-
-    @media (max-width: 600px) {
-      font-size: 1rem;
-    }
-  }
-
-  h4 {
-    font-size: 0.85rem;
-    font-weight: 400;
+    font-size: 24px;
+    color: #0b99a4;
+    font-weight: bold;
   }
 `;
 
-export const InformationsContent = styled.div`
-  display: flex;
-  align-items: center;
+export const Content = styled.div`
+  width: 23%;
+  height: auto;
 
-  > a {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+`;
+
+export const ButtonStyle = styled.div`
+  display: flex;
+
+  button {
+    width: 50px;
+    height: 50px;
+    background-color: #dedede;
+    border-radius: 10px;
+
     display: flex;
     align-items: center;
+    justify-content: center;
 
-    > h4 {
-      margin: 0 0.5rem;
+    margin-left: 15px;
+    transition: 500ms;
+
+    &:hover {
+      transform: scale(1.1);
     }
 
     svg {
-      margin-right: 0.5rem;
+      color: #0b99a4;
     }
+  }
+`;
 
-    &:nth-child(1) {
-      margin-right: 1rem;
-    }
+export const UserInformation = styled.div`
+  color: #0b99a4;
+  text-align: right;
+
+  h2 {
+    font-size: 20px;
   }
 `;

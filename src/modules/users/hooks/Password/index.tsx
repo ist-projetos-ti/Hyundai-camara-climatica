@@ -7,15 +7,9 @@ import { UsersApiRoutes } from '@modules/users/api/paths.routes';
 import { useToast } from '@hooks/Toast';
 import { api } from '../../../../services/api';
 
-interface IResetPasswordData {
-  token: string;
-  password: string;
-  password_confirmation: string;
-}
-
 interface PasswordContextData {
   SendForgotPasswordCode(email: string): Promise<void>;
-  ResetPassword(reset_password_data: IResetPasswordData): Promise<void>;
+  ResetPassword(userId: string): Promise<void>;
 }
 
 const PasswordContext = createContext<PasswordContextData>(
@@ -53,21 +47,23 @@ const PasswordProvider: React.FC<PasswordProviderProps> = ({ children }) => {
   ).mutateAsync;
 
   const ResetPassword = useMutation(
-    async (resetPasswordData: IResetPasswordData) => {
-      await api.post(`${UsersApiRoutes.RESET_PASSWORD}`, resetPasswordData);
+    async (userId: string) => {
+      await api.put(`${UsersApiRoutes.RESET_PASSWORD}/${userId}`, {
+        reset_password: true,
+      });
     },
     {
       onSuccess: () => {
         addToast({
-          title: 'Senha atualizada',
-          description: 'A sua senha foi atualizada com sucesso',
+          title: 'Reset password',
+          description: 'The password has returned to default',
           type: 'success',
         });
       },
       onError: (error) => {
         errorHandler({
           error,
-          title: 'Falha ao restaurar a senha',
+          title: 'Failed to reset password',
           addToast,
         });
       },

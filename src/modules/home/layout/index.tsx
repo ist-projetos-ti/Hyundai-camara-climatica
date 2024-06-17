@@ -1,20 +1,22 @@
+/* eslint-disable @typescript-eslint/no-empty-function */
 import React from 'react';
 import { Outlet } from 'react-router-dom';
-import { Heading } from '@chakra-ui/react';
-
 import Header from '@components/Header';
 import DrawerNavigation from '@components/DrawerNavigation';
-import { Container } from './styles';
+import { Container, Content, Grid } from './styles';
 
 const HomeLayout: React.FC = () => (
-  <>
-    <Header />
-    <DrawerNavigation />
-    <Container>
-      <Heading>Home layout</Heading>
-      <Outlet />
-    </Container>
-  </>
+  <Container>
+    <div>
+      <DrawerNavigation closeNavigation={() => {}} />
+    </div>
+    <Content>
+      <Grid>
+        <Header title="User Registration List" />
+        <Outlet />
+      </Grid>
+    </Content>
+  </Container>
 );
 
 export default HomeLayout;

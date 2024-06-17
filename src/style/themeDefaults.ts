@@ -5,6 +5,7 @@ const themeDefaults = {
     primary: '#0B98A3',
     secondary: '#0D9F64',
     lightSecondary: '#AFD198',
+
     shadedOverlay: '#094A4FB3',
     shadeMobile: '#0C7C85D9',
 
@@ -43,6 +44,7 @@ const themeDefaults = {
 
     loginInputColor: '#393939',
     loginPlaceholderColor: '#9D9D9D',
+    addButton: '#0D9F64',
   },
   shadows: {
     outer: '2px 2px 2px 0px #00000026',
@@ -55,6 +57,7 @@ const themeDefaults = {
     disabledChart: 'grayscale(1)',
   },
   fontFamily: "'Roboto', sans-serif",
+  ChakraPetch: "'Chakra Petch', sans-serif",
   breakpoints: {
     sm: '30em', // 480px
     md: '48em', // 768px

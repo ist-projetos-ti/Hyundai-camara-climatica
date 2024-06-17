@@ -1,12 +1,12 @@
 /* eslint-disable @typescript-eslint/no-empty-function */
 import React, { useMemo } from 'react';
 import { Outlet } from 'react-router-dom';
-import Header from '@components/Header';
 import DrawerNavigation from '@components/DrawerNavigation';
+import Header from '@components/Header';
 import { BREAKPOINTS } from '@style/breakpoints';
 import { Container, ContainerMobile, Content, Grid } from './styles';
 
-const UserLayout: React.FC = () => {
+const HistoricalAlertsLayout: React.FC = () => {
   const isDesktop = useMemo(() => window.innerWidth > BREAKPOINTS.MOBILE, []);
 
   const DesktopLayout = (
@@ -16,7 +16,7 @@ const UserLayout: React.FC = () => {
       </div>
       <Content>
         <Grid>
-          <Header title="User Registration List" />
+          <Header title="Historical Alerts" />
           <Outlet />
         </Grid>
       </Content>
@@ -32,4 +32,4 @@ const UserLayout: React.FC = () => {
   return isDesktop ? DesktopLayout : MobileLayout;
 };
 
-export default UserLayout;
+export default HistoricalAlertsLayout;
