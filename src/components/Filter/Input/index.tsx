@@ -24,7 +24,6 @@ const Input: React.FC<InputProps> = ({
   const [isFocused, setIsFocused] = useState(false);
   const inputRef = useRef<HTMLInputElement | null>(null);
 
-  const [value, setValue] = useState('');
   const { ref, ...registerRest } = register(name);
 
   useEffect(() => {
@@ -43,13 +42,6 @@ const Input: React.FC<InputProps> = ({
         ref={(curr) => {
           ref(curr);
           inputRef.current = curr;
-        }}
-        value={value}
-        onChange={(e) => {
-          const newValue = e.target.value;
-          if (/^\d*$/.test(newValue)) {
-            setValue(newValue);
-          }
         }}
         onBlur={() => setIsFocused(false)}
         type={type}

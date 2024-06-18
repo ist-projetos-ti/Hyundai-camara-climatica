@@ -2,8 +2,17 @@
 import React from 'react';
 
 import { useForm } from 'react-hook-form';
-import { Container, LabelTitle, DateTimeInputContainer, Input } from './styles';
+import { BiFilterAlt } from 'react-icons/bi';
+import themeDefaults from '@style/themeDefaults';
+import {
+  Container,
+  LabelTitle,
+  DateTimeInputContainer,
+  Input,
+  LabelContainer,
+} from './styles';
 import { FilterData, filterResolver } from './dateFilter.zod';
+
 import DateInput from './DateInput';
 import TimeInput from './TimeInput';
 import CarSettings from './CarSettings';
@@ -17,7 +26,11 @@ const Filter: React.FC = () => {
 
   return (
     <Container>
-      <LabelTitle>{/* Filter */}</LabelTitle>
+      <LabelContainer>
+        <BiFilterAlt size={27} color={themeDefaults.colors.secondary} />
+
+        <LabelTitle>Filter</LabelTitle>
+      </LabelContainer>
       <DateTimeInputContainer>
         <DateInput />
         <TimeInput />

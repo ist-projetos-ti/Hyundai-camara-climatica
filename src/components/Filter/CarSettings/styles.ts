@@ -17,17 +17,27 @@ interface InputProps {
 export const Container = styled.div`
   display: flex;
   align-items: center;
-  min-width: fit-content;
-  justify-content: center;
+  width: fit-content;
+  max-width: 100%;
+  height: fit-content;
+  justify-content: space-around;
   background-color: #efefef;
   border-radius: 9px;
 
   position: relative;
+  flex-wrap: wrap;
+
+  & > span:last-child(even) {
+    align-self: flex-end;
+    justify-self: center;
+    border: 2px solid red;
+  }
 `;
 
 export const Selector = styled.span<IDateSelectorProps>`
   background-color: transparent;
   min-width: fit-content;
+
   display: flex;
   border-radius: 9px;
   margin: 5px;
@@ -36,6 +46,10 @@ export const Selector = styled.span<IDateSelectorProps>`
   transition: 200ms;
   align-items: center;
   justify-content: center;
+
+  :first-child() {
+    margin-left: 0px;
+  }
 
   :nth-child(2n-1) {
     margin-right: 0;
@@ -62,7 +76,8 @@ export const DateInputBox = styled.div<IDateInputContainerProps>`
   width: 333px;
   height: 72px;
   position: absolute;
-  top: 50px;
+
+  top: calc(100% + 10px);
   left: 0;
   border-radius: 18px;
   background-color: ${({ theme }) => theme.colors.white};
