@@ -10,8 +10,9 @@ import {
   DateTimeInputContainer,
   Input,
   LabelContainer,
+  Button,
 } from './styles';
-import { FilterData, filterResolver } from './dateFilter.zod';
+import { FilterData, filterResolver } from './filter.zod';
 
 import DateInput from './DateInput';
 import TimeInput from './TimeInput';
@@ -39,6 +40,7 @@ const Filter: React.FC = () => {
 
         <CarSettings />
       </DateTimeInputContainer>
+      <Button>Ok →</Button>
     </Container>
   );
 };

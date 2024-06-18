@@ -39,3 +39,13 @@ export const LabelContainer = styled.div`
   padding: 4px;
   gap: 4px;
 `;
+
+export const Button = styled.button`
+  border: 1px solid ${({ theme }) => theme.colors.secondary};
+  border-radius: 9px;
+  width: 68px;
+  color: ${({ theme }) => theme.colors.secondary};
+  font-size: 14px;
+  font-weight: bold;
+  height: 31px;
+`;
