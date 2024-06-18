@@ -18,9 +18,10 @@ export const Container = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: #efefef;
+  background-color: ${({ theme }) => theme.colors.warmGrayBackground};
   width: fit-content;
   border-radius: 9px;
+  position: relative;
 `;
 
 export const DateSelector = styled.span<IDateSelectorProps>`
@@ -36,8 +37,6 @@ export const DateSelector = styled.span<IDateSelectorProps>`
   align-items: center;
   justify-content: center;
 
-  position: relative;
-
   :nth-child(2n-1) {
     margin-right: 0;
   }
@@ -46,8 +45,16 @@ export const DateSelector = styled.span<IDateSelectorProps>`
     selected &&
     !filledDate &&
     css`
-      background-color: #0d9f64;
-      color: white;
+      background-color: ${({ theme }) => theme.colors.secondary};
+      color: ${({ theme }) => theme.colors.white};
+    `};
+
+  ${({ selected }) =>
+    !selected &&
+    css`
+      svg {
+        color: ${({ theme }) => theme.colors.warmGrayMinus1};
+      }
     `};
 
   svg {
@@ -59,10 +66,11 @@ export const DateInputBox = styled.div<IDateInputContainerProps>`
   width: 440px;
   height: 105px;
   position: absolute;
-  top: 40px;
+  top: 50px;
+
   left: 0;
   border-radius: 18px;
-  background-color: white;
+  background-color: ${({ theme }) => theme.colors.white};
   display: flex;
   box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.15);
   ${({ selected }) =>
@@ -74,13 +82,13 @@ export const DateInputBox = styled.div<IDateInputContainerProps>`
   color: black;
   align-items: center;
   justify-content: space-around;
-  color: #757575;
+  color: ${({ theme }) => theme.colors.warmGrayMinus1};
   padding: 5px;
 `;
 
 export const SubmitButton = styled.button`
-  background-color: #0d9f64;
-  color: white;
+  background-color: ${({ theme }) => theme.colors.secondary};
+  color: ${({ theme }) => theme.colors.white};
   padding: 10px;
   border-radius: 9px;
   width: 68px;
@@ -93,7 +101,7 @@ export const SubmitButton = styled.button`
 `;
 
 export const InputLabel = styled.p`
-  color: #c1c1c1;
+  color: ${({ theme }) => theme.colors.warmGrayMinus2};
   font-size: 14px;
   text-align: center;
   width: 100%;
@@ -112,7 +120,7 @@ export const DateDivider = styled.span`
   display: flex;
   align-items: end;
   height: 45%;
-  color: #757575;
+  color: ${({ theme }) => theme.colors.warmGrayMinus1};
   font-weight: 500;
   font-size: 14px;
 `;
@@ -140,7 +148,7 @@ export const Button = styled.button`
 `;
 
 export const DateLabel = styled.p`
-  color: #0d9f64;
+  color: ${({ theme }) => theme.colors.secondary};
   font-size: 14px;
   font-weight: 500;
   width: 100%;

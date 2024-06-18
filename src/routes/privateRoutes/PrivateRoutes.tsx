@@ -3,6 +3,7 @@ import { Route } from 'react-router-dom';
 import UsersRoutes from '@modules/users/routes';
 import HomeRoutes from '@modules/home/routes';
 import DashboardRoutes from '@modules/dashboard/routes';
+import HistoricalAlertsRoutes from '@modules/historicalAlerts/routes';
 import PrivateLayout from './layout';
 
 const PrivateRoutes = (
@@ -10,6 +11,7 @@ const PrivateRoutes = (
     {HomeRoutes}
     {DashboardRoutes}
     {UsersRoutes}
+    {HistoricalAlertsRoutes}
   </Route>
 );
 

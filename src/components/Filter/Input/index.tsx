@@ -9,7 +9,7 @@ interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   register: UseFormRegister<any>;
   errors?: FieldError;
   inputWidth?: 'date' | 'year' | 'numeric';
-  maxLength: number;
+  maxLength?: number;
 }
 
 const Input: React.FC<InputProps> = ({
@@ -17,8 +17,8 @@ const Input: React.FC<InputProps> = ({
   register,
   errors,
   type,
-  maxLength,
   inputWidth,
+  maxLength = 1,
   ...rest
 }) => {
   const [isFocused, setIsFocused] = useState(false);

@@ -11,7 +11,7 @@ export const Container = styled.div`
 `;
 
 export const LabelContainer = styled.div<ILabelContainerProp>`
-  color: #757575;
+  color: ${({ theme }) => theme.colors.warmGrayMinus1};
   font-weight: bold;
   font-size: 14px;
   display: flex;
@@ -40,7 +40,7 @@ export const NumberContainer = styled.span`
   display: flex;
   align-items: center;
   justify-content: center;
-  color: #0d9f64;
+  color: ${({ theme }) => theme.colors.secondary};
   font-weight: bold;
 
   :nth-child(3n - 2) {

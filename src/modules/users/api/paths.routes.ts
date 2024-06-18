@@ -5,5 +5,5 @@
 export enum UsersApiRoutes {
   USERS = '/users',
   FORGOT_PASSWORD = '/passwords/forgot',
-  RESET_PASSWORD = '/passwords/reset',
+  RESET_PASSWORD = '/users/resetPassword',
 }
