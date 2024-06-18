@@ -13,6 +13,7 @@ import { RiSoundModuleLine } from 'react-icons/ri';
 import { TbDoorExit, TbCell } from 'react-icons/tb';
 import { Link as ReactRouterLink } from 'react-router-dom';
 import { useAuth } from '@modules/auth/hooks/auth';
+import { PrivatePathsEnum } from '@routes/privateRoutes/privatePaths';
 import {
   BottomContainerOptions,
   Container,
@@ -63,7 +64,11 @@ const DrawerNavigation: React.FC<IDrawerNavigationProps> = ({
           <TbCell size={30} />
           <p>Overview</p>
         </LinkStyled>
-        <LinkStyled _hover={{ textDecoration: 'none' }}>
+        <LinkStyled
+          as={ReactRouterLink}
+          to={PrivatePathsEnum.TEST_PROGRESS_GRAPH}
+          _hover={{ textDecoration: 'none' }}
+        >
           <IoPlayCircleOutline size={30} />
           <p>Testes</p>
         </LinkStyled>
