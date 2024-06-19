@@ -26,9 +26,9 @@ export const Input = styled.input`
   height: 100%;
   background-color: #efefef;
 
-  padding-left: 2rem;
+  padding-left: 16px;
 
-  border-radius: 15px;
+  border-radius: 12px;
 `;
 
 export const LabelContainer = styled.div`
@@ -52,3 +52,5 @@ export const Button = styled.button`
   font-weight: bold;
   height: 31px;
 `;
+
+export const Form = styled.form``;

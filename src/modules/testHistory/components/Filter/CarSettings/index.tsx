@@ -12,12 +12,12 @@ import { FiSettings } from 'react-icons/fi';
 import { Container, Selector, Button, DateInputBox } from './styles';
 
 export enum FilterType {
-  VIN = 'VIN',
-  PROD_DATE = 'Prod. Date',
-  MODEL = 'Model',
-  ENGINE = 'Engine',
-  MILEAGE = 'Mileage',
-  COLOR = 'Color',
+  VIN = 'vin',
+  PROD_DATE = 'prodDate',
+  MODEL = 'model',
+  ENGINE = 'engine',
+  MILEAGE = 'mileage',
+  COLOR = 'color',
 }
 
 interface IFilterItems {
@@ -80,36 +80,50 @@ const filterItems: IFilterItems[] = [
   },
 ];
 
-interface IValues {
-  vin: string | undefined;
-  prodDate: string | undefined;
-  model: string | undefined;
-  engine: string | undefined;
-  mileage: string | undefined;
-  color: string | undefined;
+interface FilterItem {
+  fieldName: FilterType;
+  value: string | undefined;
 }
 
-const CarSettings: React.FC = () => {
+interface CarDetails {
+  vin?: string | undefined;
+  prodDate?: string | undefined;
+  model?: string | undefined;
+  engine?: string | undefined;
+  mileage?: string | undefined;
+  color?: string | undefined;
+}
+
+interface CarSettingsProps {
+  onChange: (...event: any[]) => void;
+}
+
+const CarSettings: React.FC<CarSettingsProps> = ({ onChange }) => {
   const [showBox, setShowBox] = useState(false);
-  const [values, setValues] = useState<IValues>({
-    vin: undefined,
-    prodDate: undefined,
-    model: undefined,
-    engine: undefined,
-    mileage: undefined,
-    color: undefined,
-  });
+
+  const [values, setValues] = useState<FilterItem[]>([
+    {
+      fieldName: FilterType.VIN,
+      value: undefined,
+    },
+    { fieldName: FilterType.PROD_DATE, value: undefined },
+    { fieldName: FilterType.MODEL, value: undefined },
+    { fieldName: FilterType.ENGINE, value: undefined },
+    { fieldName: FilterType.MILEAGE, value: undefined },
+    { fieldName: FilterType.COLOR, value: undefined },
+  ]);
   const [selectedItem, setSelectedItem] = useState(FilterType.VIN);
 
   return (
     <Container>
-      {filterItems.map((item) => (
+      {filterItems.map((item, index) => (
         <Selector
           selected={item.name === selectedItem}
-          filledDate={!!values[item.name]}
+          filledDate={!!values[index].value}
           key={item.name}
         >
           <Button
+            type="button"
             onClick={() => {
               if (selectedItem !== item.name) {
                 setShowBox(true);
@@ -121,8 +135,8 @@ const CarSettings: React.FC = () => {
           >
             {item.icon}
 
-            {values[item.name] ? (
-              <p>{values[item.name]}</p>
+            {values[index].value ? (
+              <p>{values[index].value}</p>
             ) : (
               <p> {item.name} </p>
             )}
@@ -134,8 +148,16 @@ const CarSettings: React.FC = () => {
               height={43}
               onClick={(event) => {
                 const updatedValues = values;
-                updatedValues[item.name] = event.target.value;
+                updatedValues[index].value = event.target.value;
                 setValues(updatedValues);
+                const objectArray: CarDetails = values.reduce(
+                  (acc, element) => {
+                    acc[element.fieldName] = element.value;
+                    return acc;
+                  },
+                  {} as Record<FilterType, any>
+                );
+                onChange(objectArray);
               }}
               // {...register('type')}
             >

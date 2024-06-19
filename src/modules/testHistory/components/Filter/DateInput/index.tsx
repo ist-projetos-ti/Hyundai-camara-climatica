@@ -1,5 +1,5 @@
 /* eslint-disable import/no-unresolved */
-import React, { useCallback, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import CalendarIcon from '@assets/calendar.svg?react';
 import { useForm } from 'react-hook-form';
 import { isAfter, isBefore } from 'date-fns';
@@ -21,7 +21,16 @@ import {
 import { DateFilterData, dateFilterResolver } from './dateFilter.zod';
 import Input from '../Input';
 
-const DateInput: React.FC = () => {
+interface DateInputProps {
+  onChange: (...event: any[]) => void;
+}
+
+interface IValue {
+  initialDate: Date | undefined;
+  finalDate: Date | undefined;
+}
+
+const DateInput: React.FC<DateInputProps> = ({ onChange }) => {
   const [isStartDateSelected, setIsStartDateSelected] = useState(true);
   const [initialDate, setInitialDate] = useState<string | null>(null);
   const [finalDate, setFinalDate] = useState<string | null>(null);
@@ -29,6 +38,21 @@ const DateInput: React.FC = () => {
   const [showInitialDateBox, setShowInitialDateBox] = useState(false);
   const [showFinalDateBox, setShowFinalDateBox] = useState(false);
   const [showError, setShowError] = useState<string | null>(null);
+
+  const [value, setValue] = useState<IValue>({} as IValue);
+
+  useEffect(() => {
+    if (initialDate || finalDate) {
+      setValue({
+        initialDate: initialDate ? new Date(initialDate) : undefined,
+        finalDate: finalDate ? new Date(finalDate) : undefined,
+      });
+    }
+  }, [finalDate, initialDate]);
+
+  useEffect(() => {
+    onChange(value);
+  }, [onChange, value]);
 
   const {
     handleSubmit: handleInitialDateSubmit,
@@ -104,6 +128,7 @@ const DateInput: React.FC = () => {
     <Container>
       <DateSelector selected={isStartDateSelected} filledDate={!!initialDate}>
         <Button
+          type="button"
           onClick={() => {
             setShowInitialDateBox(!showInitialDateBox);
             setShowFinalDateBox(false);
@@ -116,7 +141,7 @@ const DateInput: React.FC = () => {
           {initialDate ? <DateLabel> {initialDate}</DateLabel> : <p>Start</p>}
         </Button>
         <DateInputBox selected={showInitialDateBox}>
-          <Form onSubmit={handleInitialDateSubmit(onInitialDateSubmit)}>
+          <Form>
             <InputGroup>
               <InputLabel>Year</InputLabel>
               <FormControl isInvalid={!!initialDateErrors.year}>
@@ -159,7 +184,12 @@ const DateInput: React.FC = () => {
                 />
               </FormControl>
             </InputGroup>
-            <SubmitButton type="submit">Ok →</SubmitButton>
+            <SubmitButton
+              type="button"
+              onClick={handleInitialDateSubmit(onInitialDateSubmit)}
+            >
+              Ok →
+            </SubmitButton>
           </Form>
         </DateInputBox>
       </DateSelector>
@@ -175,13 +205,14 @@ const DateInput: React.FC = () => {
             finalDateClearErrors();
             setIsStartDateSelected(false);
           }}
+          type="button"
         >
           <CalendarIcon />
           {finalDate ? <DateLabel> {finalDate}</DateLabel> : <p>End</p>}
         </Button>
 
         <DateInputBox selected={showFinalDateBox}>
-          <Form onSubmit={handleFinalDateSubmit(onFinalDateSubmit)}>
+          <Form>
             <InputGroup>
               <InputLabel>Year</InputLabel>
               <FormControl isInvalid={!!finalDateErrors.year}>
@@ -224,7 +255,12 @@ const DateInput: React.FC = () => {
                 />
               </FormControl>
             </InputGroup>
-            <SubmitButton type="submit">Ok →</SubmitButton>
+            <SubmitButton
+              type="button"
+              onClick={handleFinalDateSubmit(onFinalDateSubmit)}
+            >
+              Ok →
+            </SubmitButton>
           </Form>
           {!!showError && <ErrorMessage>{showError}</ErrorMessage>}
         </DateInputBox>

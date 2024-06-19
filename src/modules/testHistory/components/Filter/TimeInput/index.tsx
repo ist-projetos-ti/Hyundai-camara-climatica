@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { FormControl } from '@chakra-ui/react';
 import { PiClockCountdown } from 'react-icons/pi';
@@ -19,13 +19,37 @@ import {
 import { TimeFilterData, timeFilterResolver } from './timeFilter.zod';
 import Input from '../Input';
 
-const TimeInput: React.FC = () => {
+interface IValue {
+  initialTime: string | undefined;
+  finalTime: string | undefined;
+}
+
+interface TimeInputProps {
+  onChange: (...event: any[]) => void;
+}
+
+const TimeInput: React.FC<TimeInputProps> = ({ onChange }) => {
   const [isStartTimeSelected, setIsStartTimeSelected] = useState(true);
   const [initialTime, setInitialTime] = useState<string | null>(null);
   const [finalTime, setFinalTime] = useState<string | null>(null);
 
   const [showInitialTimeBox, setShowInitialTimeBox] = useState(false);
   const [showFinalTimeBox, setShowFinalTimeBox] = useState(false);
+
+  const [value, setValue] = useState<IValue>({} as IValue);
+
+  useEffect(() => {
+    if (initialTime || finalTime) {
+      setValue({
+        initialTime: initialTime || undefined,
+        finalTime: finalTime || undefined,
+      });
+    }
+  }, [finalTime, initialTime]);
+
+  useEffect(() => {
+    onChange(value);
+  }, [onChange, value]);
 
   const {
     handleSubmit: handleInitialTimeSubmit,
@@ -73,6 +97,7 @@ const TimeInput: React.FC = () => {
     <Container>
       <DateSelector selected={isStartTimeSelected} filledDate={!!initialTime}>
         <Button
+          type="button"
           onClick={() => {
             setShowInitialTimeBox(!showInitialTimeBox);
             setShowFinalTimeBox(false);
@@ -85,7 +110,7 @@ const TimeInput: React.FC = () => {
           {initialTime ? <DateLabel> {initialTime}</DateLabel> : <p>Start</p>}
         </Button>
         <DateInputBox selected={showInitialTimeBox}>
-          <Form onSubmit={handleInitialTimeSubmit(onInitialTimeSubmit)}>
+          <Form>
             <InputGroup>
               <InputLabel>Hour</InputLabel>
               <InputBundle>
@@ -160,7 +185,12 @@ const TimeInput: React.FC = () => {
                 </FormControl>
               </InputBundle>
             </InputGroup>
-            <SubmitButton type="submit">Ok →</SubmitButton>
+            <SubmitButton
+              type="button"
+              onClick={handleInitialTimeSubmit(onInitialTimeSubmit)}
+            >
+              Ok →
+            </SubmitButton>
           </Form>
         </DateInputBox>
       </DateSelector>
@@ -169,6 +199,7 @@ const TimeInput: React.FC = () => {
 
       <DateSelector selected={!isStartTimeSelected} filledDate={!!finalTime}>
         <Button
+          type="button"
           onClick={() => {
             setShowFinalTimeBox(!showFinalTimeBox);
             initialTimeClearErrors();
@@ -182,7 +213,7 @@ const TimeInput: React.FC = () => {
         </Button>
 
         <DateInputBox selected={showFinalTimeBox}>
-          <Form onSubmit={handleFinalTimeSubmit(onFinalTimeSubmit)}>
+          <Form>
             <InputGroup>
               <InputLabel>Hour</InputLabel>
               <InputBundle>
@@ -256,7 +287,12 @@ const TimeInput: React.FC = () => {
                 </FormControl>
               </InputBundle>
             </InputGroup>
-            <SubmitButton type="submit">Ok →</SubmitButton>
+            <SubmitButton
+              type="button"
+              onClick={handleFinalTimeSubmit(onFinalTimeSubmit)}
+            >
+              Ok →
+            </SubmitButton>
           </Form>
         </DateInputBox>
       </DateSelector>
