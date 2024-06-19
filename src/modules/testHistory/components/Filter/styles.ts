@@ -3,9 +3,8 @@ import styled from 'styled-components';
 export const Container = styled.div`
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  min-width: calc(100% + 32px);
-  gap: 8px;
+  justify-content: center;
+  gap: 4px;
 `;
 
 export const LabelTitle = styled.span`
@@ -16,9 +15,9 @@ export const LabelTitle = styled.span`
 
 export const DateTimeInputContainer = styled.div`
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   width: 100%;
-
+  gap: 4px;
   height: 43px;
 `;
 
@@ -38,6 +37,10 @@ export const LabelContainer = styled.div`
   justify-content: space-between;
   padding: 4px;
   gap: 4px;
+
+  svg {
+    size: 27;
+  }
 `;
 
 export const Button = styled.button`

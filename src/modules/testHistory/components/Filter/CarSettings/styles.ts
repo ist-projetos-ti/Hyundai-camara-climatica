@@ -30,7 +30,6 @@ export const Container = styled.div`
   & > span:last-child(even) {
     align-self: flex-end;
     justify-self: center;
-    border: 2px solid red;
   }
 `;
 

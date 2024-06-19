@@ -2,7 +2,8 @@
 import React from 'react';
 
 import { useForm } from 'react-hook-form';
-import { BiFilterAlt } from 'react-icons/bi';
+import FilterIcon from '@assets/filter.svg?react';
+
 import themeDefaults from '@style/themeDefaults';
 import {
   Container,
@@ -28,7 +29,7 @@ const Filter: React.FC = () => {
   return (
     <Container>
       <LabelContainer>
-        <BiFilterAlt size={27} color={themeDefaults.colors.secondary} />
+        <FilterIcon color={themeDefaults.colors.secondary} />
 
         <LabelTitle>Filter</LabelTitle>
       </LabelContainer>
