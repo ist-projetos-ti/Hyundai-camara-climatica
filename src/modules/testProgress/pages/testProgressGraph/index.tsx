@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import NavigationButtons from '@modules/testProgress/components/navigationButtons';
 import GraphInformations from '@modules/testProgress/components/graphInformations';
+import ChamberGraph from '@modules/testProgress/components/chamberGraph';
 import { Container } from './styles';
 
 const TestProgressGraph: React.FC = () => {
@@ -15,6 +16,7 @@ const TestProgressGraph: React.FC = () => {
       </h2>
       <NavigationButtons />
       <GraphInformations />
+      <ChamberGraph />
     </Container>
   );
 };
