@@ -9,7 +9,7 @@ import MobileTestHistoryPage from './Mobile';
 
 const TestHistory: React.FC = () => {
   useEffect(() => {
-    document.title = 'Users';
+    document.title = 'Test History';
   }, []);
 
   const isDesktop = useMemo(() => window.innerWidth > BREAKPOINTS.MOBILE, []);

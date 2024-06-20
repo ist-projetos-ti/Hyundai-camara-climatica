@@ -57,3 +57,13 @@ export const TableItem = styled.div<{ width: number }>`
     height: 18px;
   }
 `;
+
+export const DateLabel = styled.p``;
+export const InitialTimeLabel = styled.p`
+  color: ${({ theme }) => theme.colors.primary};
+  margin-left: 28px;
+`;
+export const FinalTimeLabel = styled.p`
+  color: ${({ theme }) => theme.colors.danger};
+  margin-right: 28px;
+`;

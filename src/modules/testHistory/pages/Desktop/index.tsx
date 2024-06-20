@@ -12,7 +12,31 @@ const DesktopTestHistoryPage: React.FC = () => (
       <Filter />
     </FilterContainer>
     <TableContainer>
-      <TestHistoryTable data={[{ id: 1 }, { id: 2 }, { id: 3 }]} />
+      <TestHistoryTable
+        data={[
+          {
+            id: 1,
+            start: new Date(),
+            end: new Date(),
+            description: 'Test description example HjdLdl_056698',
+            testName: 'TestName 01XJLY - SS',
+          },
+          {
+            id: 2,
+            start: new Date(),
+            end: new Date(),
+            description: 'Test description example HjdLdl_056698',
+            testName: 'TestName 01XJLY - SS',
+          },
+          {
+            id: 3,
+            start: new Date(),
+            end: new Date(),
+            description: 'Test description example HjdLdl_056698',
+            testName: 'TestName 01XJLY - SS',
+          },
+        ]}
+      />
     </TableContainer>
   </Container>
 );
