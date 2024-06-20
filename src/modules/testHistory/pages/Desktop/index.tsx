@@ -29,22 +29,22 @@ const DesktopTestHistoryPage: React.FC = () => {
       id: 1,
       testName: 'TestName 01XJLY - SS',
       description: 'Test description example HjdLdl_056698',
-      start: new Date(),
-      end: new Date(),
+      start: new Date('2024-02-01'),
+      end: new Date('2024-02-02'),
     },
     {
       id: 2,
       testName: 'TestName 01XJLY - SS',
       description: 'Test description example HjdLdl_056698',
-      start: new Date(),
-      end: new Date(),
+      start: new Date('2024-01-01'),
+      end: new Date('2024-01-02'),
     },
     {
       id: 3,
       testName: 'TestName 01XJLY - SS',
       description: 'Test description example HjdLdl_056698',
-      start: new Date(),
-      end: new Date(),
+      start: new Date('2024-03-02'),
+      end: new Date('2024-03-02'),
     },
   ];
 

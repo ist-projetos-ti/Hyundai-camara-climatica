@@ -24,6 +24,11 @@ export const HeaderItem = styled.h1<{ width: number }>`
   font-size: 16px;
   font-weight: bold;
   color: ${({ theme }) => theme.colors.primary};
+
+  svg {
+    color: ${({ theme }) => theme.colors.primary};
+    margin-left: 4px;
+  }
 `;
 
 export const TableBody = styled.div`
@@ -66,4 +71,10 @@ export const InitialTimeLabel = styled.p`
 export const FinalTimeLabel = styled.p`
   color: ${({ theme }) => theme.colors.danger};
   margin-right: 28px;
+`;
+
+export const Button = styled.button`
+  display: flex;
+  align-items: center;
+  font-weight: bold;
 `;
