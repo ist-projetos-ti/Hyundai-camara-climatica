@@ -8,26 +8,31 @@ import {
   NumberContainer,
 } from './styles';
 
-const TotalHourMachineLabel: React.FC = () => (
-  <Container>
-    <LabelContainer> Total Hora x Máquina: </LabelContainer>
-    <ValuesContainer>
-      <NumberContainer>1</NumberContainer>
-      <NumberContainer>6</NumberContainer>
-      <LabelContainer largeSpacing>
-        <p>h </p> <p>:</p>
-      </LabelContainer>
+const TotalHourMachineLabel: React.FC = () => {
+  const label = '16:04:52';
+  const timeArray = label.replace(/:/g, '').split('');
 
-      <NumberContainer>0</NumberContainer>
-      <NumberContainer>4</NumberContainer>
-      <LabelContainer largeSpacing>
-        <p>m </p> <p>:</p>
-      </LabelContainer>
-      <NumberContainer>5</NumberContainer>
-      <NumberContainer>2</NumberContainer>
-      <LabelContainer largeSpacing>s</LabelContainer>
-    </ValuesContainer>
-  </Container>
-);
+  return (
+    <Container>
+      <LabelContainer> Total Hora x Máquina: </LabelContainer>
+      <ValuesContainer>
+        <NumberContainer>{timeArray[0]}</NumberContainer>
+        <NumberContainer>{timeArray[1]}</NumberContainer>
+        <LabelContainer largeSpacing>
+          <p>h </p> <p>:</p>
+        </LabelContainer>
+
+        <NumberContainer>{timeArray[2]}</NumberContainer>
+        <NumberContainer>{timeArray[3]}</NumberContainer>
+        <LabelContainer largeSpacing>
+          <p>m </p> <p>:</p>
+        </LabelContainer>
+        <NumberContainer>{timeArray[4]}</NumberContainer>
+        <NumberContainer>{timeArray[5]}</NumberContainer>
+        <LabelContainer largeSpacing>s</LabelContainer>
+      </ValuesContainer>
+    </Container>
+  );
+};
 
 export default TotalHourMachineLabel;

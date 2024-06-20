@@ -51,6 +51,11 @@ export const Button = styled.button`
   font-size: 14px;
   font-weight: bold;
   height: 31px;
+  margin: 0px 8px;
 `;
 
-export const Form = styled.form``;
+export const Form = styled.form`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
