@@ -11,7 +11,7 @@ const timeValueSchema = z.object({
   finalTime: z.string().optional(),
 });
 
-const carSettingsSchema = z.object({
+const carDetailsSchema = z.object({
   vin: z.string().optional(),
   prodDate: z.string().optional(),
   model: z.string().optional(),
@@ -24,7 +24,7 @@ const filter = z.object({
   testName: z.string().optional(),
   date: dateValueSchema,
   time: timeValueSchema,
-  carSettings: carSettingsSchema,
+  carDetails: carDetailsSchema,
 });
 
 export type FilterData = z.infer<typeof filter>;

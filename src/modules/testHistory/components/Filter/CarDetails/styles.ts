@@ -14,23 +14,37 @@ interface InputProps {
   isInvalid?: boolean;
 }
 
-export const Container = styled.div`
+interface IContainer {
+  isExpanded: boolean;
+}
+
+export const Container = styled.div<IContainer>`
   display: flex;
   align-items: center;
-  width: fit-content;
   max-width: 100%;
-  height: fit-content;
+  height: 100%;
+  min-height: 43px;
   justify-content: space-around;
   background-color: #efefef;
   border-radius: 9px;
-
   position: relative;
   flex-wrap: wrap;
+  outline: none;
+  transition: 200ms;
 
-  & > span:last-child(even) {
-    align-self: flex-end;
-    justify-self: center;
-  }
+  margin-bottom: 16px;
+  box-shadow: rgba(255, 255, 255, 0.1) 0px 1px 1px 0px inset,
+    rgba(50, 50, 93, 0.25) 0px 50px 100px -20px,
+    rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
+
+  overflow: hidden;
+
+  ${({ isExpanded }) =>
+    isExpanded &&
+    css`
+      height: fit-content;
+      overflow: visible;
+    `}
 `;
 
 export const Selector = styled.span<IDateSelectorProps>`
@@ -46,6 +60,7 @@ export const Selector = styled.span<IDateSelectorProps>`
   align-items: center;
   justify-content: center;
 
+  position: static;
   :first-child() {
     margin-left: 0px;
   }

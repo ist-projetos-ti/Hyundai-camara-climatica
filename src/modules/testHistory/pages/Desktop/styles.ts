@@ -11,7 +11,7 @@ export const Container = styled.div`
 export const TableContainer = styled.div`
   width: 100%;
   height: 85%;
-  margin-top: 32px;
+  margin-top: 2%;
 `;
 
 export const FilterContainer = styled.div`
@@ -21,4 +21,5 @@ export const FilterContainer = styled.div`
   justify-content: space-around;
   align-items: flex-start;
   gap: 20px;
+  padding-bottom: 16px;
 `;

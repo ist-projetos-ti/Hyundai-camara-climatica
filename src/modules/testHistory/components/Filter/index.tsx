@@ -18,7 +18,7 @@ import { FilterData, filterResolver } from './filter.zod';
 
 import DateInput from './DateInput';
 import TimeInput from './TimeInput';
-import CarSettings from './CarSettings';
+import CarDetails from './CarDetails';
 
 const Filter: React.FC = () => {
   const {
@@ -51,7 +51,6 @@ const Filter: React.FC = () => {
           <Controller
             control={control}
             name="date"
-            // error={errors.date}
             render={({ field: { onChange } }) => (
               <DateInput onChange={onChange} />
             )}
@@ -60,7 +59,6 @@ const Filter: React.FC = () => {
           <Controller
             control={control}
             name="time"
-            // error={errors.time}
             render={({ field: { onChange } }) => (
               <TimeInput onChange={onChange} />
             )}
@@ -69,7 +67,6 @@ const Filter: React.FC = () => {
           <Controller
             control={control}
             name="testName"
-            // error={errors.testName}
             render={({ field: { onChange } }) => (
               <Input placeholder="Test Name" type="text" onChange={onChange} />
             )}
@@ -77,10 +74,9 @@ const Filter: React.FC = () => {
 
           <Controller
             control={control}
-            name="carSettings"
-            // error={errors.testName}
+            name="carDetails"
             render={({ field: { onChange } }) => (
-              <CarSettings onChange={onChange} />
+              <CarDetails onChange={onChange} />
             )}
           />
         </DateTimeInputContainer>

@@ -22,6 +22,7 @@ export enum FilterType {
 
 interface IFilterItems {
   name: FilterType;
+  label: string;
   icon: any;
   options: {
     label: string;
@@ -32,6 +33,7 @@ interface IFilterItems {
 const filterItems: IFilterItems[] = [
   {
     name: FilterType.VIN,
+    label: 'VIN',
     icon: <HorizontalDots />,
     options: [
       { label: '4S3BMHB68B3286050', value: '4S3BMHB68B3286050' },
@@ -40,6 +42,7 @@ const filterItems: IFilterItems[] = [
   },
   {
     name: FilterType.PROD_DATE,
+    label: 'Prod. Date',
     icon: <Calendar />,
     options: [
       { label: '2023', value: '2023' },
@@ -48,6 +51,7 @@ const filterItems: IFilterItems[] = [
   },
   {
     name: FilterType.MODEL,
+    label: 'Model',
     icon: <Car />,
     options: [
       { label: 'HB20 Comfort', value: 'HB20 Comfort' },
@@ -56,6 +60,7 @@ const filterItems: IFilterItems[] = [
   },
   {
     name: FilterType.ENGINE,
+    label: 'Engine',
     icon: <FiSettings />,
     options: [
       { label: '1.0T AT6', value: '1.0T AT6' },
@@ -64,6 +69,7 @@ const filterItems: IFilterItems[] = [
   },
   {
     name: FilterType.MILEAGE,
+    label: 'Mileage',
     icon: <SpeedTest />,
     options: [
       { label: '25.000', value: '25.000' },
@@ -72,6 +78,7 @@ const filterItems: IFilterItems[] = [
   },
   {
     name: FilterType.COLOR,
+    label: 'Color',
     icon: <ColorIcon />,
     options: [
       { label: 'white', value: 'white' },
@@ -85,7 +92,7 @@ interface FilterItem {
   value: string | undefined;
 }
 
-interface CarDetails {
+interface ICarDetails {
   vin?: string | undefined;
   prodDate?: string | undefined;
   model?: string | undefined;
@@ -94,11 +101,11 @@ interface CarDetails {
   color?: string | undefined;
 }
 
-interface CarSettingsProps {
+interface CarDetailsProps {
   onChange: (...event: any[]) => void;
 }
 
-const CarSettings: React.FC<CarSettingsProps> = ({ onChange }) => {
+const CarDetails: React.FC<CarDetailsProps> = ({ onChange }) => {
   const [showBox, setShowBox] = useState(false);
 
   const [values, setValues] = useState<FilterItem[]>([
@@ -113,9 +120,18 @@ const CarSettings: React.FC<CarSettingsProps> = ({ onChange }) => {
     { fieldName: FilterType.COLOR, value: undefined },
   ]);
   const [selectedItem, setSelectedItem] = useState(FilterType.VIN);
+  const [isExpanded, setIsExpanded] = useState(false);
 
   return (
-    <Container>
+    <Container
+      onMouseOver={() => {
+        setIsExpanded(true);
+      }}
+      onMouseLeave={() => {
+        if (!showBox) setIsExpanded(false);
+      }}
+      isExpanded={isExpanded}
+    >
       {filterItems.map((item, index) => (
         <Selector
           selected={item.name === selectedItem}
@@ -138,10 +154,15 @@ const CarSettings: React.FC<CarSettingsProps> = ({ onChange }) => {
             {values[index].value ? (
               <p>{values[index].value}</p>
             ) : (
-              <p> {item.name} </p>
+              <p> {item.label} </p>
             )}
           </Button>
-          <DateInputBox selected={item.name === selectedItem && showBox}>
+          <DateInputBox
+            selected={item.name === selectedItem && showBox}
+            onBlur={() => {
+              setShowBox(false);
+            }}
+          >
             <Select
               borderRadius={15}
               width={300}
@@ -150,7 +171,7 @@ const CarSettings: React.FC<CarSettingsProps> = ({ onChange }) => {
                 const updatedValues = values;
                 updatedValues[index].value = event.target.value;
                 setValues(updatedValues);
-                const objectArray: CarDetails = values.reduce(
+                const objectArray: ICarDetails = values.reduce(
                   (acc, element) => {
                     acc[element.fieldName] = element.value;
                     return acc;
@@ -159,7 +180,6 @@ const CarSettings: React.FC<CarSettingsProps> = ({ onChange }) => {
                 );
                 onChange(objectArray);
               }}
-              // {...register('type')}
             >
               {item.options.map((option) => (
                 <option value={option.value} key={option.value}>
@@ -174,4 +194,4 @@ const CarSettings: React.FC<CarSettingsProps> = ({ onChange }) => {
   );
 };
 
-export default CarSettings;
+export default CarDetails;
