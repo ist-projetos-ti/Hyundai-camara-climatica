@@ -159,12 +159,13 @@ const ChamberGraph: React.FC = () => {
           </SliderInformations>
           <Slider
             onChange={(val) => setSliderValue(val)}
-            width="100%"
+            width="98%"
             height="50%"
             defaultValue={0}
             min={0}
             max={72}
-            step={1}
+            step={2}
+            marginLeft={2}
           >
             <SliderMark
               value={sliderValue}
