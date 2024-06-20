@@ -4,15 +4,6 @@ import React, { useCallback } from 'react';
 import { LuInfo } from 'react-icons/lu';
 
 import {
-  addDays,
-  addHours,
-  addMinutes,
-  differenceInDays,
-  differenceInHours,
-  differenceInMinutes,
-  differenceInSeconds,
-} from 'date-fns';
-import {
   Container,
   TableHeader,
   HeaderItem,
@@ -43,33 +34,6 @@ const TestHistoryTable: React.FC<ITestHistoryTableProps> = ({ data }) => {
     return { formattedDate, formattedHour };
   }, []);
 
-  const GetDifference = useCallback((startDate: Date, endDate: Date) => {
-    const days = differenceInDays(endDate, startDate);
-    const startDateAfterDays = addDays(startDate, days);
-
-    const hours = differenceInHours(endDate, startDateAfterDays);
-    const startDateAfterHours = addHours(startDateAfterDays, hours);
-
-    const minutes = differenceInMinutes(endDate, startDateAfterHours);
-    const startDateAfterMinutes = addMinutes(startDateAfterHours, minutes);
-
-    const seconds = differenceInSeconds(endDate, startDateAfterMinutes);
-
-    if (days > 0)
-      return `${String(days).padStart(2, '0')}d:${String(hours).padStart(
-        2,
-        '0'
-      )}:${String(minutes).padStart(2, '0')}:${String(seconds).padStart(
-        2,
-        '0'
-      )}`;
-
-    return `${String(hours).padStart(2, '0')}:${String(minutes).padStart(
-      2,
-      '0'
-    )}:${String(seconds).padStart(2, '0')}`;
-  }, []);
-
   return (
     <Container>
       <TableHeader>
@@ -89,6 +53,7 @@ const TestHistoryTable: React.FC<ITestHistoryTableProps> = ({ data }) => {
             end: Date;
             testName: string;
             description: string;
+            duration: string;
           }) => {
             const { formattedDate: initialDate, formattedHour: initialHour } =
               formatDate(item.start);
@@ -109,9 +74,7 @@ const TestHistoryTable: React.FC<ITestHistoryTableProps> = ({ data }) => {
                   <FinalTimeLabel>{finalHour} </FinalTimeLabel>
                   <DateLabel> {finalDate} </DateLabel>
                 </TableItem>
-                <TableItem width={15}>
-                  {GetDifference(item.start, item.end)}
-                </TableItem>
+                <TableItem width={15}>{item.duration}</TableItem>
                 <TableItem width={2}>
                   <LuInfo size={18} />
                 </TableItem>
