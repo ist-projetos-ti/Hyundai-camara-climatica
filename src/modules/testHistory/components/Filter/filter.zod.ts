@@ -24,7 +24,7 @@ const filter = z.object({
   testName: z.string().optional(),
   date: dateValueSchema,
   time: timeValueSchema,
-  carDetails: carDetailsSchema,
+  carDetails: carDetailsSchema.optional(),
 });
 
 export type FilterData = z.infer<typeof filter>;

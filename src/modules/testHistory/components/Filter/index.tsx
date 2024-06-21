@@ -1,5 +1,5 @@
 /* eslint-disable import/no-unresolved */
-import React, { useCallback, useEffect } from 'react';
+import React, { useCallback } from 'react';
 
 import { useForm, Controller } from 'react-hook-form';
 import FilterIcon from '@assets/filter.svg?react';
@@ -22,22 +22,15 @@ import TimeInput from './TimeInput';
 import CarDetails from './CarDetails';
 
 const Filter: React.FC = () => {
-  const {
-    control,
-    handleSubmit,
-    formState: { errors },
-  } = useForm<FilterData>({
+  const { control, handleSubmit } = useForm<FilterData>({
     resolver: filterResolver,
 
     mode: 'all',
   });
 
-  useEffect(() => {
-    console.log(errors);
-  }, [errors]);
-
   const onSubmit = useCallback((data: any) => {
-    console.log('onsubmit: ', data);
+    // eslint-disable-next-line no-console
+    console.log('data: ', data);
   }, []);
 
   return (
