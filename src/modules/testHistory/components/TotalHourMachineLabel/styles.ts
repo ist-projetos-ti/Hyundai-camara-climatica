@@ -8,6 +8,12 @@ export const Container = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+
+  @media (max-width: 767px) {
+    flex-direction: column;
+    align-items: flex-start;
+    margin-left: 20px;
+  }
 `;
 
 export const LabelContainer = styled.div<ILabelContainerProp>`
@@ -24,6 +30,10 @@ export const LabelContainer = styled.div<ILabelContainerProp>`
       width: 40px;
       justify-content: space-between;
       margin-right: 7px;
+
+      @media (max-width: 767px) {
+        font-size: 10px;
+      }
     `};
 `;
 export const ValuesContainer = styled.div`
