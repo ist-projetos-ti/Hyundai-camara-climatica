@@ -93,7 +93,7 @@ const TestHistoryTable: React.FC<ITestHistoryTableProps> = ({ data }) => {
       <TableHeader>
         <HeaderItem width={15}>Test Name</HeaderItem>
         <HeaderItem width={30}>Description</HeaderItem>
-        <HeaderItem width={10}>
+        <HeaderItem width={15}>
           <Button type="button" onClick={OrderTableByStart}>
             Start <RiExpandUpDownLine size={17} />
           </Button>
@@ -119,7 +119,7 @@ const TestHistoryTable: React.FC<ITestHistoryTableProps> = ({ data }) => {
             <TableRow key={item.id}>
               <TableItem width={15}>{item.testName}</TableItem>
               <TableItem width={30}>{item.description}</TableItem>
-              <TableItem width={10}>
+              <TableItem width={15}>
                 <DateLabel> {initialDate} </DateLabel>
                 <InitialTimeLabel>{initialHour}</InitialTimeLabel>
               </TableItem>
