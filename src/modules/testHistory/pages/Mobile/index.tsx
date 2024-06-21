@@ -4,7 +4,7 @@ import DrawerNavigation from '@components/DrawerNavigation';
 import HeaderMobile from '@components/Header/Mobile/Header';
 import TotalHourMachineLabel from '@modules/testHistory/components/TotalHourMachineLabel';
 import ListItem from '@modules/testHistory/components/mobile/ListItem';
-import { Container, Grid, List } from '../styles';
+import { Container, List } from './styles';
 
 const MobileTestHistoryPage: React.FC = () => {
   const [open, setOpen] = useState<boolean>(false);
@@ -29,8 +29,6 @@ const MobileTestHistoryPage: React.FC = () => {
         <ListItem />
         <ListItem />
       </List>
-
-      <Grid />
     </Container>
   );
 };
