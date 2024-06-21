@@ -120,18 +120,9 @@ const CarDetails: React.FC<CarDetailsProps> = ({ onChange }) => {
     { fieldName: FilterType.COLOR, value: undefined },
   ]);
   const [selectedItem, setSelectedItem] = useState(FilterType.VIN);
-  const [isExpanded, setIsExpanded] = useState(false);
 
   return (
-    <Container
-      onMouseOver={() => {
-        setIsExpanded(true);
-      }}
-      onMouseLeave={() => {
-        if (!showBox) setIsExpanded(false);
-      }}
-      isExpanded={isExpanded}
-    >
+    <Container>
       {filterItems.map((item, index) => (
         <Selector
           selected={item.name === selectedItem}

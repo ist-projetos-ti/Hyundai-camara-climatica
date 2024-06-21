@@ -61,6 +61,10 @@ export const TableItem = styled.div<{ width: number }>`
     width: 18px;
     height: 18px;
   }
+
+  font-weight: 500;
+  color: ${({ theme }) => theme.colors.darkGray};
+  font-size: 14px;
 `;
 
 export const DateLabel = styled.p``;

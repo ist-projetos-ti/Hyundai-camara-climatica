@@ -13,6 +13,7 @@ import {
   LabelContainer,
   Button,
   Form,
+  Section,
 } from './styles';
 import { FilterData, filterResolver } from './filter.zod';
 
@@ -71,7 +72,8 @@ const Filter: React.FC = () => {
               <Input placeholder="Test Name" type="text" onChange={onChange} />
             )}
           />
-
+        </DateTimeInputContainer>
+        <Section>
           <Controller
             control={control}
             name="carDetails"
@@ -79,8 +81,9 @@ const Filter: React.FC = () => {
               <CarDetails onChange={onChange} />
             )}
           />
-        </DateTimeInputContainer>
-        <Button type="submit">Ok →</Button>
+
+          <Button type="submit">Ok →</Button>
+        </Section>
       </Form>
     </Container>
   );

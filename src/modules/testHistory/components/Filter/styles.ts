@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 export const Container = styled.div`
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: center;
   gap: 4px;
 `;
@@ -15,8 +15,7 @@ export const LabelTitle = styled.span`
 
 export const DateTimeInputContainer = styled.div`
   display: flex;
-  justify-content: center;
-  width: 100%;
+  justify-content: flex-start;
   gap: 4px;
   height: 43px;
 `;
@@ -25,9 +24,7 @@ export const Input = styled.input`
   width: 197px;
   height: 100%;
   background-color: #efefef;
-
   padding-left: 16px;
-
   border-radius: 12px;
 `;
 
@@ -37,7 +34,7 @@ export const LabelContainer = styled.div`
   justify-content: space-between;
   padding: 4px;
   gap: 4px;
-
+  margin-top: 4px;
   svg {
     size: 27;
   }
@@ -52,10 +49,18 @@ export const Button = styled.button`
   font-weight: bold;
   height: 31px;
   margin: 0px 8px;
+  margin-bottom: 4px;
 `;
 
 export const Form = styled.form`
   display: flex;
-  justify-content: center;
-  align-items: center;
+  flex-wrap: wrap;
+  gap: 4px;
+`;
+
+export const Section = styled.div`
+  display: flex;
+  height: 100%;
+  align-items: flex-end;
+  height: 43px;
 `;

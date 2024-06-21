@@ -11,7 +11,6 @@ export const Container = styled.div`
 export const TableContainer = styled.div`
   width: 100%;
   height: 85%;
-  margin-top: 2%;
 `;
 
 export const SettingsSection = styled.div`
@@ -21,7 +20,6 @@ export const SettingsSection = styled.div`
   justify-content: space-around;
   align-items: center;
   gap: 20px;
-  padding-bottom: 16px;
 `;
 
 export const Section = styled.div`

@@ -16,6 +16,7 @@ const themeDefaults = {
     warmGrayMinus1: '#757575',
     warmGrayMinus2: '#C1C1C1',
     warmGrayMinus3: '#4D3938',
+    darkGray: '#3A3B3B',
 
     softBlue: '#BDCDDA',
     softBlueBackground: '#EFF3F6',
@@ -38,7 +39,7 @@ const themeDefaults = {
 
     according: '#53846A',
     alert: '#FFA000',
-    danger: '#E92020',
+    danger: '#F64B4B',
     lightDanger: '#FF204E',
     inactive: '#D0D0D0D0',
 

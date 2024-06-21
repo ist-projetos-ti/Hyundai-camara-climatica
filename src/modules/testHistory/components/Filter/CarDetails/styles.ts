@@ -14,37 +14,23 @@ interface InputProps {
   isInvalid?: boolean;
 }
 
-interface IContainer {
-  isExpanded: boolean;
-}
-
-export const Container = styled.div<IContainer>`
+export const Container = styled.div`
   display: flex;
   align-items: center;
-  max-width: 100%;
-  height: 100%;
+  width: fit-content;
+  height: 43px;
   min-height: 43px;
   justify-content: space-around;
   background-color: #efefef;
   border-radius: 9px;
   position: relative;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
   outline: none;
   transition: 200ms;
 
-  margin-bottom: 16px;
   box-shadow: rgba(255, 255, 255, 0.1) 0px 1px 1px 0px inset,
     rgba(50, 50, 93, 0.25) 0px 50px 100px -20px,
     rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
-
-  overflow: hidden;
-
-  ${({ isExpanded }) =>
-    isExpanded &&
-    css`
-      height: fit-content;
-      overflow: visible;
-    `}
 `;
 
 export const Selector = styled.span<IDateSelectorProps>`
