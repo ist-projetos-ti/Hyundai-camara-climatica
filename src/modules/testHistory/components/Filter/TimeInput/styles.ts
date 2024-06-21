@@ -84,6 +84,8 @@ export const DateInputBox = styled.div<IDateInputContainerProps>`
   justify-content: space-around;
   color: ${({ theme }) => theme.colors.warmGrayMinus1};
   padding: 5px;
+
+  z-index: 100;
 `;
 
 export const SubmitButton = styled.button`
