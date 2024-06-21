@@ -16,3 +16,8 @@ export interface IExportReportData {
     end: Date;
   };
 }
+
+export interface IFilterDate {
+  start: Date;
+  end: Date;
+}

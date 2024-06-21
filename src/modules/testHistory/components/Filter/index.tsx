@@ -5,6 +5,7 @@ import { useForm, Controller } from 'react-hook-form';
 import FilterIcon from '@assets/filter.svg?react';
 
 import themeDefaults from '@style/themeDefaults';
+import { IFilterDate } from '@modules/testHistory/interfaces';
 import {
   Container,
   LabelTitle,
@@ -21,17 +22,25 @@ import DateInput from './DateInput';
 import TimeInput from './TimeInput';
 import CarDetails from './CarDetails';
 
-const Filter: React.FC = () => {
+interface IFilter {
+  setFilterDate: React.Dispatch<React.SetStateAction<IFilterDate>>;
+}
+
+const Filter: React.FC<IFilter> = ({ setFilterDate }) => {
   const { control, handleSubmit } = useForm<FilterData>({
     resolver: filterResolver,
 
     mode: 'all',
   });
 
-  const onSubmit = useCallback((data: any) => {
-    // eslint-disable-next-line no-console
-    console.log('data: ', data);
-  }, []);
+  const onSubmit = useCallback(
+    (data: any) => {
+      setFilterDate({ start: data.date.initialDate, end: data.date.finalDate });
+      // eslint-disable-next-line no-console
+      console.log('data: ', data);
+    },
+    [setFilterDate]
+  );
 
   return (
     <Container>

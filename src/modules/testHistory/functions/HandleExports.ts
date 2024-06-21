@@ -9,10 +9,10 @@ export const handleExportReport = (report: IExportReportData) => {
   // eslint-disable-next-line camelcase
   const formatted_date_filters = [
     [
-      `${format(
-        new Date(report.filters.start),
-        'dd/MM/yyyy hh:mm:ss'
-      )} - ${format(new Date(report.filters.end), 'dd/MM/yyyy hh:mm:ss')}`,
+      `${format(new Date(report.filters.start), 'dd/MM/yyyy')} - ${format(
+        new Date(report.filters.end),
+        'dd/MM/yyyy'
+      )}`,
     ],
   ];
 

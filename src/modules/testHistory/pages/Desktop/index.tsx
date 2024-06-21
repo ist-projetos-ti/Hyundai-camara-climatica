@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react';
+import React, { useCallback, useState } from 'react';
 
 import TestHistoryTable from '@modules/testHistory/components/TestHistoryTable';
 import Filter from '@modules/testHistory/components/Filter';
@@ -15,6 +15,7 @@ import {
   addMinutes,
   differenceInSeconds,
 } from 'date-fns';
+import { IFilterDate } from '@modules/testHistory/interfaces';
 import {
   Container,
   TableContainer,
@@ -83,12 +84,14 @@ const DesktopTestHistoryPage: React.FC = () => {
     duration: GetDifference(item.start, item.end),
   }));
 
+  const [filterDate, setFilterDate] = useState<IFilterDate>({} as IFilterDate);
+
   return (
     <Container>
       <SettingsSection>
         <Section>
           <TotalHourMachineLabel />
-          <Filter />
+          <Filter setFilterDate={setFilterDate} />
         </Section>
         <Button
           onClick={() =>
@@ -104,8 +107,8 @@ const DesktopTestHistoryPage: React.FC = () => {
                 data: formattedData,
               },
               filters: {
-                start: new Date('-2024'),
-                end: new Date(),
+                start: filterDate.start,
+                end: filterDate.end,
               },
             })
           }
