@@ -1,7 +1,14 @@
+/* eslint-disable react/no-array-index-key */
 import React, { useState } from 'react';
 import { Collapse, Button, Input, Textarea } from '@chakra-ui/react';
 import { IoIosArrowUp } from 'react-icons/io';
 import themeDefaults from '@style/themeDefaults';
+import { CiCalendar } from 'react-icons/ci';
+import { PiDotsThreeFill } from 'react-icons/pi';
+import { IoCarOutline } from 'react-icons/io5';
+import { SlSpeedometer } from 'react-icons/sl';
+import { GoGear } from 'react-icons/go';
+import { BiSolidColorFill } from 'react-icons/bi';
 import {
   ButtonAreaColumn,
   ChamberInformationContent,
@@ -11,6 +18,34 @@ import {
   TextAreaColumn,
 } from './styles';
 import ChamberInformations from '../chamberInformations';
+import SelectTestInProgressOption from '../selectTestInProgressOption';
+
+const selectOptions = [
+  {
+    label: 'vin',
+    icon: PiDotsThreeFill,
+  },
+  {
+    label: 'model',
+    icon: IoCarOutline,
+  },
+  {
+    label: 'prod.date',
+    icon: CiCalendar,
+  },
+  {
+    label: 'mileage',
+    icon: SlSpeedometer,
+  },
+  {
+    label: 'engine',
+    icon: GoGear,
+  },
+  {
+    label: 'color',
+    icon: BiSolidColorFill,
+  },
+];
 
 const NewTestProgressForm: React.FC = () => {
   const [show, setShow] = useState(false);
@@ -20,22 +55,38 @@ const NewTestProgressForm: React.FC = () => {
   return (
     <>
       <Collapse
-        transition={{ exit: { duration: 1 }, enter: { duration: 1 } }}
-        startingHeight="20%"
+        transition={{ exit: { duration: 0.5 }, enter: { duration: 0.5 } }}
+        startingHeight="200px"
         in={show}
       >
         <Container>
           <FormContent>
             <TextAreaColumn>
-              <Input hidden={show} height="30px" placeholder="Basic usage" />
-              <Textarea
+              <Input
+                bg={themeDefaults.colors.white}
                 hidden={show}
-                height="100px"
+                height="50px"
+                placeholder="Basic usage"
+              />
+              <Textarea
+                bg={themeDefaults.colors.white}
+                hidden={show}
+                height="120px"
                 resize="none"
                 placeholder="Here is a sample placeholder"
+                marginBottom={4}
               />
             </TextAreaColumn>
-            <ButtonAreaColumn />
+            <ButtonAreaColumn>
+              {selectOptions.map((value, index) => (
+                <SelectTestInProgressOption
+                  key={index}
+                  show={show}
+                  Icon={value.icon}
+                  label={value.label}
+                />
+              ))}
+            </ButtonAreaColumn>
           </FormContent>
         </Container>
       </Collapse>

@@ -26,11 +26,15 @@ export const TextAreaColumn = styled.div`
 
   display: flex;
   flex-direction: column;
-  justify-content: space-evenly;
+  justify-content: space-between;
 `;
 export const ButtonAreaColumn = styled.div`
   width: 49%;
   height: 100%;
+
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
 `;
 export const HideContent = styled.div`
   width: 100%;
@@ -39,6 +43,8 @@ export const HideContent = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
+
+  margin-top: 1rem;
 
   button {
     color: ${themeDefaults.colors.primary};
