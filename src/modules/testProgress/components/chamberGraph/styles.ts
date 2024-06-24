@@ -7,6 +7,7 @@ export const Container = styled.div`
 
 export const ChamberInformationContent = styled.div`
   width: 100%;
+  margin-top: 2rem;
   display: flex;
 `;
 

@@ -10,7 +10,7 @@ import { SlSpeedometer } from 'react-icons/sl';
 import { GoGear } from 'react-icons/go';
 import { BiSolidColorFill } from 'react-icons/bi';
 import SelectTestInProgressOption from '@modules/testProgress/components/selectTestInProgressOption';
-import ChamberInformations from '@modules/testProgress/components/chamberInformations';
+import ChamberInformations from '@components/chamberInformations';
 import {
   ButtonAreaColumn,
   ChamberInformationContent,
