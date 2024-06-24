@@ -7,7 +7,7 @@ export const Container = styled.div<{ color: string }>`
   display: flex;
   align-items: center;
 
-  margin: 2rem 2rem 0 0;
+  margin: 0 2rem 0 0;
 
   div {
     background-color: ${({ color }) => color};

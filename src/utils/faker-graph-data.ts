@@ -16,3 +16,9 @@ export const graphData = Array.from({ length: 50 }).map(() => ({
     'hh:mm:ss'
   ),
 }));
+
+export const testData = Array.from({ length: 10 }).map(() => ({
+  id: faker.number.int({ min: 0, max: 100 }),
+  label: faker.person.firstName(),
+  temperature: faker.number.int({ min: 10, max: 60 }),
+}));

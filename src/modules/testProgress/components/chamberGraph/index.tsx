@@ -34,7 +34,7 @@ import {
   SliderInformations,
 } from './styles';
 
-import ChamberInformations from '../chamberInformations';
+import ChamberInformations from '../../../../components/chamberInformations';
 
 const data = [
   {
