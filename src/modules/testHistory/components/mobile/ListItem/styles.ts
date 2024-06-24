@@ -4,8 +4,11 @@ interface IDateLabelProps {
   variety?: boolean;
 }
 
-interface ITestBox {
+interface IWrapButton {
   isActive: boolean;
+}
+interface ITestBox {
+  height: number;
 }
 
 export const Container = styled.div`
@@ -26,7 +29,7 @@ export const HeaderItem = styled.div`
   align-items: flex-start;
 `;
 
-export const WrapButton = styled.button<ITestBox>`
+export const WrapButton = styled.button<IWrapButton>`
   background-color: ${({ theme }) => theme.colors.warmGrayBackground};
   color: ${({ theme }) => theme.colors.primary};
   width: 20px;
@@ -55,22 +58,18 @@ export const TextItem = styled.div`
   font-size: 18px;
   display: flex;
   gap: 8px;
+  height: auto;
 `;
 
 export const TestBox = styled.div<ITestBox>`
-  margin-top: 32px;
   display: flex;
   flex-direction: column;
   width: 100%;
   gap: 32px;
-  height: 100%;
-  transition: 200ms;
-  margin-bottom: 32px;
-  ${({ isActive }) =>
-    !isActive &&
-    css`
-      display: none;
-    `};
+  transition: 1s;
+  height: ${({ height }) => height}rem;
+  overflow: hidden;
+  margin-top: ${({ height }) => height !== 0 && '32px'};
 `;
 
 export const DateLabel = styled.div<IDateLabelProps>`

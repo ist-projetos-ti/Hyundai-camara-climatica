@@ -32,7 +32,7 @@ const ListItem: React.FC = () => {
         <Label>Test </Label>
       </HeaderItem>
       <TextItem> Test name 01XJLY - SS</TextItem>
-      <TestBox isActive={isActive}>
+      <TestBox height={isActive ? 26 : 0}>
         <TextItem>Test description example HjdLdl_056698</TextItem>
         <TextItem>
           Started at <DateLabel> 2022/08/19 16:00:45 </DateLabel>
