@@ -2,27 +2,32 @@ import styled from 'styled-components';
 
 export const Container = styled.div`
   display: flex;
-  align-items: flex-start;
+  align-items: center;
   justify-content: center;
-  gap: 4px;
+  flex-direction: column;
+  gap: 24px;
+  max-width: 100%;
 `;
 
 export const LabelTitle = styled.span`
-  color: ${({ theme }) => theme.colors.secondary};
+  color: ${({ theme }) => theme.colors.petroleumGreen};
   font-size: 18px;
   font-weight: bold;
 `;
 
 export const DateTimeInputContainer = styled.div`
   display: flex;
-  justify-content: flex-start;
-  gap: 4px;
-  height: 43px;
+  justify-content: center;
+  margin: auto;
+  flex-direction: column;
+  gap: 24px;
+  height: 100%;
+  margin-bottom: 20px;
 `;
 
 export const Input = styled.input`
-  width: 197px;
-  height: 100%;
+  width: 191px;
+  height: 43px;
   background-color: #efefef;
   padding-left: 16px;
   border-radius: 12px;
@@ -34,7 +39,7 @@ export const LabelContainer = styled.div`
   justify-content: space-between;
   padding: 4px;
   gap: 4px;
-  margin-top: 4px;
+
   svg {
     size: 27;
   }
@@ -62,5 +67,10 @@ export const Section = styled.div`
   display: flex;
   height: 100%;
   align-items: flex-end;
-  height: 43px;
+`;
+
+export const ButtonContainer = styled.div`
+  width: 100%;
+  text-align: center;
+  margin-top: 20px;
 `;

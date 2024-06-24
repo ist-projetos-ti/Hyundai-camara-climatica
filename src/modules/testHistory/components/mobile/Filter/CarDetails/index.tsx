@@ -4,12 +4,19 @@ import HorizontalDots from '@assets/horizontalDots.svg?react';
 import Car from '@assets/car.svg?react';
 import SpeedTest from '@assets/speedTest.svg?react';
 import ColorIcon from '@assets/colorIcon.svg?react';
+import SettingsIcon from '@assets/settings.svg?react';
+
 import Calendar from '@assets/simpleCalendar.svg?react';
 
 import { Select } from '@chakra-ui/react';
-import { FiSettings } from 'react-icons/fi';
 
-import { Container, Selector, Button, DateInputBox } from './styles';
+import {
+  Container,
+  Selector,
+  Button,
+  DateInputBox,
+  SelectContainer,
+} from './styles';
 
 export enum FilterType {
   VIN = 'vin',
@@ -61,7 +68,7 @@ const filterItems: IFilterItems[] = [
   {
     name: FilterType.ENGINE,
     label: 'Engine',
-    icon: <FiSettings />,
+    icon: <SettingsIcon />,
     options: [
       { label: '1.0T AT6', value: '1.0T AT6' },
       { label: '1.0T AT7', value: '1.0T AT7' },
@@ -148,37 +155,45 @@ const CarDetails: React.FC<CarDetailsProps> = ({ onChange }) => {
               <p> {item.label} </p>
             )}
           </Button>
-          <DateInputBox
-            selected={item.name === selectedItem && showBox}
-            onBlur={() => {
-              setShowBox(false);
-            }}
-          >
-            <Select
-              borderRadius={15}
-              width={300}
-              height={43}
-              onClick={(event) => {
-                const updatedValues = values;
-                updatedValues[index].value = event.target.value;
-                setValues(updatedValues);
-                const objectArray: ICarDetails = values.reduce(
-                  (acc, element) => {
-                    acc[element.fieldName] = element.value;
-                    return acc;
-                  },
-                  {} as Record<FilterType, any>
-                );
-                onChange(objectArray);
+          <SelectContainer selected={item.name === selectedItem && showBox}>
+            <DateInputBox
+              selected={item.name === selectedItem && showBox}
+              onBlur={() => {
+                setShowBox(false);
               }}
             >
-              {item.options.map((option) => (
-                <option value={option.value} key={option.value}>
-                  {option.label}
+              <Select
+                borderRadius={15}
+                width={300}
+                height={43}
+                onChange={(event) => {
+                  if (event.target.value !== 'none') {
+                    const updatedValues = values;
+                    updatedValues[index].value = event.target.value;
+                    setValues(updatedValues);
+                    const objectArray: ICarDetails = values.reduce(
+                      (acc, element) => {
+                        acc[element.fieldName] = element.value;
+                        return acc;
+                      },
+                      {} as Record<FilterType, any>
+                    );
+                    onChange(objectArray);
+                    setShowBox(false);
+                  }
+                }}
+              >
+                <option value="none" disabled selected>
+                  Select...
                 </option>
-              ))}
-            </Select>
-          </DateInputBox>
+                {item.options.map((option) => (
+                  <option value={option.value} key={option.value}>
+                    {option.label}
+                  </option>
+                ))}
+              </Select>
+            </DateInputBox>
+          </SelectContainer>
         </Selector>
       ))}
     </Container>

@@ -18,25 +18,20 @@ export const Container = styled.div`
   display: flex;
   align-items: center;
   width: fit-content;
-  height: 43px;
-  min-height: 43px;
-  justify-content: space-around;
-  background-color: #efefef;
-  border-radius: 9px;
+  height: fit-content;
+  margin: 0px 10%;
+  justify-content: space-between;
   position: relative;
-  flex-wrap: nowrap;
-  outline: none;
-  transition: 200ms;
-
-  box-shadow: rgba(255, 255, 255, 0.1) 0px 1px 1px 0px inset,
-    rgba(50, 50, 93, 0.25) 0px 50px 100px -20px,
-    rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
+  flex-wrap: wrap;
+  gap: 12px;
 `;
 
 export const Selector = styled.span<IDateSelectorProps>`
   background-color: transparent;
-  min-width: fit-content;
-
+  width: 45%;
+  overflow-x: auto;
+  overflow-y: hidden;
+  min-height: 43px;
   display: flex;
   border-radius: 9px;
   margin: 5px;
@@ -44,9 +39,10 @@ export const Selector = styled.span<IDateSelectorProps>`
   height: 31px;
   transition: 200ms;
   align-items: center;
-  justify-content: center;
 
+  background-color: #efefef;
   position: static;
+  padding: 4px;
   :first-child() {
     margin-left: 0px;
   }
@@ -63,7 +59,7 @@ export const Selector = styled.span<IDateSelectorProps>`
     selected &&
     !filledDate &&
     css`
-      background-color: #0d9f64;
+      background-color: ${({ theme }) => theme.colors.petroleumGreen};
       color: ${({ theme }) => theme.colors.white};
 
       svg {
@@ -76,9 +72,6 @@ export const DateInputBox = styled.div<IDateInputContainerProps>`
   width: 333px;
   height: 72px;
   position: absolute;
-
-  top: calc(100% + 10px);
-  left: 0;
   border-radius: 18px;
   background-color: ${({ theme }) => theme.colors.white};
   display: flex;
@@ -93,7 +86,7 @@ export const DateInputBox = styled.div<IDateInputContainerProps>`
   align-items: center;
   justify-content: space-around;
   color: #757575;
-  padding: 5px;
+  z-index: 10;
 `;
 
 export const SubmitButton = styled.button`
@@ -172,4 +165,19 @@ export const ErrorMessage = styled.p`
   position: absolute;
   bottom: 1%;
   right: 4%;
+`;
+
+export const SelectContainer = styled.div<IDateInputContainerProps>`
+  width: 100%;
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  height: 50px;
+  top: 100%;
+  left: 0;
+  ${({ selected }) =>
+    !selected &&
+    css`
+      display: none;
+    `};
 `;

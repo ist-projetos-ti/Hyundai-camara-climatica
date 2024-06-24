@@ -5,16 +5,17 @@ import { useForm, Controller } from 'react-hook-form';
 import FilterIcon from '@assets/filter.svg?react';
 
 import themeDefaults from '@style/themeDefaults';
-import { IFilterDate } from '@modules/testHistory/interfaces';
+import { useTheme } from 'styled-components';
+import { Button } from '@chakra-ui/react';
 import {
   Container,
   LabelTitle,
   DateTimeInputContainer,
   Input,
   LabelContainer,
-  Button,
   Form,
   Section,
+  ButtonContainer,
 } from './styles';
 import { FilterData, filterResolver } from './filter.zod';
 
@@ -22,30 +23,23 @@ import DateInput from './DateInput';
 import TimeInput from './TimeInput';
 import CarDetails from './CarDetails';
 
-interface IFilter {
-  setFilterDate: React.Dispatch<React.SetStateAction<IFilterDate>>;
-}
-
-const Filter: React.FC<IFilter> = ({ setFilterDate }) => {
+const Filter: React.FC = () => {
   const { control, handleSubmit } = useForm<FilterData>({
     resolver: filterResolver,
 
     mode: 'all',
   });
 
-  const onSubmit = useCallback(
-    (data: any) => {
-      setFilterDate({ start: data.date.initialDate, end: data.date.finalDate });
-      // eslint-disable-next-line no-console
-      console.log('data: ', data);
-    },
-    [setFilterDate]
-  );
+  const onSubmit = useCallback((data: any) => {
+    // eslint-disable-next-line no-console
+    console.log('data: ', data);
+  }, []);
 
+  const theme = useTheme();
   return (
     <Container>
       <LabelContainer>
-        <FilterIcon color={themeDefaults.colors.secondary} />
+        <FilterIcon color={themeDefaults.colors.petroleumGreen} />
 
         <LabelTitle>Filter</LabelTitle>
       </LabelContainer>
@@ -83,9 +77,16 @@ const Filter: React.FC<IFilter> = ({ setFilterDate }) => {
               <CarDetails onChange={onChange} />
             )}
           />
-
-          <Button type="submit">Ok →</Button>
         </Section>
+        <ButtonContainer>
+          <Button
+            colorScheme="blue"
+            width="165px"
+            bgColor={theme.colors.petroleumGreen}
+          >
+            Filter
+          </Button>
+        </ButtonContainer>
       </Form>
     </Container>
   );
