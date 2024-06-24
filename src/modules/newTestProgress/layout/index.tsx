@@ -1,15 +1,12 @@
+/* eslint-disable react/jsx-no-useless-fragment */
 /* eslint-disable @typescript-eslint/no-empty-function */
 import React from 'react';
 import { Outlet } from 'react-router-dom';
 import Header from '@components/Header';
-import DrawerNavigation from '@components/DrawerNavigation';
 import { Container, Content, Grid } from './styles';
 
-const TestProgressLayout: React.FC = () => (
+const NewTestProgressLayout: React.FC = () => (
   <Container>
-    <div>
-      <DrawerNavigation closeNavigation={() => {}} />
-    </div>
     <Content>
       <Grid>
         <Header title="Test in Progress" />
@@ -19,4 +16,4 @@ const TestProgressLayout: React.FC = () => (
   </Container>
 );
 
-export default TestProgressLayout;
+export default NewTestProgressLayout;

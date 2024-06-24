@@ -8,11 +8,16 @@ export const Container = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+
+  background-color: #efefef;
+  overflow-y: scroll;
 `;
 
 export const Content = styled.div`
   width: 95%;
   height: 100%;
+
+  margin: auto;
 `;
 
 export const Grid = styled.div`
