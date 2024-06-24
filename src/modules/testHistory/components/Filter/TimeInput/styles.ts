@@ -165,7 +165,6 @@ export const ErrorMessage = styled.p`
 `;
 
 export const InputBundle = styled.div`
-  width: 86px;
+  gap: 2px;
   display: flex;
-  justify-content: center;
 `;

@@ -5,9 +5,9 @@ import Car from '@assets/car.svg?react';
 import SpeedTest from '@assets/speedTest.svg?react';
 import ColorIcon from '@assets/colorIcon.svg?react';
 import Calendar from '@assets/simpleCalendar.svg?react';
+import SettingsIcon from '@assets/settings.svg?react';
 
 import { Select } from '@chakra-ui/react';
-import { FiSettings } from 'react-icons/fi';
 
 import { Container, Selector, Button, DateInputBox } from './styles';
 
@@ -61,7 +61,7 @@ const filterItems: IFilterItems[] = [
   {
     name: FilterType.ENGINE,
     label: 'Engine',
-    icon: <FiSettings />,
+    icon: <SettingsIcon />,
     options: [
       { label: '1.0T AT6', value: '1.0T AT6' },
       { label: '1.0T AT7', value: '1.0T AT7' },
@@ -158,7 +158,7 @@ const CarDetails: React.FC<CarDetailsProps> = ({ onChange }) => {
               borderRadius={15}
               width={300}
               height={43}
-              onClick={(event) => {
+              onChange={(event) => {
                 if (event.target.value !== 'none') {
                   const updatedValues = values;
                   updatedValues[index].value = event.target.value;

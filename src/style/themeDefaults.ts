@@ -29,6 +29,7 @@ const themeDefaults = {
     sageGreenPlus1: '#E5ECE5',
     sageGreenMinus1: '#53846A',
     sageGreenMinus2: '#1D4941',
+    petroleumGreen: '#0A8C8C',
 
     background: '#ffffff',
     backgroundPrimary: '#2A9DF4',
