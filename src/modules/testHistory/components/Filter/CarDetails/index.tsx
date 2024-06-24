@@ -159,19 +159,25 @@ const CarDetails: React.FC<CarDetailsProps> = ({ onChange }) => {
               width={300}
               height={43}
               onClick={(event) => {
-                const updatedValues = values;
-                updatedValues[index].value = event.target.value;
-                setValues(updatedValues);
-                const objectArray: ICarDetails = values.reduce(
-                  (acc, element) => {
-                    acc[element.fieldName] = element.value;
-                    return acc;
-                  },
-                  {} as Record<FilterType, any>
-                );
-                onChange(objectArray);
+                if (event.target.value !== 'none') {
+                  const updatedValues = values;
+                  updatedValues[index].value = event.target.value;
+                  setValues(updatedValues);
+                  const objectArray: ICarDetails = values.reduce(
+                    (acc, element) => {
+                      acc[element.fieldName] = element.value;
+                      return acc;
+                    },
+                    {} as Record<FilterType, any>
+                  );
+                  onChange(objectArray);
+                  setShowBox(false);
+                }
               }}
             >
+              <option value="none" disabled selected>
+                Select...
+              </option>
               {item.options.map((option) => (
                 <option value={option.value} key={option.value}>
                   {option.label}
