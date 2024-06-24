@@ -1,13 +1,12 @@
 import React, { useEffect } from 'react';
 import NavigationButtons from '@modules/testProgress/components/navigationButtons';
 import GraphInformations from '@modules/testProgress/components/graphInformations';
-import ChamberGraph from '@modules/testProgress/components/chamberGraph';
 import { PrivatePathsEnum } from '@routes/privateRoutes/privatePaths';
 import { Container } from '../styles';
 
-const TestProgressGraph: React.FC = () => {
+const ThermocoupleData: React.FC = () => {
   useEffect(() => {
-    document.title = 'TestProgressGraph';
+    document.title = 'ThermocoupleData';
   }, []);
 
   return (
@@ -17,12 +16,11 @@ const TestProgressGraph: React.FC = () => {
       </h2>
       <NavigationButtons />
       <GraphInformations
-        navigatePath={PrivatePathsEnum.TERMOCOUPLE_DATA}
-        navigationLabel="Thermocouple Data"
+        navigatePath={PrivatePathsEnum.TEST_PROGRESS_GRAPH}
+        navigationLabel="Chamber Temp"
       />
-      <ChamberGraph />
     </Container>
   );
 };
 
-export default TestProgressGraph;
+export default ThermocoupleData;
