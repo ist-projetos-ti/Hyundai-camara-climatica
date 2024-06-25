@@ -12,6 +12,7 @@ interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   maxLength?: number;
   nextInput?: string;
   setFocus?: any;
+  setValue: any;
 }
 
 const Input: React.FC<InputProps> = ({
@@ -23,6 +24,7 @@ const Input: React.FC<InputProps> = ({
   nextInput,
   maxLength = 1,
   setFocus,
+  setValue,
   ...rest
 }) => {
   const [isFocused, setIsFocused] = useState(false);
@@ -38,6 +40,10 @@ const Input: React.FC<InputProps> = ({
     if (registerOnChange) {
       registerOnChange(event);
     }
+
+    const sanitizedValue = event.target.value.replace(/\D/g, '');
+    setValue(name, sanitizedValue);
+
     if (setFocus && nextInput) {
       if (event.target.value.length === maxLength) setFocus(nextInput);
     }

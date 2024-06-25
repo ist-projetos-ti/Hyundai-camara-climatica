@@ -1,11 +1,9 @@
-/* eslint-disable arrow-body-style */
-/* eslint-disable react/no-unstable-nested-components */
 import React, { useCallback, useEffect, useState } from 'react';
 import { RiExpandUpDownLine } from 'react-icons/ri';
 
 import { LuInfo } from 'react-icons/lu';
 
-import { IData } from '@modules/testHistory/interfaces';
+import { IData, ITest } from '@modules/testHistory/interfaces';
 import {
   Container,
   TableHeader,
@@ -22,15 +20,6 @@ import {
 interface ITestHistoryTableProps {
   data: any;
   setCurrentOrderedValues: React.Dispatch<React.SetStateAction<IData[]>>;
-}
-
-interface ITest {
-  id: string;
-  start: Date;
-  end: Date;
-  testName: string;
-  description: string;
-  duration: string;
 }
 
 const TestHistoryTable: React.FC<ITestHistoryTableProps> = ({

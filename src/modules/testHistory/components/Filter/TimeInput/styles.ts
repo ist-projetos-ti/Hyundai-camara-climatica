@@ -46,6 +46,9 @@ export const DateSelector = styled.span<IDateSelectorProps>`
     !filledDate &&
     css`
       background-color: ${({ theme }) => theme.colors.secondary};
+      @media (max-width: 767px) {
+        background-color: ${({ theme }) => theme.colors.petroleumGreen};
+      }
       color: ${({ theme }) => theme.colors.white};
     `};
 
@@ -86,6 +89,14 @@ export const DateInputBox = styled.div<IDateInputContainerProps>`
   padding: 5px;
 
   z-index: 100;
+
+  @media (max-width: 767px) {
+    width: 350px;
+    height: 105px;
+    position: absolute;
+    top: 50px;
+    left: -81.5px;
+  }
 `;
 
 export const SubmitButton = styled.button`
@@ -100,6 +111,12 @@ export const SubmitButton = styled.button`
   justify-content: center;
   font-size: 14px;
   margin-top: 3%;
+
+  @media (max-width: 767px) {
+    background-color: ${({ theme }) => theme.colors.petroleumGreen};
+    margin-top: 5%;
+    margin-left: 2%;
+  }
 `;
 
 export const InputLabel = styled.p`
@@ -134,8 +151,8 @@ export const Form = styled.form`
   padding: 5px;
   width: 100%;
   height: 100%;
+  gap: 1px;
 `;
-
 export const Button = styled.button`
   background-color: transparent;
   width: 100%;
@@ -154,6 +171,10 @@ export const DateLabel = styled.p`
   font-size: 14px;
   font-weight: 500;
   width: 100%;
+
+  @media (max-width: 767px) {
+    color: ${({ theme }) => theme.colors.petroleumGreen};
+  }
 `;
 
 export const ErrorMessage = styled.p`

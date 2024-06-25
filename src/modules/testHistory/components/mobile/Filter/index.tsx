@@ -8,6 +8,10 @@ import themeDefaults from '@style/themeDefaults';
 import { useTheme } from 'styled-components';
 import { Button } from '@chakra-ui/react';
 import {
+  FilterData,
+  filterResolver,
+} from '@modules/testHistory/schemas/filter.zod';
+import {
   Container,
   LabelTitle,
   DateTimeInputContainer,
@@ -17,10 +21,10 @@ import {
   Section,
   ButtonContainer,
 } from './styles';
-import { FilterData, filterResolver } from './filter.zod';
 
-import DateInput from './DateInput';
-import TimeInput from './TimeInput';
+import DateInput from '../../Filter/DateInput';
+import TimeInput from '../../Filter/TimeInput';
+// import CarDetails from '../../Filter/CarDetails';
 import CarDetails from './CarDetails';
 
 const Filter: React.FC = () => {
@@ -81,10 +85,10 @@ const Filter: React.FC = () => {
         </Section>
         <ButtonContainer>
           <Button
-            colorScheme="blue"
             width="165px"
             bgColor={theme.colors.petroleumGreen}
             type="submit"
+            color="white"
           >
             Filter
           </Button>

@@ -29,3 +29,12 @@ export interface IData {
   end: Date;
   duration: string;
 }
+
+export interface ITest {
+  id: string;
+  start: Date;
+  end: Date;
+  testName: string;
+  description: string;
+  duration: string;
+}

@@ -16,7 +16,7 @@ import {
   Form,
   Section,
 } from './styles';
-import { FilterData, filterResolver } from './filter.zod';
+import { FilterData, filterResolver } from '../../schemas/filter.zod';
 
 import DateInput from './DateInput';
 import TimeInput from './TimeInput';

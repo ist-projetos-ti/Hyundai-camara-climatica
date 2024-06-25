@@ -18,8 +18,11 @@ import {
   Button,
   ErrorMessage,
 } from './styles';
-import { DateFilterData, dateFilterResolver } from './dateFilter.zod';
-import Input from '../Input';
+import {
+  DateFilterData,
+  dateFilterResolver,
+} from '../../../schemas/dateFilter.zod';
+import Input from '../../Input';
 
 interface DateInputProps {
   onChange: (...event: any[]) => void;
@@ -59,6 +62,7 @@ const DateInput: React.FC<DateInputProps> = ({ onChange }) => {
     register: initialDateRegister,
     clearErrors: initialDateClearErrors,
     setFocus: initialDateSetFocus,
+    setValue: initialDateSetValue,
     formState: { errors: initialDateErrors },
   } = useForm<DateFilterData>({
     resolver: dateFilterResolver,
@@ -70,6 +74,8 @@ const DateInput: React.FC<DateInputProps> = ({ onChange }) => {
     register: finalDateRegister,
     clearErrors: finalDateClearErrors,
     setFocus: finalDateSetFocus,
+    setValue: finalDateSetValue,
+
     formState: { errors: finalDateErrors },
   } = useForm<DateFilterData>({
     resolver: dateFilterResolver,
@@ -156,6 +162,7 @@ const DateInput: React.FC<DateInputProps> = ({ onChange }) => {
                   inputWidth="year"
                   nextInput="month"
                   setFocus={initialDateSetFocus}
+                  setValue={initialDateSetValue}
                 />
               </FormControl>
             </InputGroup>
@@ -172,6 +179,7 @@ const DateInput: React.FC<DateInputProps> = ({ onChange }) => {
                   inputWidth="date"
                   nextInput="day"
                   setFocus={initialDateSetFocus}
+                  setValue={initialDateSetValue}
                 />
               </FormControl>
             </InputGroup>
@@ -186,6 +194,7 @@ const DateInput: React.FC<DateInputProps> = ({ onChange }) => {
                   maxLength={2}
                   register={initialDateRegister}
                   errors={finalDateErrors.day}
+                  setValue={initialDateSetValue}
                   inputWidth="date"
                 />
               </FormControl>
@@ -231,6 +240,7 @@ const DateInput: React.FC<DateInputProps> = ({ onChange }) => {
                   inputWidth="year"
                   nextInput="month"
                   setFocus={finalDateSetFocus}
+                  setValue={finalDateSetValue}
                 />
               </FormControl>
             </InputGroup>
@@ -247,6 +257,7 @@ const DateInput: React.FC<DateInputProps> = ({ onChange }) => {
                   inputWidth="date"
                   nextInput="day"
                   setFocus={finalDateSetFocus}
+                  setValue={finalDateSetValue}
                 />
               </FormControl>
             </InputGroup>
@@ -261,6 +272,7 @@ const DateInput: React.FC<DateInputProps> = ({ onChange }) => {
                   maxLength={2}
                   register={finalDateRegister}
                   errors={finalDateErrors.day}
+                  setValue={finalDateSetValue}
                   inputWidth="date"
                 />
               </FormControl>
