@@ -10,6 +10,8 @@ interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   errors?: FieldError;
   inputWidth?: 'date' | 'year' | 'numeric';
   maxLength?: number;
+  nextInput?: string;
+  setFocus?: any;
 }
 
 const Input: React.FC<InputProps> = ({
@@ -18,17 +20,28 @@ const Input: React.FC<InputProps> = ({
   errors,
   type,
   inputWidth,
+  nextInput,
   maxLength = 1,
+  setFocus,
   ...rest
 }) => {
   const [isFocused, setIsFocused] = useState(false);
   const inputRef = useRef<HTMLInputElement | null>(null);
 
-  const { ref, ...registerRest } = register(name);
+  const { onChange: registerOnChange, ref, ...registerRest } = register(name);
 
   useEffect(() => {
     if (isFocused) inputRef.current?.focus();
   }, [isFocused]);
+
+  const combineOnChange = (event: any) => {
+    if (registerOnChange) {
+      registerOnChange(event);
+    }
+    if (setFocus && nextInput) {
+      if (event.target.value.length === maxLength) setFocus(nextInput);
+    }
+  };
 
   return (
     <Container
@@ -43,6 +56,7 @@ const Input: React.FC<InputProps> = ({
           ref(curr);
           inputRef.current = curr;
         }}
+        onChange={combineOnChange}
         onBlur={() => setIsFocused(false)}
         type={type}
         maxLength={maxLength}

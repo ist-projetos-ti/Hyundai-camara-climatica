@@ -58,6 +58,7 @@ const DateInput: React.FC<DateInputProps> = ({ onChange }) => {
     handleSubmit: handleInitialDateSubmit,
     register: initialDateRegister,
     clearErrors: initialDateClearErrors,
+    setFocus: initialDateSetFocus,
     formState: { errors: initialDateErrors },
   } = useForm<DateFilterData>({
     resolver: dateFilterResolver,
@@ -68,6 +69,7 @@ const DateInput: React.FC<DateInputProps> = ({ onChange }) => {
     handleSubmit: handleFinalDateSubmit,
     register: finalDateRegister,
     clearErrors: finalDateClearErrors,
+    setFocus: finalDateSetFocus,
     formState: { errors: finalDateErrors },
   } = useForm<DateFilterData>({
     resolver: dateFilterResolver,
@@ -152,6 +154,8 @@ const DateInput: React.FC<DateInputProps> = ({ onChange }) => {
                   maxLength={4}
                   errors={initialDateErrors.year}
                   inputWidth="year"
+                  nextInput="month"
+                  setFocus={initialDateSetFocus}
                 />
               </FormControl>
             </InputGroup>
@@ -166,6 +170,8 @@ const DateInput: React.FC<DateInputProps> = ({ onChange }) => {
                   register={initialDateRegister}
                   errors={initialDateErrors.month}
                   inputWidth="date"
+                  nextInput="day"
+                  setFocus={initialDateSetFocus}
                 />
               </FormControl>
             </InputGroup>
@@ -223,6 +229,8 @@ const DateInput: React.FC<DateInputProps> = ({ onChange }) => {
                   maxLength={4}
                   errors={finalDateErrors.year}
                   inputWidth="year"
+                  nextInput="month"
+                  setFocus={finalDateSetFocus}
                 />
               </FormControl>
             </InputGroup>
@@ -237,6 +245,8 @@ const DateInput: React.FC<DateInputProps> = ({ onChange }) => {
                   register={finalDateRegister}
                   errors={finalDateErrors.month}
                   inputWidth="date"
+                  nextInput="day"
+                  setFocus={finalDateSetFocus}
                 />
               </FormControl>
             </InputGroup>

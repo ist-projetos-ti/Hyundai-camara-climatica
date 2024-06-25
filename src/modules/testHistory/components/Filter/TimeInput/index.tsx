@@ -55,6 +55,7 @@ const TimeInput: React.FC<TimeInputProps> = ({ onChange }) => {
     handleSubmit: handleInitialTimeSubmit,
     register: initialTimeRegister,
     clearErrors: initialTimeClearErrors,
+    setFocus: initialTimeSetFocus,
     formState: { errors: initialTimeErrors },
   } = useForm<TimeFilterData>({
     resolver: timeFilterResolver,
@@ -65,6 +66,7 @@ const TimeInput: React.FC<TimeInputProps> = ({ onChange }) => {
     handleSubmit: handleFinalTimeSubmit,
     register: finalTimeRegister,
     clearErrors: finalTimeClearErrors,
+    setFocus: finalTimeSetFocus,
     formState: { errors: finalTimeErrors },
   } = useForm<TimeFilterData>({
     resolver: timeFilterResolver,
@@ -121,6 +123,8 @@ const TimeInput: React.FC<TimeInputProps> = ({ onChange }) => {
                     type="text"
                     maxLength={1}
                     errors={initialTimeErrors.hour_h1}
+                    nextInput="hour_h2"
+                    setFocus={initialTimeSetFocus}
                   />
                 </FormControl>
 
@@ -131,6 +135,8 @@ const TimeInput: React.FC<TimeInputProps> = ({ onChange }) => {
                     type="text"
                     maxLength={1}
                     errors={initialTimeErrors.hour_h2}
+                    nextInput="minute_m1"
+                    setFocus={initialTimeSetFocus}
                   />
                 </FormControl>
               </InputBundle>
@@ -146,6 +152,8 @@ const TimeInput: React.FC<TimeInputProps> = ({ onChange }) => {
                     maxLength={1}
                     register={initialTimeRegister}
                     errors={initialTimeErrors.minute_m1}
+                    nextInput="minute_m2"
+                    setFocus={initialTimeSetFocus}
                   />
                 </FormControl>
                 <FormControl isInvalid={!!initialTimeErrors.minute_m2}>
@@ -155,6 +163,8 @@ const TimeInput: React.FC<TimeInputProps> = ({ onChange }) => {
                     maxLength={1}
                     register={initialTimeRegister}
                     errors={initialTimeErrors.minute_m2}
+                    nextInput="second_s1"
+                    setFocus={initialTimeSetFocus}
                   />
                 </FormControl>
               </InputBundle>
@@ -171,6 +181,8 @@ const TimeInput: React.FC<TimeInputProps> = ({ onChange }) => {
                     maxLength={1}
                     register={initialTimeRegister}
                     errors={initialTimeErrors.second_s1}
+                    nextInput="second_s2"
+                    setFocus={initialTimeSetFocus}
                   />
                 </FormControl>
 
@@ -224,6 +236,8 @@ const TimeInput: React.FC<TimeInputProps> = ({ onChange }) => {
                     type="text"
                     maxLength={1}
                     errors={finalTimeErrors.hour_h1}
+                    nextInput="hour_h2"
+                    setFocus={finalTimeSetFocus}
                   />
                 </FormControl>
                 <FormControl isInvalid={!!finalTimeErrors.hour_h1}>
@@ -233,6 +247,8 @@ const TimeInput: React.FC<TimeInputProps> = ({ onChange }) => {
                     type="text"
                     maxLength={1}
                     errors={finalTimeErrors.hour_h2}
+                    nextInput="minute_m1"
+                    setFocus={finalTimeSetFocus}
                   />
                 </FormControl>
               </InputBundle>
@@ -249,6 +265,8 @@ const TimeInput: React.FC<TimeInputProps> = ({ onChange }) => {
                     maxLength={1}
                     register={finalTimeRegister}
                     errors={finalTimeErrors.minute_m1}
+                    nextInput="minute_m2"
+                    setFocus={finalTimeSetFocus}
                   />
                 </FormControl>
                 <FormControl isInvalid={!!finalTimeErrors.minute_m1}>
@@ -258,6 +276,8 @@ const TimeInput: React.FC<TimeInputProps> = ({ onChange }) => {
                     maxLength={1}
                     register={finalTimeRegister}
                     errors={finalTimeErrors.minute_m1}
+                    nextInput="second_s1"
+                    setFocus={finalTimeSetFocus}
                   />
                 </FormControl>
               </InputBundle>
@@ -274,6 +294,8 @@ const TimeInput: React.FC<TimeInputProps> = ({ onChange }) => {
                     maxLength={1}
                     register={finalTimeRegister}
                     errors={finalTimeErrors.second_s1}
+                    nextInput="second_s2"
+                    setFocus={finalTimeSetFocus}
                   />
                 </FormControl>
                 <FormControl isInvalid={!!finalTimeErrors.second_s2}>
