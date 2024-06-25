@@ -13,19 +13,19 @@ interface ISelectGraphItemProps {
 
 const data1 = {
   users: [
-    { id: 0, name: 'LABEL : IR LAMP 1', color: 'red' },
-    { id: 1, name: 'LABEL : IR LAMP 2', color: 'pink' },
-    { id: 2, name: 'LABEL : IR LAMP 3', color: 'blue' },
-    { id: 3, name: 'LABEL : IR LAMP 4', color: 'green' },
+    { id: 0, name: 'LABEL : IR LAMP 1', color: '#aabbcc' },
+    { id: 1, name: 'LABEL : IR LAMP 2', color: '#aabbcc' },
+    { id: 2, name: 'LABEL : IR LAMP 3', color: '#aabbcc' },
+    { id: 3, name: 'LABEL : IR LAMP 4', color: '#aabbcc' },
   ],
 };
 
 const data2 = {
   users: [
-    { id: 4, name: 'LABEL : THERMO 1', color: 'yellow' },
-    { id: 5, name: 'LABEL : THERMO 2', color: 'black' },
-    { id: 6, name: 'LABEL : THERMO 3', color: 'purple' },
-    { id: 7, name: 'LABEL : THERMO 4', color: 'brown' },
+    { id: 4, name: 'LABEL : THERMO 1', color: '#aabbcc' },
+    { id: 5, name: 'LABEL : THERMO 2', color: '#aabbcc' },
+    { id: 6, name: 'LABEL : THERMO 3', color: '#aabbcc' },
+    { id: 7, name: 'LABEL : THERMO 4', color: '#aabbcc' },
   ],
 };
 

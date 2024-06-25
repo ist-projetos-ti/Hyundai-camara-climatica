@@ -9,3 +9,10 @@ export const Container = styled.div`
     color: ${themeDefaults.colors.darkPrimary};
   }
 `;
+
+export const ChamberInformationsContent = styled.div`
+  width: 100%;
+  display: flex;
+
+  margin: 2rem 0;
+`;
