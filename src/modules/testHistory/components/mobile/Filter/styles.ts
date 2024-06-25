@@ -18,6 +18,7 @@ export const LabelTitle = styled.span`
 export const DateTimeInputContainer = styled.div`
   display: flex;
   justify-content: center;
+  align-items: center;
   margin: auto;
   flex-direction: column;
   gap: 24px;

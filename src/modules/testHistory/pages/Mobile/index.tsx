@@ -45,7 +45,7 @@ const MobileTestHistoryPage: React.FC = () => {
           finalFocusRef={btnRef}
         >
           <DrawerOverlay />
-          <DrawerContent borderRadius="17px" height="600px">
+          <DrawerContent height="600px" borderTopRadius="17px">
             <DrawerCloseButton />
             <DrawerHeader
               textAlign="center"

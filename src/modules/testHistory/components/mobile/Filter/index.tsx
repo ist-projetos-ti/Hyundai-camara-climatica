@@ -32,6 +32,7 @@ const Filter: React.FC = () => {
 
   const onSubmit = useCallback((data: any) => {
     // eslint-disable-next-line no-console
+
     console.log('data: ', data);
   }, []);
 
@@ -83,6 +84,7 @@ const Filter: React.FC = () => {
             colorScheme="blue"
             width="165px"
             bgColor={theme.colors.petroleumGreen}
+            type="submit"
           >
             Filter
           </Button>
