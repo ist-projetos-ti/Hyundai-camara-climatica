@@ -15,7 +15,7 @@ import {
   addMinutes,
   differenceInSeconds,
 } from 'date-fns';
-import { IFilterDate } from '@modules/testHistory/interfaces';
+import { IData, IFilterDate } from '@modules/testHistory/interfaces';
 import {
   Container,
   TableContainer,
@@ -76,13 +76,16 @@ const DesktopTestHistoryPage: React.FC = () => {
     )}:${String(seconds).padStart(2, '0')}`;
   }, []);
 
-  const formattedData = data.map((item) => ({
+  const formattedData: IData[] = data.map((item) => ({
     testName: item.testName,
     description: item.description,
     start: item.start,
     end: item.end,
     duration: GetDifference(item.start, item.end),
   }));
+
+  const [currentOrderedValues, setCurrentOrderedValues] =
+    useState<IData[]>(formattedData);
 
   const [filterDate, setFilterDate] = useState<IFilterDate>({} as IFilterDate);
 
@@ -104,11 +107,11 @@ const DesktopTestHistoryPage: React.FC = () => {
                   'Fim',
                   'Duração',
                 ],
-                data: formattedData,
+                data: currentOrderedValues,
               },
               filters: {
-                start: filterDate.start,
-                end: filterDate.end,
+                start: filterDate.start || '',
+                end: filterDate.end || '',
               },
             })
           }
@@ -118,7 +121,10 @@ const DesktopTestHistoryPage: React.FC = () => {
         </Button>
       </SettingsSection>
       <TableContainer>
-        <TestHistoryTable data={formattedData} />
+        <TestHistoryTable
+          data={formattedData}
+          setCurrentOrderedValues={setCurrentOrderedValues}
+        />
       </TableContainer>
     </Container>
   );

@@ -1,10 +1,11 @@
 /* eslint-disable arrow-body-style */
 /* eslint-disable react/no-unstable-nested-components */
-import React, { useCallback, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { RiExpandUpDownLine } from 'react-icons/ri';
 
 import { LuInfo } from 'react-icons/lu';
 
+import { IData } from '@modules/testHistory/interfaces';
 import {
   Container,
   TableHeader,
@@ -20,6 +21,7 @@ import {
 
 interface ITestHistoryTableProps {
   data: any;
+  setCurrentOrderedValues: React.Dispatch<React.SetStateAction<IData[]>>;
 }
 
 interface ITest {
@@ -31,7 +33,10 @@ interface ITest {
   duration: string;
 }
 
-const TestHistoryTable: React.FC<ITestHistoryTableProps> = ({ data }) => {
+const TestHistoryTable: React.FC<ITestHistoryTableProps> = ({
+  data,
+  setCurrentOrderedValues,
+}) => {
   const [formattedData, setFormattedData] = useState<ITest[]>(data);
   const [currentOrderStart, setCurrentOrderStart] = useState<
     'asc' | 'desc' | null
@@ -39,6 +44,10 @@ const TestHistoryTable: React.FC<ITestHistoryTableProps> = ({ data }) => {
   const [currentOrderEnd, setCurrentOrderEnd] = useState<'asc' | 'desc' | null>(
     null
   );
+
+  useEffect(() => {
+    setCurrentOrderedValues(formattedData);
+  }, [formattedData, setCurrentOrderedValues]);
 
   const formatDate = useCallback((date: Date) => {
     const year = date.getFullYear();

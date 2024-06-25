@@ -7,14 +7,17 @@ export const handleExportReport = (report: IExportReportData) => {
   let workbookName = '';
 
   // eslint-disable-next-line camelcase
-  const formatted_date_filters = [
-    [
-      `${format(new Date(report.filters.start), 'dd/MM/yyyy')} - ${format(
-        new Date(report.filters.end),
-        'dd/MM/yyyy'
-      )}`,
-    ],
-  ];
+  const formatted_date_filters =
+    report.filters.start && report.filters.end
+      ? [
+          [
+            `${format(new Date(report.filters.start), 'dd/MM/yyyy')} - ${format(
+              new Date(report.filters.end),
+              'dd/MM/yyyy'
+            )}`,
+          ],
+        ]
+      : [];
 
   if (report.values) {
     const binaryWS = xlsx.utils.json_to_sheet([]);

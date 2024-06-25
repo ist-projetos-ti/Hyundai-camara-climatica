@@ -12,12 +12,20 @@ export interface ITestHistoryData {
 export interface IExportReportData {
   values: ITestHistoryData;
   filters: {
-    start: Date;
-    end: Date;
+    start?: Date;
+    end?: Date;
   };
 }
 
 export interface IFilterDate {
   start: Date;
   end: Date;
+}
+
+export interface IData {
+  testName: string;
+  description: string;
+  start: Date;
+  end: Date;
+  duration: string;
 }
