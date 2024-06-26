@@ -12,7 +12,7 @@ export const Container = styled.div`
   overflow-y: auto;
 `;
 
-export const CheckboxContent = styled.div<{ color: string }>`
+export const CheckboxContent = styled.div`
   width: 100%;
   display: flex;
   align-items: center;

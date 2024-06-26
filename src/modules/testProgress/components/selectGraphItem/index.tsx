@@ -13,19 +13,19 @@ interface ISelectGraphItemProps {
 
 const data1 = {
   users: [
-    { id: 0, name: 'LABEL : IR LAMP 1', color: '#aabbcc' },
-    { id: 1, name: 'LABEL : IR LAMP 2', color: '#aabbcc' },
-    { id: 2, name: 'LABEL : IR LAMP 3', color: '#aabbcc' },
-    { id: 3, name: 'LABEL : IR LAMP 4', color: '#aabbcc' },
+    { id: 0, name: 'LABEL : IR LAMP 1' },
+    { id: 1, name: 'LABEL : IR LAMP 2' },
+    { id: 2, name: 'LABEL : IR LAMP 3' },
+    { id: 3, name: 'LABEL : IR LAMP 4' },
   ],
 };
 
 const data2 = {
   users: [
-    { id: 4, name: 'LABEL : THERMO 1', color: '#aabbcc' },
-    { id: 5, name: 'LABEL : THERMO 2', color: '#aabbcc' },
-    { id: 6, name: 'LABEL : THERMO 3', color: '#aabbcc' },
-    { id: 7, name: 'LABEL : THERMO 4', color: '#aabbcc' },
+    { id: 4, name: 'LABEL : THERMO 1' },
+    { id: 5, name: 'LABEL : THERMO 2' },
+    { id: 6, name: 'LABEL : THERMO 3' },
+    { id: 7, name: 'LABEL : THERMO 4' },
   ],
 };
 
@@ -83,7 +83,7 @@ const SelectGraphItem: React.FC<ISelectGraphItemProps> = ({
       </Checkbox>
       <AccordionSelectItems title="ir lamps">
         {data1.users.map((data) => (
-          <CheckboxContent color={data.color}>
+          <CheckboxContent>
             <MdOutlineRemoveRedEye size={20} />
             <RGBPicker
               selectColor={(value) => {
@@ -111,7 +111,7 @@ const SelectGraphItem: React.FC<ISelectGraphItemProps> = ({
       </AccordionSelectItems>
       <AccordionSelectItems title="thermocouples">
         {data2.users.map((data) => (
-          <CheckboxContent color={data.color}>
+          <CheckboxContent>
             <MdOutlineRemoveRedEye size={20} />
             <RGBPicker
               selectColor={(value) => {
