@@ -19,7 +19,7 @@ const themeDefaults = {
     white: '#FFFFFF',
     warmGray: '#DED7D6',
     warmGrayBackground: '#F2EFEF',
-    warmGrayMinus1: '#A7A1A1',
+    warmGrayMinus1: '#757575',
     warmGrayMinus2: '#968282',
     warmGrayMinus3: '#4D3938',
 
