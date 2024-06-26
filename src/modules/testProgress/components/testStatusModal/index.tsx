@@ -18,23 +18,25 @@ import testStarted from '@modules/testProgress/assets/teste-em-andamento.json';
 import { useTheme } from 'styled-components';
 import RightArrow from '@assets/rightArrow.svg?react';
 import { format } from 'date-fns';
+import { PrivatePathsEnum } from '@routes/privateRoutes/privatePaths';
+import { useNavigate } from 'react-router-dom';
 import { ButtonContainer } from './styles';
 
-interface ITestInProgressModalProps {
+interface ITestStatusModalProps {
   isOpen: boolean;
   onClose: () => void;
   date: Date;
   variety: 'progress' | 'finished';
 }
 
-const TestInProgressModal: React.FC<ITestInProgressModalProps> = ({
+const TestStatusModal: React.FC<ITestStatusModalProps> = ({
   isOpen,
   onClose,
   date,
   variety,
 }) => {
   const theme = useTheme();
-
+  const navigate = useNavigate();
   return (
     <Modal
       isOpen={isOpen}
@@ -176,7 +178,10 @@ const TestInProgressModal: React.FC<ITestInProgressModalProps> = ({
                 marginTop="40%"
                 w={variety === 'progress' ? '160px' : '245px'}
                 borderRadius={12}
-                onClick={onClose}
+                onClick={() => {
+                  if (variety === 'progress') onClose();
+                  else navigate(PrivatePathsEnum.HISTORICAL_ALERTS);
+                }}
                 gap="10px"
               >
                 {variety === 'progress' ? (
@@ -194,4 +199,4 @@ const TestInProgressModal: React.FC<ITestInProgressModalProps> = ({
   );
 };
 
-export default TestInProgressModal;
+export default TestStatusModal;

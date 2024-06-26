@@ -2,8 +2,8 @@ import React, { useEffect } from 'react';
 import NavigationButtons from '@modules/testProgress/components/navigationButtons';
 import GraphInformations from '@modules/testProgress/components/graphInformations';
 import ChamberGraph from '@modules/testProgress/components/chamberGraph';
-import TestInProgressModal from '@modules/testProgress/components/testStartedModal';
 import { useDisclosure } from '@chakra-ui/react';
+import TestStatusModal from '@modules/testProgress/components/testStatusModal';
 import { Container } from './styles';
 
 const TestProgressGraph: React.FC = () => {
@@ -21,7 +21,7 @@ const TestProgressGraph: React.FC = () => {
 
   return (
     <Container>
-      <TestInProgressModal
+      <TestStatusModal
         isOpen={isOpen}
         onClose={onClose}
         date={initialTest}
