@@ -38,6 +38,7 @@ export const DateSelector = styled.span<IDateSelectorProps>`
   height: 31px;
   transition: 200ms;
   align-items: center;
+
   justify-content: center;
 
   :nth-child(2n-1) {
@@ -93,7 +94,8 @@ export const DateInputBox = styled.div<IDateInputContainerProps>`
     height: 105px;
     position: absolute;
     top: 50px;
-    left: -81.5px;
+    left: 50%;
+    transform: translateX(-50%);
   }
 `;
 
@@ -168,6 +170,14 @@ export const Button = styled.button`
   transition: 200ms;
   align-items: center;
   justify-content: center;
+
+  svg {
+    height: 100%;
+  }
+`;
+
+export const IconContainer = styled.span`
+  height: 100%;
 `;
 
 export const DateLabel = styled.p`
@@ -175,8 +185,8 @@ export const DateLabel = styled.p`
   font-size: 14px;
   font-weight: 500;
   width: fit-content;
-  display: flex;
-  flex-wrap: nowrap;
+
+  height: 100%;
 
   @media (max-width: 767px) {
     color: ${({ theme }) => theme.colors.petroleumGreen};
@@ -188,5 +198,10 @@ export const ErrorMessage = styled.p`
   font-size: 10px;
   position: absolute;
   bottom: 1%;
-  right: 4%;
+  left: 6%;
+  gap: 8px;
+  display: flex;
+  p {
+    font-weight: bold;
+  }
 `;

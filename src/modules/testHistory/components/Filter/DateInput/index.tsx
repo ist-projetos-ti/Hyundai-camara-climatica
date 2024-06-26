@@ -17,6 +17,7 @@ import {
   DateLabel,
   Button,
   ErrorMessage,
+  IconContainer,
 } from './styles';
 import {
   DateFilterData,
@@ -222,7 +223,9 @@ const DateInput: React.FC<DateInputProps> = ({ onChange }) => {
           }}
           type="button"
         >
-          <CalendarIcon />
+          <IconContainer>
+            <CalendarIcon />
+          </IconContainer>
           {finalDate ? <DateLabel> {finalDate}</DateLabel> : <p>End</p>}
         </Button>
 
@@ -284,7 +287,12 @@ const DateInput: React.FC<DateInputProps> = ({ onChange }) => {
               Ok →
             </SubmitButton>
           </Form>
-          {!!showError && <ErrorMessage>{showError}</ErrorMessage>}
+          {!!showError && (
+            <ErrorMessage>
+              <p>✖</p>
+              <p>{showError}</p>
+            </ErrorMessage>
+          )}
         </DateInputBox>
       </DateSelector>
     </Container>

@@ -94,8 +94,8 @@ export const DateInputBox = styled.div<IDateInputContainerProps>`
     width: 350px;
     height: 105px;
     position: absolute;
-    top: 50px;
-    left: -81.5px;
+    left: 50%;
+    transform: translateX(-50%);
   }
 `;
 
@@ -178,7 +178,7 @@ export const DateLabel = styled.p`
 `;
 
 export const ErrorMessage = styled.p`
-  color: red;
+  color: ${({ theme }) => theme.colors.danger};
   font-size: 10px;
   position: absolute;
   bottom: 1%;
