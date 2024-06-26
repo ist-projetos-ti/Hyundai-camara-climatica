@@ -25,7 +25,7 @@ const TestProgressGraph: React.FC = () => {
         isOpen={isOpen}
         onClose={onClose}
         date={initialTest}
-        variety="finished"
+        variety="progress"
       />
       <h2>
         <b>Test Name</b> • Description
