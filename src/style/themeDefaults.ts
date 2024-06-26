@@ -22,6 +22,8 @@ const themeDefaults = {
     warmGrayMinus1: '#757575',
     warmGrayMinus2: '#968282',
     warmGrayMinus3: '#4D3938',
+    lightGray: '#E6E6E6',
+    gray: '#8B8B8B',
 
     softBlue: '#BDCDDA',
     softBlueBackground: '#EFF3F6',
@@ -34,6 +36,7 @@ const themeDefaults = {
     sageGreenPlus1: '#E5ECE5',
     sageGreenMinus1: '#53846A',
     sageGreenMinus2: '#1D4941',
+    green: '#4DE5A8',
 
     background: '#ffffff',
     backgroundPrimary: '#2A9DF4',

@@ -18,17 +18,20 @@ import testStarted from '@modules/testProgress/assets/teste-em-andamento.json';
 import { useTheme } from 'styled-components';
 import RightArrow from '@assets/rightArrow.svg?react';
 import { format } from 'date-fns';
+import { ButtonContainer } from './styles';
 
 interface ITestInProgressModalProps {
   isOpen: boolean;
   onClose: () => void;
   date: Date;
+  variety: 'progress' | 'finished';
 }
 
 const TestInProgressModal: React.FC<ITestInProgressModalProps> = ({
   isOpen,
   onClose,
   date,
+  variety,
 }) => {
   const theme = useTheme();
 
@@ -54,7 +57,9 @@ const TestInProgressModal: React.FC<ITestInProgressModalProps> = ({
         display="flex"
         justifyContent="center"
         borderRadius="0px"
-        bgColor="#E6E6E6"
+        bgColor={
+          variety === 'progress' ? theme.colors.lightGray : theme.colors.gray
+        }
       >
         <ModalHeader
           textAlign="center"
@@ -74,20 +79,28 @@ const TestInProgressModal: React.FC<ITestInProgressModalProps> = ({
           display="flex"
           flexDirection="column"
           alignItems="center"
-          color={themeDefaults.colors.primary}
+          color={
+            variety === 'progress'
+              ? themeDefaults.colors.primary
+              : themeDefaults.colors.green
+          }
           maxHeight={46}
           marginTop="-40px"
           p={0}
         >
           <Text fontSize={24} fontWeight="bold" align="center">
-            Test started
+            {variety === 'progress' ? `Test started` : `Test Finished`}
           </Text>
 
           <Text
             fontSize={24}
             fontWeight="bold"
             align="center"
-            color={theme.colors.warmGrayMinus1}
+            color={
+              variety === 'progress'
+                ? theme.colors.warmGrayMinus1
+                : theme.colors.white
+            }
             textTransform="uppercase"
             marginBottom="32px"
           >
@@ -141,20 +154,39 @@ const TestInProgressModal: React.FC<ITestInProgressModalProps> = ({
 
         <ModalFooter marginTop="4%">
           <Box>
-            <Button
-              border="2px solid"
-              borderColor={theme.colors.primary}
-              bgColor="transparent"
-              color={theme.colors.primary}
-              _hover={{ bg: theme.colors.primary, color: theme.colors.white }}
-              marginTop="40%"
-              w="160px"
-              borderRadius={12}
-              onClick={onClose}
-              gap="10px"
-            >
-              <p> Follow </p> <RightArrow />
-            </Button>
+            <ButtonContainer variety={variety}>
+              <Button
+                border="2px solid"
+                borderColor={
+                  variety === 'progress'
+                    ? theme.colors.primary
+                    : theme.colors.white
+                }
+                bgColor="transparent"
+                color={
+                  variety === 'progress'
+                    ? theme.colors.primary
+                    : theme.colors.white
+                }
+                _hover={
+                  variety === 'progress'
+                    ? { bg: theme.colors.primary, color: theme.colors.white }
+                    : { bg: theme.colors.white, color: theme.colors.gray }
+                }
+                marginTop="40%"
+                w={variety === 'progress' ? '160px' : '245px'}
+                borderRadius={12}
+                onClick={onClose}
+                gap="10px"
+              >
+                {variety === 'progress' ? (
+                  <p> Follow </p>
+                ) : (
+                  <p> Go to Test History </p>
+                )}
+                <RightArrow />
+              </Button>
+            </ButtonContainer>
           </Box>
         </ModalFooter>
       </ModalContent>
