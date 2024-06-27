@@ -2,9 +2,10 @@ import React, { useEffect } from 'react';
 import NavigationButtons from '@modules/testProgress/components/navigationButtons';
 import GraphInformations from '@modules/testProgress/components/graphInformations';
 import ChamberGraph from '@modules/testProgress/components/chamberGraph';
+import { PrivatePathsEnum } from '@routes/privateRoutes/privatePaths';
 import { useDisclosure } from '@chakra-ui/react';
 import TestStatusModal from '@modules/testProgress/components/testStatusModal';
-import { Container } from './styles';
+import { Container } from '../styles';
 
 const TestProgressGraph: React.FC = () => {
   useEffect(() => {
@@ -31,7 +32,10 @@ const TestProgressGraph: React.FC = () => {
         <b>Test Name</b> • Description
       </h2>
       <NavigationButtons />
-      <GraphInformations />
+      <GraphInformations
+        navigatePath={PrivatePathsEnum.TERMOCOUPLE_DATA}
+        navigationLabel="Thermocouple Data"
+      />
       <ChamberGraph />
     </Container>
   );

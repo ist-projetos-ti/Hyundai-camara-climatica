@@ -6,5 +6,6 @@ export enum PrivatePathsEnum {
   HISTORICAL_ALERTS = '/historical_alerts',
   HISTORICAL_TESTS = '/historical_tests',
   TEST_PROGRESS_GRAPH = '/test_progress_graph',
+  TERMOCOUPLE_DATA = '/termocoupledata',
   NEW_TEST_PROGRESS = '/new_test_progress',
 }
