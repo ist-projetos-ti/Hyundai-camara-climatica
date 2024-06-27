@@ -24,7 +24,7 @@ const themeDefaults = {
     warmGrayMinus3: '#4D3938',
     lightGray: '#E6E6E6',
     gray: '#8B8B8B',
-
+    darkGray: '#3A3B3B',
     softBlue: '#BDCDDA',
     softBlueBackground: '#EFF3F6',
     softBluePlus1: '#DDE7ED',
@@ -37,6 +37,7 @@ const themeDefaults = {
     sageGreenMinus1: '#53846A',
     sageGreenMinus2: '#1D4941',
     green: '#4DE5A8',
+    petroleumGreen: '#0A8C8C',
 
     background: '#ffffff',
     backgroundPrimary: '#2A9DF4',
@@ -47,7 +48,7 @@ const themeDefaults = {
 
     according: '#53846A',
     alert: '#FFA000',
-    danger: '#E92020',
+    danger: '#F64B4B',
     lightDanger: '#FF204E',
     inactive: '#D0D0D0D0',
 
