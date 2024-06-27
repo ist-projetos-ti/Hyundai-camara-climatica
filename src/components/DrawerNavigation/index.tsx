@@ -72,7 +72,11 @@ const DrawerNavigation: React.FC<IDrawerNavigationProps> = ({
           <IoPlayCircleOutline size={30} />
           <p>Testes</p>
         </LinkStyled>
-        <LinkStyled _hover={{ textDecoration: 'none' }}>
+        <LinkStyled
+          as={ReactRouterLink}
+          to={PrivatePathsEnum.TEST_HISTORY}
+          _hover={{ textDecoration: 'none' }}
+        >
           <IoLayersOutline size={30} />
           <p>Histórico de testes</p>
         </LinkStyled>
