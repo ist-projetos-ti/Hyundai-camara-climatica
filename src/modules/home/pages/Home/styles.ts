@@ -6,6 +6,9 @@ export const Container = styled.div`
   display: flex;
   flex-direction: column;
   margin-top: 50px;
+
+  align-items: center;
+  justify-content: space-around;
 `;
 
 export const TableContainer = styled.div`
@@ -39,4 +42,12 @@ export const Form = styled.form`
     align-items: center;
     margin-left: 2rem;
   }
+`;
+
+export const Content = styled.div`
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
 `;
