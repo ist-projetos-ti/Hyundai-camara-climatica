@@ -18,10 +18,11 @@ const themeDefaults = {
     black: '#000000',
     white: '#FFFFFF',
     warmGray: '#DED7D6',
-    warmGrayBackground: '#F2EFEF',
-    warmGrayMinus1: '#A7A1A1',
-    warmGrayMinus2: '#968282',
+    warmGrayBackground: '#efefef',
+    warmGrayMinus1: '#757575',
+    warmGrayMinus2: '#C1C1C1',
     warmGrayMinus3: '#4D3938',
+    darkGray: '#3A3B3B',
 
     softBlue: '#BDCDDA',
     softBlueBackground: '#EFF3F6',
@@ -34,6 +35,7 @@ const themeDefaults = {
     sageGreenPlus1: '#E5ECE5',
     sageGreenMinus1: '#53846A',
     sageGreenMinus2: '#1D4941',
+    petroleumGreen: '#0A8C8C',
 
     background: '#ffffff',
     backgroundPrimary: '#2A9DF4',
@@ -44,7 +46,7 @@ const themeDefaults = {
 
     according: '#53846A',
     alert: '#FFA000',
-    danger: '#E92020',
+    danger: '#F64B4B',
     lightDanger: '#FF204E',
     inactive: '#D0D0D0D0',
 
