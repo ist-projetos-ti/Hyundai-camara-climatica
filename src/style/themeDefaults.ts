@@ -3,8 +3,14 @@ import { keyframes } from 'styled-components';
 const themeDefaults = {
   colors: {
     primary: '#0B98A3',
+    darkPrimary: '#0A8C8C',
     secondary: '#0D9F64',
     lightSecondary: '#AFD198',
+
+    graphTemp1: '#5537BB',
+    graphTemp2: '#606EED',
+    graphHumity1: '#4CBBA0',
+    graphHumity2: '#278288',
 
     shadedOverlay: '#094A4FB3',
     shadeMobile: '#0C7C85D9',
