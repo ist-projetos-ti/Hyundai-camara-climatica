@@ -1,8 +1,8 @@
 import styled from 'styled-components';
 
-export const Container = styled.div`
+export const Container = styled.div<{ isTestHistory?: boolean }>`
   width: 100%;
-  height: 70%;
+  height: ${({ isTestHistory }) => (isTestHistory ? 100 : 70)}%;
 
   display: flex;
 `;
