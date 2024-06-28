@@ -180,7 +180,7 @@ const TestStatusModal: React.FC<ITestStatusModalProps> = ({
                 borderRadius={12}
                 onClick={() => {
                   if (variety === 'progress') onClose();
-                  else navigate(PrivatePathsEnum.HISTORICAL_ALERTS);
+                  else navigate(PrivatePathsEnum.HISTORICAL_TESTS);
                 }}
                 gap="10px"
               >

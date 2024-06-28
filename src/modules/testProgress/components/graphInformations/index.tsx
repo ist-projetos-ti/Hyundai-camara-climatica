@@ -43,7 +43,9 @@ const GraphInformations: React.FC<IGraphInformationsProps> = ({
           <ContentTimeStyled label="Second" time1={0} time2={0} />
         </ElapsedTimeContent>
       </InformationContent>
-      <NavigationButton onClick={() => navigate(path)}>
+      <NavigationButton
+        onClick={() => navigate(path, { state: { throughModule: true } })}
+      >
         <p>{navigationLabel}</p>
         <FaArrowRightLong color={themeDefaults.colors.primary} />
       </NavigationButton>
