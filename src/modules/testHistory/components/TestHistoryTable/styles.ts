@@ -38,7 +38,7 @@ export const TableBody = styled.div`
   overflow: auto;
 `;
 
-export const TableRow = styled.div`
+export const TableRow = styled.button`
   width: 100%;
   height: 48px;
   border: 2px solid #dedede;

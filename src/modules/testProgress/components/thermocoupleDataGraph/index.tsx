@@ -43,7 +43,13 @@ interface ICheckedItemsProps {
   color: string;
 }
 
-const ThermocoupleDataGraph: React.FC = () => {
+interface IThermocoupleDataGraphProps {
+  isHistory?: boolean;
+}
+
+const ThermocoupleDataGraph: React.FC<IThermocoupleDataGraphProps> = ({
+  isHistory,
+}) => {
   const [fakeData] = useState(graphData);
   const [sliderValue, setSliderValue] = useState(0);
   const [sliderInformationData] = useState<[{ hour: number }]>(hoursLabel);
@@ -85,7 +91,7 @@ const ThermocoupleDataGraph: React.FC = () => {
         }
       />
       <ThermocoupleGraphContent>
-        <ResponsiveContainer width="100%" height="80%">
+        <ResponsiveContainer width="100%" height={isHistory ? '125%' : '80%'}>
           <LineChart data={fakeData}>
             <CartesianGrid strokeOpacity={0.5} />
             <XAxis fontSize={10} strokeOpacity={0} dataKey="time" />
