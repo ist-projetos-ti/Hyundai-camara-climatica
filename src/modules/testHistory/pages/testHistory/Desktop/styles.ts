@@ -6,13 +6,12 @@ export const Container = styled.div`
   display: flex;
   flex-direction: column;
   margin-top: 32px;
+  position: relative;
 `;
 
 export const TableContainer = styled.div`
   width: 100%;
   height: 85%;
-
-  position: relative;
 `;
 
 export const SettingsSection = styled.div`
