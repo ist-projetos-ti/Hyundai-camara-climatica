@@ -4,6 +4,8 @@ import { RiExpandUpDownLine } from 'react-icons/ri';
 import { LuInfo } from 'react-icons/lu';
 
 import { IData, ITest } from '@modules/testHistory/interfaces';
+import { useNavigate } from 'react-router-dom';
+import { PrivatePathsEnum } from '@routes/privateRoutes/privatePaths';
 import {
   Container,
   TableHeader,
@@ -26,6 +28,8 @@ const TestHistoryTable: React.FC<ITestHistoryTableProps> = ({
   data,
   setCurrentOrderedValues,
 }) => {
+  const navigate = useNavigate();
+
   const [formattedData, setFormattedData] = useState<ITest[]>(data);
   const [currentOrderStart, setCurrentOrderStart] = useState<
     'asc' | 'desc' | null
@@ -114,7 +118,10 @@ const TestHistoryTable: React.FC<ITestHistoryTableProps> = ({
             formatDate(item.end);
 
           return (
-            <TableRow key={item.id}>
+            <TableRow
+              onClick={() => navigate(PrivatePathsEnum.HISTORICAL_TESTS_GRAPH)}
+              key={item.id}
+            >
               <TableItem width={15}>{item.testName}</TableItem>
               <TableItem width={30}>{item.description}</TableItem>
               <TableItem width={15}>
