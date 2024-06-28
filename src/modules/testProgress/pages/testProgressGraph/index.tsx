@@ -5,6 +5,7 @@ import ChamberGraph from '@modules/testProgress/components/chamberGraph';
 import { PrivatePathsEnum } from '@routes/privateRoutes/privatePaths';
 import { useDisclosure } from '@chakra-ui/react';
 import TestStatusModal from '@modules/testProgress/components/testStatusModal';
+import { useLocation } from 'react-router-dom';
 import { Container } from '../styles';
 
 const TestProgressGraph: React.FC = () => {
@@ -14,11 +15,13 @@ const TestProgressGraph: React.FC = () => {
 
   const initialTest = new Date();
 
-  const { onOpen, onClose, isOpen } = useDisclosure();
+  const { onOpen: modalTestOpen, onClose, isOpen } = useDisclosure();
+  const { state } = useLocation();
+
   useEffect(() => {
-    // has test started?
-    onOpen();
-  }, [onOpen]);
+    // has the test started?
+    if (state === null || !state.throughModule) modalTestOpen();
+  }, [modalTestOpen, state]);
 
   return (
     <Container>
@@ -26,7 +29,7 @@ const TestProgressGraph: React.FC = () => {
         isOpen={isOpen}
         onClose={onClose}
         date={initialTest}
-        variety="progress"
+        variety="finished"
       />
       <h2>
         <b>Test Name</b> • Description
