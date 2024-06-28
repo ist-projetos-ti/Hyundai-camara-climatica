@@ -11,6 +11,8 @@ export const Container = styled.div`
 export const TableContainer = styled.div`
   width: 100%;
   height: 85%;
+
+  position: relative;
 `;
 
 export const SettingsSection = styled.div`
@@ -50,4 +52,8 @@ export const Button = styled.button`
   display: flex;
   justify-content: center;
   align-items: center;
+
+  position: absolute;
+  bottom: 0;
+  right: 0;
 `;

@@ -11,6 +11,7 @@ export const TableHeader = styled.div`
   border-radius: 10px;
 
   display: flex;
+  padding-right: 8px;
 `;
 
 export const HeaderItem = styled.h1<{ width: number }>`
@@ -36,6 +37,20 @@ export const TableBody = styled.div`
   height: 95%;
 
   overflow: auto;
+
+  padding-right: 4px;
+  &::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  &::-webkit-scrollbar-track {
+    border-radius: 11.42px;
+    background-color: '#eeeeee';
+  }
+  &::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    background-color: #dedede;
+  }
 `;
 
 export const TableRow = styled.button`
@@ -51,10 +66,20 @@ export const TableRow = styled.button`
 export const TableItem = styled.div<{ width: number }>`
   height: 100%;
   width: ${({ width }) => width}%;
+  max-width: ${({ width }) => width}%;
 
   display: flex;
   align-items: center;
   margin-left: 2rem;
+  text-align: left;
+  min-width: auto;
+  max-width: 100%;
+
+  p {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
 
   svg {
     color: ${({ theme }) => theme.colors.primary};
@@ -65,6 +90,10 @@ export const TableItem = styled.div<{ width: number }>`
   font-weight: 500;
   color: ${({ theme }) => theme.colors.darkGray};
   font-size: 14px;
+
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 `;
 
 export const DateLabel = styled.p``;

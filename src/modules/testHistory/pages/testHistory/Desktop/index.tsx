@@ -4,6 +4,8 @@ import TestHistoryTable from '@modules/testHistory/components/TestHistoryTable';
 import Filter from '@modules/testHistory/components/Filter';
 import TotalHourMachineLabel from '@modules/testHistory/components/TotalHourMachineLabel';
 import { GoDownload } from 'react-icons/go';
+// eslint-disable-next-line import/no-extraneous-dependencies
+import { faker } from '@faker-js/faker';
 
 import { handleExportReport } from '@modules/testHistory/functions/HandleExports';
 import {
@@ -25,29 +27,17 @@ import {
 } from './styles';
 
 const DesktopTestHistoryPage: React.FC = () => {
-  const data = [
-    {
-      id: 1,
-      testName: 'TestName 01XJLY - SS',
-      description: 'Test description example HjdLdl_056698',
-      start: new Date('2024-02-01'),
-      end: new Date('2024-02-02'),
-    },
-    {
-      id: 2,
-      testName: 'TestName 01XJLY - SS',
-      description: 'Test description example HjdLdl_056698',
-      start: new Date('2024-01-01'),
-      end: new Date('2024-01-02'),
-    },
-    {
-      id: 3,
-      testName: 'TestName 01XJLY - SS',
-      description: 'Test description example HjdLdl_056698',
-      start: new Date('2024-03-02'),
-      end: new Date('2024-03-02'),
-    },
-  ];
+  const data = [];
+
+  for (let i = 0; i < 20; i += 1) {
+    data.push({
+      id: faker.string.uuid(),
+      testName: faker.lorem.words(),
+      description: faker.lorem.sentences(3),
+      start: faker.date.past(),
+      end: faker.date.recent(),
+    });
+  }
 
   const GetDifference = useCallback((startDate: Date, endDate: Date) => {
     const days = differenceInDays(endDate, startDate);
@@ -96,6 +86,13 @@ const DesktopTestHistoryPage: React.FC = () => {
           <TotalHourMachineLabel />
           <Filter setFilterDate={setFilterDate} />
         </Section>
+      </SettingsSection>
+
+      <TableContainer>
+        <TestHistoryTable
+          data={formattedData}
+          setCurrentOrderedValues={setCurrentOrderedValues}
+        />
         <Button
           onClick={() =>
             handleExportReport({
@@ -119,12 +116,6 @@ const DesktopTestHistoryPage: React.FC = () => {
           <GoDownload size={23} />
           Export List
         </Button>
-      </SettingsSection>
-      <TableContainer>
-        <TestHistoryTable
-          data={formattedData}
-          setCurrentOrderedValues={setCurrentOrderedValues}
-        />
       </TableContainer>
     </Container>
   );

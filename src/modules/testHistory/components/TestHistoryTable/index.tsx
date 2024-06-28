@@ -123,7 +123,9 @@ const TestHistoryTable: React.FC<ITestHistoryTableProps> = ({
               key={item.id}
             >
               <TableItem width={15}>{item.testName}</TableItem>
-              <TableItem width={30}>{item.description}</TableItem>
+              <TableItem width={30}>
+                <p>{item.description} </p>
+              </TableItem>
               <TableItem width={15}>
                 <DateLabel> {initialDate} </DateLabel>
                 <InitialTimeLabel>{initialHour}</InitialTimeLabel>
