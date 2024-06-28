@@ -32,7 +32,7 @@ export const Container = styled.div`
     rgba(50, 50, 93, 0.25) 0px 50px 100px -20px,
     rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
 
-  z-index: 100;
+  z-index: 10;
 `;
 
 export const Selector = styled.span<IDateSelectorProps>`
