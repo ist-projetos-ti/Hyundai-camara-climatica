@@ -6,7 +6,23 @@ export const Container = styled.div`
   display: flex;
   flex-direction: column;
   margin-top: 32px;
-  position: relative;
+  overflow: auto;
+
+  overflow: auto;
+
+  padding-right: 4px;
+  &::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  &::-webkit-scrollbar-track {
+    border-radius: 11.42px;
+    background-color: '#eeeeee';
+  }
+  &::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    background-color: white;
+  }
 `;
 
 export const TableContainer = styled.div`
@@ -53,6 +69,6 @@ export const Button = styled.button`
   align-items: center;
 
   position: absolute;
-  bottom: 0;
-  right: 0;
+  bottom: 2%;
+  right: 48px;
 `;
