@@ -2,8 +2,6 @@
  * Arquivo de declaração das rotas do módulo
  */
 
-export enum UsersApiRoutes {
-  USERS = '/users',
-  FORGOT_PASSWORD = '/passwords/forgot',
-  RESET_PASSWORD = '/users/resetPassword',
+export enum TestHistoryApiRoutes {
+  GET_MACHINE_SECONDS_TEST = 'tests/total-seconds',
 }

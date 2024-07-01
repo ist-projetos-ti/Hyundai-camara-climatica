@@ -10,4 +10,5 @@ export const queryClient = new QueryClient({
 
 export enum QueryKeys {
   USERS = 'USERS',
+  TEST_HISTORY = 'TEST_HISTORY',
 }

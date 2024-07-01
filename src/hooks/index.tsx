@@ -6,9 +6,10 @@ import themeDefaults from '@style/themeDefaults';
 
 import UsersModuleProviders from '@modules/users/hooks';
 import { AuthProvider } from '@modules/auth/hooks/auth';
+import TestHistoryProvider from '@modules/testHistory/hooks';
+import { ChakraProvider } from './ChakraProvider';
 // eslint-disable-next-line import/no-unresolved
 import { ToastProvider } from './Toast';
-import { ChakraProvider } from './ChakraProvider';
 
 type AppProviderProps = {
   children: React.ReactNode;
@@ -25,7 +26,9 @@ const AppProvider: React.FC<AppProviderProps> = ({ children }) => (
       <AnimatePresence>
         <ToastProvider>
           <AuthProvider>
-            <UsersModuleProviders>{children}</UsersModuleProviders>
+            <TestHistoryProvider>
+              <UsersModuleProviders>{children}</UsersModuleProviders>
+            </TestHistoryProvider>
           </AuthProvider>
         </ToastProvider>
       </AnimatePresence>
